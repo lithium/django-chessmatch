@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        {% endblock %}
+
+        <title>{% block page_title %}{% endblock %}</title>
+        {% block styles %}
+        <link rel="StyleSheet" href="{{STATIC_URL}}css/screen.css">
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        {% block scripts %}
+        <script src="{{STATIC_URL}}js/site.js"></script>
+        {% endblock %}
+    </body>
+</html>
