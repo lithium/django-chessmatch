@@ -37,5 +37,19 @@ class HistoryView(DetailView):
         if last_seen:
             turn, color = last_seen.split('.')
             queryset = queryset.filter(models.Q(turn__gt=turn) | models.Q(turn=turn,color__gt=color))
-        content = serializers.serialize('json', queryset)
+
+        moves = []
+        for move in queryset:
+            moves.append({
+                'to_coord': move.to_coord,
+                'from_coord': move.from_coord,
+                'turn': move.turn,
+                'color': move.color,
+                'piece': move.piece,
+                'expr': move.expression,
+            })
+        content = json.dumps(moves)
+        #content = serializers.serialize('json', moves)
+
+
         return http.HttpResponse(content, content_type='application/json')
