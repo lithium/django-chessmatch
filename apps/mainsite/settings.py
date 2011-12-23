@@ -49,7 +49,7 @@ TEMPLATE_LOADERS = [
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 ]
-JINGO_EXCLUDE_APPS = ('admin','debug_toolbar',)
+JINGO_EXCLUDE_APPS = ('admin','registration','debug_toolbar',)
 
 
 STATICFILES_FINDERS = [
@@ -69,6 +69,10 @@ ADMIN_MEDIA_PREFIX = STATIC_URL+'admin/'
 
 
 
+AUTHENTICATION_BACKENDS = [
+    'chessmatch.backends.PlayerLDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 
 ROOT_URLCONF = 'mainsite.urls'
