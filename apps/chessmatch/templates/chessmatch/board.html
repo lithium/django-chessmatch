@@ -42,24 +42,33 @@
     {{game}}
 
     <table class="chessboard">
+        <tr>
+            <th></th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th><th>h</th><th>i</th><th>j</th><th>k</th><th>l</th><th>m</th><th>n</th>
+        </tr>
     {%for rank in range(14,0,-1)%}
         <tr>
-        {%for file in 'abcdefghijklmn'%}
-            <td class="square 
-                {%if rank % 2%} 
-                    {%if file in 'acegikm'%}black{%else%}white{%endif%} 
-                {%else%} 
-                    {%if file in 'bdfhjln'%}black{%else%}white{%endif%} 
-                {%endif%} 
+            <th>{{rank}}</th>
+            {%for file in 'abcdefghijklmn'%}
+                <td class="square 
+                    {%if rank % 2%} 
+                        {%if file in 'acegikm'%}black{%else%}white{%endif%} 
+                    {%else%} 
+                        {%if file in 'bdfhjln'%}black{%else%}white{%endif%} 
+                    {%endif%} 
 
-                {%if (rank < 4 and file in 'abclmn') or (rank > 11 and file in 'abclmn') %}
-                    unusable
-                {%endif%}
-                " 
-                id="square-{{file}}{{rank}}"></td>
-        {%endfor%}
+                    {%if (rank < 4 and file in 'abclmn') or (rank > 11 and file in 'abclmn') %}
+                        unusable
+                    {%endif%}
+                    " 
+                    id="square-{{file}}{{rank}}">
+                </td>
+            {%endfor%}
+            <th>{{rank}}</th>
         </tr>
     {%endfor%}
+        <tr>
+            <th></th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th><th>h</th><th>i</th><th>j</th><th>k</th><th>l</th><th>m</th><th>n</th>
+        </tr>
     </table>
 
 
