@@ -1,5 +1,6 @@
 *.pyc
 settings_local.py
+local.sqlite*
 .*.sw*
 *~
 static/*
