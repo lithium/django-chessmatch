@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', 'mainsite.views.home', name='home'),
+    url(r'', include('chessmatch.urls')),
 
 )
 

@@ -81,6 +81,9 @@ class Game(basic_models.SlugModel):
         self.turn_color = COLOR_WHITE
         self.save()
 
+    def action_log(self):
+        return self.gameaction_set.all()
+
 
 
 class GamePlayer(models.Model):
@@ -104,17 +107,20 @@ class GameAction(models.Model):
     class Meta:
         ordering = ('turn','color')
 
-    def __unicode__(self):
+    @property
+    def expression(self):
         suffix = ''
         if self.is_mate:
             suffix = '#'
         elif self.is_check:
             suffix = '+'
-        piece_chunk = "%(piece)s%(is_cap)s%(to_coord)s%(suffix)s" % {
+        return "%(piece)s%(is_cap)s%(to_coord)s%(suffix)s" % {
             'piece': self.piece if self.piece != PIECE_PAWN else '',
             'to_coord': self.to_coord,
             'is_cap': 'x' if self.is_capture else '',
             'suffix': suffix,
         }
+
+    def __unicode__(self):
         fmts = ("%s", "... %s", "... ... %s", "... ... ... %s")
-        return "%s. %s" % (self.turn, fmts[self.color] % (piece_chunk,))
+        return "%s. %s" % (self.turn, fmts[self.color] % (self.expression,))
