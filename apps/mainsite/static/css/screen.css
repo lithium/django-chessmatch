@@ -16,3 +16,23 @@
         .square.unusable {
             background: black;
         }
+
+        .piece {
+            width: 48px;
+            height: 48px;
+            font-size: 32px;
+            cursor: pointer;
+        }
+        .piece.white {
+            color: white;
+        }
+        .piece.red {
+            color: red;
+        }
+        .piece.green {
+            color: green;
+        }
+        .piece.black {
+            color: black;
+        }
+

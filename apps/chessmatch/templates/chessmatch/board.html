@@ -1,5 +1,42 @@
 {%extends "base.html"%}
 
+{%block scripts%}
+{{super()}}
+<script>
+    window.latest_seen = '';
+
+    window.unicodes = {
+        'K': '&#9818',
+        'Q': '&#9819',
+        'R': '&#9820',
+        'B': '&#9821',
+        'N': '&#9822',
+        'P': '&#9823',
+    }
+    window.colors = ['white','red','black','green'];
+
+    function fetch_history() {
+        $.get('{{url('chessmatch_history', slug=game.slug)}}'+latest_seen, function(data) {
+            for (var i=0; i < data.length; i++) {
+                move = data[i].fields
+                var $square = $('#square-'+move.to_coord)
+
+                if (move.turn == 0) { // first placement, create piece 
+                    var $piece = $('<div class="piece '+window.colors[move.color]+'"/>')
+                    $piece.html(window.unicodes[move.piece])
+                    $square.empty()
+                    $square.append($piece)
+                }
+            }
+        })
+    }
+
+    $(function() {
+        fetch_history();
+    })
+</script>
+{%endblock%}
+
 {%block content%}
 
     {{game}}
@@ -19,7 +56,7 @@
                     unusable
                 {%endif%}
                 " 
-                id="square-{{file}}{{rank}}">{{file}}{{rank}}</td>
+                id="square-{{file}}{{rank}}"></td>
         {%endfor%}
         </tr>
     {%endfor%}
