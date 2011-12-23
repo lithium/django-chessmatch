@@ -4,5 +4,26 @@
 
     {{game}}
 
+    <table class="chessboard">
+    {%for rank in range(14,0,-1)%}
+        <tr>
+        {%for file in 'abcdefghijklmn'%}
+            <td class="square 
+                {%if rank % 2%} 
+                    {%if file in 'acegikm'%}black{%else%}white{%endif%} 
+                {%else%} 
+                    {%if file in 'bdfhjln'%}black{%else%}white{%endif%} 
+                {%endif%} 
+
+                {%if (rank < 4 and file in 'abclmn') or (rank > 11 and file in 'abclmn') %}
+                    unusable
+                {%endif%}
+                " 
+                id="square-{{file}}{{rank}}">{{file}}{{rank}}</td>
+        {%endfor%}
+        </tr>
+    {%endfor%}
+    </table>
+
 
 {%endblock%}
