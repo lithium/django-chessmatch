@@ -68,6 +68,7 @@ STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL+'admin/'
 
 
+AUTH_PROFILE_MODULE = 'chessmatch.Player'
 
 AUTHENTICATION_BACKENDS = [
     'chessmatch.backends.PlayerLDAPBackend',

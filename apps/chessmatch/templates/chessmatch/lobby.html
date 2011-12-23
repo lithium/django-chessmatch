@@ -2,6 +2,9 @@
 
 {%block content%}
 
+
+<a href="{{url('chessmatch_newgame')}}">New Game</a>
+
 <table class="lobby">
 <tr><th>Game</th><th>Started</th><th>Turn</th><th>Players</th></tr>
 {%for game in games%}
@@ -9,7 +12,8 @@
     <td><a href="{{url('chessmatch_game', slug=game.slug)}}">{{game.name}}</a></td>
     <td>{{game.started_at}}</td>
     <td>{{game.turn_number}}/{{game.get_turn_color_display()}}</td>
-    <td>{%for gp in game.gameplayer_set.all().select_related()%} <div>{{gp.player}}</div> {%endfor%} </td>
+    <td>{%for gp in game.gameplayer_set.all().select_related()%}<div>{{gp.player}}</div>{%endfor%}</td>
+    <td> <a href="{{url('chessmatch_join', slug=game.slug)}}">Join</a></td>
 </tr>
 {%endfor%}
 </table>

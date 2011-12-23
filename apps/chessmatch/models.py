@@ -1,16 +1,19 @@
 from django.db import models
 from basic_models import models as basic_models
+from django.template.defaultfilters import slugify
 
 import re
 
 import chessmatch.boards
 
 
+COLOR_NONE=-1
 COLOR_WHITE=0
 COLOR_RED=1
 COLOR_BLACK=2
 COLOR_GREEN=3
 COLOR_CHOICES = (
+    (COLOR_NONE, '---'),
     (COLOR_WHITE, 'White'),
     (COLOR_RED, 'Red'),
     (COLOR_BLACK, 'Black'),
@@ -51,6 +54,10 @@ class Game(basic_models.SlugModel):
     turn_number = models.PositiveIntegerField(default=0)
     turn_color = models.IntegerField(choices=COLOR_CHOICES, default=0)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        return super(Game, self).save(*args, **kwargs)
 
     def start_new_game(self):
         if self.started_at is not None:
@@ -89,8 +96,11 @@ class Game(basic_models.SlugModel):
 class GamePlayer(models.Model):
     game = models.ForeignKey(Game)
     player = models.ForeignKey(Player)
-    color = models.IntegerField(choices=COLOR_CHOICES)
+    color = models.IntegerField(choices=COLOR_CHOICES, default=COLOR_NONE)
     controller = models.ForeignKey('self', blank=True, null=True, default=None)
+
+    def __unicode__(self):
+        return "%s (%s)" % (self.get_color_display(), self.controller if self.controller else self.player)
 
 
 class GameAction(models.Model):

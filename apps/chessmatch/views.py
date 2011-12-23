@@ -1,9 +1,12 @@
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, CreateView, RedirectView
+from django.views.generic.detail import SingleObjectMixin
+from django.core.urlresolvers import reverse
 from django.db import models
 from django import http
 from django.core import serializers
 
 from chessmatch.models import *
+from chessmatch.forms import *
 import json
 
 
@@ -53,3 +56,31 @@ class HistoryView(DetailView):
 
 
         return http.HttpResponse(content, content_type='application/json')
+
+class NewGameView(CreateView):
+    model = Game
+    form_class = NewGameForm 
+    template_name = 'chessmatch/newgame.html'
+    success_url = '/'
+
+    def form_valid(self, form):
+        ret = super(NewGameView, self).form_valid(form)
+        gp, created = GamePlayer.objects.get_or_create(
+            game=self.object, 
+            player=self.request.user.get_profile()
+        )
+        return ret
+
+class JoinGameView(DetailView):
+    model = Game
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if request.user.is_authenticated():
+            player = request.user.get_profile()
+            gp, created = GamePlayer.objects.get_or_create(game=obj, player=player)
+        return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':obj.slug}))
+
+
+    
+
+

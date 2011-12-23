@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+
+<h1>Create a new Game</h1>
+
+<form method="POST" action=""> {{csrf()}}
+
+{{form.as_p()|safe}}
+<input type="submit" value="Create Game"/>
+</form>
+
+
+{%endblock%}
