@@ -7,7 +7,7 @@ from chessmatch.models import Player
 class PlayerLDAPBackend(LDAPBackend):
 
     def get_or_create_user(self, username, ldap_user):
-        user, created = super(StaffLDAPBackend, self).get_or_create_user(username, ldap_user)
+        user, created = super(PlayerLDAPBackend, self).get_or_create_user(username, ldap_user)
         if created: # create player profile the first time they log in
         	player, player_created = Player.objects.get_or_create(user=user)
 

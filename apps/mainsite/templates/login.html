@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+
+<form method="POST" action="">
+{{csrf()}}
+
+{{form.as_p()|safe()}}
+<input type="submit" value="login"/>
+</form>
+
+{%endblock%}

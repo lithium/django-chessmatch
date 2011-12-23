@@ -8,9 +8,14 @@ admin.autodiscover()
 handler500 = 'mainsite.views.error500'
 handler404 = 'mainsite.views.error404'
 
+from mainsite.views import LoginView
+
 urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^logout/', 'mainsite.views.logout', name='logout'),
+    url(r'^login/', LoginView.as_view(), name='login'),
 
     url(r'', include('chessmatch.urls')),
 

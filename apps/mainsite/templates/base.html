@@ -12,13 +12,14 @@
     </head>
     <body>
         <section class="header">
-            {%if request.user%}
+            {%if request.user.is_authenticated()%}
                 <section class="player">
                     <img class="avatar" src="{{gravatar_image_url(request.user.email)}}"/>
                     <div class="username">{{request.user}}</div>
+                    <a href="{{url('logout')}}">Logout</a>
                 </section>
             {%else%}
-                {{url('login')}}
+                <a href="{{url('login')}}">Login</a>
             {%endif%}
         </section>
 
