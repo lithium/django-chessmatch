@@ -67,7 +67,11 @@
 
 {%block content%}
 
-    {{game}}
+    <h1>{{game.name}}</h1>
+
+    {%if not game.started_at%}
+    <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
+    {%endif%}
 
     <table class="chessboard">
         <tr>
@@ -99,6 +103,14 @@
         </tr>
     </table>
 
+    <table id="playerlist">
+        {%for gp in game.gameplayer_set.all()%}
+        <tr>
+            <td>{{gp.get_color_display()}}</td>
+            <td>{{macros.render_avatar(gp.player)}}</td>
+        </tr>
+        {%endfor%}
+    </table>
 
     <table id="movelist">
         <tr><th></th><th>White</th><th>Red</th><th>Black</th><th>Green</th></tr>

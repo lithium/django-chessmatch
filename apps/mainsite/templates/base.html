@@ -1,3 +1,5 @@
+{%import "macros.html" as macros%}
+
 <!doctype html>
 <html>
     <head>
@@ -13,11 +15,8 @@
     <body>
         <section class="header">
             {%if request.user.is_authenticated()%}
-                <section class="player">
-                    <img class="avatar" src="{{gravatar_image_url(request.user.email)}}"/>
-                    <div class="username">{{request.user}}</div>
-                    <a href="{{url('logout')}}">Logout</a>
-                </section>
+                {{macros.render_avatar(request.user.get_profile())}}
+               <a href="{{url('logout')}}">Logout</a>
             {%else%}
                 <a href="{{url('login')}}">Login</a>
             {%endif%}

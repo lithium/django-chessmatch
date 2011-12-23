@@ -81,6 +81,9 @@ class JoinGameView(DetailView):
         return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':obj.slug}))
 
 
-    
-
-
+class StartGameView(DetailView):
+    model = Game
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.start_new_game()
+        return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':obj.slug}))

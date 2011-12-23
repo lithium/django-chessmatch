@@ -3,6 +3,8 @@ from basic_models import models as basic_models
 from django.template.defaultfilters import slugify
 
 import re
+import random
+import datetime
 
 import chessmatch.boards
 
@@ -83,6 +85,15 @@ class Game(basic_models.SlugModel):
                 piece=piece,
                 from_coord='',
                 to_coord=square)
+
+        # randomize player positions
+        turns = sorted(zip([random.random() for c in range(0,4)], [player for player in self.gameplayer_set.all()]), lambda a,b: cmp(a[0],b[0]))
+        color = 0
+        for weight,player in turns:
+            player.color = color
+            player.save()
+            color += 1
+
         self.started_at = datetime.datetime.now()
         self.turn_number = 1
         self.turn_color = COLOR_WHITE
