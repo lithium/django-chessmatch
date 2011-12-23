@@ -11,6 +11,17 @@
         {% endblock %}
     </head>
     <body>
+        <section class="header">
+            {%if request.user%}
+                <section class="player">
+                    <img class="avatar" src="{{gravatar_image_url(request.user.email)}}"/>
+                    <div class="username">{{request.user}}</div>
+                </section>
+            {%else%}
+                {{url('login')}}
+            {%endif%}
+        </section>
+
         {% block content %}{% endblock %}
         {% block scripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
