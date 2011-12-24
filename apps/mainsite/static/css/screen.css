@@ -87,6 +87,15 @@ section.game-board {
     margin: 0 50px 50px 20px;
 }
 
+section.game-move {
+    float: right;
+    margin-right: 50px;
+}
+section.game-move input[type=text] {
+   width: 3em; 
+   text-align: center;
+}
+
 section.game-log {
     float: left;
 }
@@ -111,6 +120,7 @@ table.chessboard {
     width: 40px;
     height: 40px;
     text-align: center;
+    border: 1px solid transparent;
 }
 .square.black {
     background: #d18b47;
@@ -140,6 +150,13 @@ table.chessboard {
 }
 .piece.black {
     color: black;
+}
+
+.square.move-source {
+    border: 1px dotted red;
+}
+.square.move-destination {
+    border: 1px dotted blue;
 }
 
 

@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     url(r'^board/(?P<slug>[^/]+)/history/(?:(?P<last_seen>[^/]+)/)?$', HistoryView.as_view(), name='chessmatch_history'),
     url(r'^board/(?P<slug>[^/]+)/$', BoardView.as_view(), name='chessmatch_game'),
 
+    url(r'^move/(?P<slug>[^/]+)/$', MakeMoveView.as_view(), name='chessmatch_move'),
+
 
     url(r'^$', LobbyView.as_view(), name='chessmatch_lobby'),
 )

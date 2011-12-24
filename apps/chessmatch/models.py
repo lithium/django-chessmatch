@@ -55,6 +55,7 @@ class Game(basic_models.SlugModel):
     started_at = models.DateTimeField(blank=True, null=True, default=None)
     turn_number = models.PositiveIntegerField(default=0)
     turn_color = models.IntegerField(choices=COLOR_CHOICES, default=0)
+    num_players = models.PositiveIntegerField(default=4)
 
     @property
     def comma_players(self):
@@ -104,9 +105,21 @@ class Game(basic_models.SlugModel):
         self.turn_color = COLOR_WHITE
         self.save()
 
+    def next_turn(self):
+        self.turn_color += 1
+        if self.turn_color >= self.num_players:
+            self.turn_color = 0
+            self.turn_number += 1
+        self.save()
+
     def action_log(self):
         return self.gameaction_set.all()
 
+    def get_latest_piece(self, coord):
+        qs = self.gameaction_set.filter(to_coord=coord).order_by('-turn','-color')
+        if len(qs) < 1:
+            return None
+        return qs[0]
 
 
 class GamePlayer(models.Model):
@@ -117,6 +130,8 @@ class GamePlayer(models.Model):
 
     def __unicode__(self):
         return "%s (%s)" % (self.get_color_display(), self.controller if self.controller else self.player)
+
+
 
 
 class GameAction(models.Model):

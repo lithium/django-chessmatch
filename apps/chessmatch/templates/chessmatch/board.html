@@ -83,7 +83,18 @@
             drop: function(event,ui) {
                 var $square = $(this)
                 var $piece = ui.draggable
+
+                $('#id_to_coord').val($square.attr('square'))
+                $('#id_from_coord').val($piece.attr('square'))
+
+
+                $('.square').removeClass('move-destination')
+                $square.addClass("move-destination")
+                $('#square-'+$piece.attr('square')).addClass("move-source")
+
+
                 $piece.remove()
+                $square.empty()
                 $square.append($piece)
                 $piece.css({'left':0,'top':0})
                 $piece.draggable()
@@ -104,6 +115,14 @@
         {%endif%}
     </section>
 
+    <section class="game-move">
+        <form method="POST" action="{{url('chessmatch_move', slug=game.slug)}}" id="next-move">
+            {{csrf()}}
+            <input type="text" placeholder="From Coordinate" name="from_coord" id="id_from_coord"/>
+            <input type="text" placeholder="To Coordinate" name="to_coord" id="id_to_coord"/>
+            <button>Submit Move</button>
+        </form>
+    </section>
 
     <section class="game-board">
         <table class="chessboard">
@@ -125,7 +144,7 @@
                             unusable
                         {%endif%}
                         " 
-                        id="square-{{file}}{{rank}}">
+                        id="square-{{file}}{{rank}}" square="{{file}}{{rank}}">
                     </td>
                 {%endfor%}
                 <th>{{rank}}</th>
