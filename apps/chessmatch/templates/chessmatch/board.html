@@ -19,8 +19,15 @@
 
     function fetch_history() {
         $.get('{{url('chessmatch_history', slug=game.slug)}}'+latest_seen, function(data) {
-            for (var i=0; i < data.length; i++) {
-                move = data[i]
+            window.MY_COLORS = data.my_colors
+            window.MY_CONTROLLER = data.my_controller
+            var parts = data.turn.split('.')
+            window.CUR_TURN = parts[0]
+            window.CUR_COLOR = parts[1]
+
+            // moves
+            for (var i=0; i < data.moves.length; i++) {
+                move = data.moves[i]
 
                 // create and/or position piece
                 var $square = $('#square-'+move.to_coord)
@@ -30,6 +37,16 @@
                 }
                 else { // first placement, create it
                     var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
+                    $piece.draggable({
+                        start: function(event, ui) {
+                            for (var i=0; i < MY_COLORS.length; i++) {
+                                if ($(this).hasClass(window.colors[MY_COLORS[i]])) {
+                                    return true;
+                                }
+                            }
+                            return false
+                        },
+                    });
                     $piece.html(window.unicodes[move.piece])
                 }
                 $piece.attr('square', move.to_coord)
@@ -61,6 +78,17 @@
 
     $(function() {
         fetch_history();
+
+        $('td.square').droppable({
+            drop: function(event,ui) {
+                var $square = $(this)
+                var $piece = ui.draggable
+                $piece.remove()
+                $square.append($piece)
+                $piece.css({'left':0,'top':0})
+                $piece.draggable()
+            }
+        });
     })
 </script>
 {%endblock%}

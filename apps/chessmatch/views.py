@@ -47,9 +47,19 @@ class HistoryView(DetailView):
             turn, color = last_seen.split('.')
             queryset = queryset.filter(models.Q(turn__gt=turn) | models.Q(turn=turn,color__gt=color))
 
-        moves = []
+        state = {
+            'turn': "%s.%s" % (self.object.turn_number, self.object.turn_color),
+            'moves': [],
+            'my_colors': [],
+        }
+
+        if self.request.user.is_authenticated():
+            player = self.request.user.get_profile()
+            for gp in self.object.gameplayer_set.filter(models.Q(player=player) | models.Q(controller=player)):
+                state['my_colors'].append(gp.color)
+
         for move in queryset:
-            moves.append({
+            state['moves'].append({
                 'to_coord': move.to_coord,
                 'from_coord': move.from_coord,
                 'turn': move.turn,
@@ -57,7 +67,7 @@ class HistoryView(DetailView):
                 'piece': move.piece,
                 'expr': move.expression,
             })
-        content = json.dumps(moves)
+        content = json.dumps(state)
         #content = serializers.serialize('json', moves)
 
 
