@@ -21,6 +21,17 @@ COLOR_CHOICES = (
     (COLOR_BLACK, 'Black'),
     (COLOR_GREEN, 'Green'),
 )
+class PieceColor(models.Model):
+    number = models.IntegerField()
+    name = models.CharField(max_length=64)
+    hexvalue = models.CharField(max_length=64, blank=True)
+
+    class Meta:
+        ordering = ('number',)
+
+    def __unicode__(self):
+        return self.name
+
 
 BOARD_SETUP_HUGHES='all_queens_on_left'
 BOARD_SETUP_CHOICES = (
@@ -54,7 +65,7 @@ class Game(basic_models.SlugModel):
     board_setup = models.CharField(max_length=64, choices=BOARD_SETUP_CHOICES, default=BOARD_SETUP_HUGHES)
     started_at = models.DateTimeField(blank=True, null=True, default=None)
     turn_number = models.PositiveIntegerField(default=0)
-    turn_color = models.IntegerField(choices=COLOR_CHOICES, default=0)
+    turn_color = models.IntegerField(default=0)
     num_players = models.PositiveIntegerField(default=4)
 
     @property
@@ -125,7 +136,7 @@ class Game(basic_models.SlugModel):
 class GamePlayer(models.Model):
     game = models.ForeignKey(Game)
     player = models.ForeignKey(Player)
-    color = models.IntegerField(choices=COLOR_CHOICES, default=COLOR_NONE)
+    color = models.IntegerField(default=-1)
     controller = models.ForeignKey('self', blank=True, null=True, default=None)
 
     def __unicode__(self):
@@ -136,8 +147,8 @@ class GamePlayer(models.Model):
 
 class GameAction(models.Model):
     game = models.ForeignKey(Game)
-    turn = models.PositiveIntegerField(default=0)
-    color = models.IntegerField(choices=COLOR_CHOICES, default=0)
+    turn = models.PositiveIntegerField()
+    color = models.IntegerField()
     piece = models.CharField(max_length=64, choices=PIECE_CHOICES)
     from_coord = models.CharField(max_length=64, blank=True)
     to_coord = models.CharField(max_length=64)
