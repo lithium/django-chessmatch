@@ -4,7 +4,8 @@ body {
     padding: 0;
 }
 
-/* base header */
+
+/* base layout */
 section#page-header {
     position: relative;
     vertical-align: top;
@@ -32,9 +33,54 @@ section#page-header p.loginout {
     margin:0;
 }
 
+section#content {
+    margin: 20px;
+}
 
 
-/* board view layout */
+
+/* lobby layout */
+
+section.lobby {
+    margin: 50px auto 100px auto;
+    width: 600px;    
+}
+.lobby table.gamelist {
+    width: 600px;    
+    border-spacing: 0;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+.lobby table.gamelist th {
+    text-align: left; 
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    background: #eeeeee;
+} 
+.lobby table.gamelist td {
+    vertical-align: top; 
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    padding: 3px 3px 0 3px;
+}
+
+.lobby .newgame { 
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+.lobby .newgame a:link,
+.lobby .newgame a:visited,
+.lobby .newgame a:hover
+{
+    text-decoration: none;
+    color: black;
+    
+}
+
+
+
+/* board layout */
 
 section.game-board {
     float: left;

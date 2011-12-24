@@ -56,6 +56,11 @@ class Game(basic_models.SlugModel):
     turn_number = models.PositiveIntegerField(default=0)
     turn_color = models.IntegerField(choices=COLOR_CHOICES, default=0)
 
+    @property
+    def comma_players(self):
+        return ', '.join(unicode(gp.player) for gp in self.gameplayer_set.all())
+
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)

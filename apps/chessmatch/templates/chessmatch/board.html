@@ -69,7 +69,7 @@
 
     <section class="game-info">
         <h1>{{game.name}}</h1>
-        <h3>{%for gp in game.gameplayer_set.all()%}{{gp.player}}{%if not loop.last%}, {%endif%}{%endfor%}</h3>
+        {# <h3>{{game.comma_players}}</h3> #}
 
         {%if not game.started_at%}
         <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
