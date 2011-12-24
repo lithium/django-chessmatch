@@ -1,38 +1,99 @@
+/* reset */
+body {
+    margin: 0;
+    padding: 0;
+}
 
-        table.chessboard {
-            border-spacing: 0;
-        }
-        .square {
-            width: 40px;
-            height: 40px;
-            text-align: center;
-        }
-        .square.black {
-            background: #d18b47;
-        }
-        .square.white {
-            background: #ffce9e;
-        }
-        .square.unusable {
-            background: black;
-        }
+/* base header */
+section#page-header {
+    position: relative;
+    vertical-align: top;
+    background: #eee;
+    padding: 4px;
+}
 
-        .piece {
-            width: 40px;
-            height: 40px;
-            font-size: 28px;
-            cursor: pointer;
-        }
-        .piece.white {
-            color: white;
-        }
-        .piece.red {
-            color: red;
-        }
-        .piece.green {
-            color: green;
-        }
-        .piece.black {
-            color: black;
-        }
+section#page-header h1 {
+    display: inline; 
+    float: left;
+    padding: 0;
+    margin:0;
+}
+section#page-header h1 a:link, 
+section#page-header h1 a:visited, 
+section#page-header h1 a:hover  {
+    text-decoration: none;
+    color: black;
+}
+
+section#page-header p.loginout {
+    vertical-align: top;
+    float: right;
+    padding: 0;
+    margin:0;
+}
+
+
+
+/* board view layout */
+
+section.game-board {
+    float: left;
+    margin: 0 50px 50px 20px;
+}
+
+section.game-log {
+    float: left;
+}
+.game-log #movelist tr.names th {
+    vertical-align: top;
+    padding: 4px;
+    width: 40px; 
+}
+
+section.game-info {
+    text-align: center; 
+}
+
+
+/* chess board and pieces */
+table.chessboard {
+    border-spacing: 0;
+}
+.square {
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+.square.black {
+    background: #d18b47;
+}
+.square.white {
+    background: #ffce9e;
+}
+.square.unusable {
+    background: black;
+}
+.piece {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 28px;
+    cursor: pointer;
+}
+.piece.white {
+    color: white;
+}
+.piece.red {
+    color: red;
+}
+.piece.green {
+    color: green;
+}
+.piece.black {
+    color: black;
+}
+
 

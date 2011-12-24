@@ -13,13 +13,17 @@
         {% endblock %}
     </head>
     <body>
-        <section class="header">
+        <section id="page-header">
+            <h1><a href="{{url('chessmatch_lobby')}}">Chessmatch</a></h1>
+            <p class="loginout">
             {%if request.user.is_authenticated()%}
-                {{macros.render_avatar(request.user.get_profile())}}
-               <a href="{{url('logout')}}">Logout</a>
+                {{request.user.username}}
+                <a href="{{url('logout')}}">Logout</a>
             {%else%}
                 <a href="{{url('login')}}">Login</a>
             {%endif%}
+            </p>
+            <div style="clear: both"></div>
         </section>
 
         {% block content %}{% endblock %}

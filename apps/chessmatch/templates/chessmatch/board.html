@@ -67,54 +67,58 @@
 
 {%block content%}
 
-    <h1>{{game.name}}</h1>
+    <section class="game-info">
+        <h1>{{game.name}}</h1>
+        <h3>{%for gp in game.gameplayer_set.all()%}{{gp.player}}{%if not loop.last%}, {%endif%}{%endfor%}</h3>
 
-    {%if not game.started_at%}
-    <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
-    {%endif%}
+        {%if not game.started_at%}
+        <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
+        {%endif%}
+    </section>
 
-    <table class="chessboard">
-        <tr>
-            <th></th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th><th>h</th><th>i</th><th>j</th><th>k</th><th>l</th><th>m</th><th>n</th>
-        </tr>
-    {%for rank in range(14,0,-1)%}
-        <tr>
-            <th>{{rank}}</th>
-            {%for file in 'abcdefghijklmn'%}
-                <td class="square 
-                    {%if rank % 2%} 
-                        {%if file in 'acegikm'%}black{%else%}white{%endif%} 
-                    {%else%} 
-                        {%if file in 'bdfhjln'%}black{%else%}white{%endif%} 
-                    {%endif%} 
 
-                    {%if (rank < 4 and file in 'abclmn') or (rank > 11 and file in 'abclmn') %}
-                        unusable
-                    {%endif%}
-                    " 
-                    id="square-{{file}}{{rank}}">
-                </td>
-            {%endfor%}
-            <th>{{rank}}</th>
-        </tr>
-    {%endfor%}
-        <tr>
-            <th></th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th><th>h</th><th>i</th><th>j</th><th>k</th><th>l</th><th>m</th><th>n</th>
-        </tr>
-    </table>
+    <section class="game-board">
+        <table class="chessboard">
+            <tr>
+                <th></th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th><th>h</th><th>i</th><th>j</th><th>k</th><th>l</th><th>m</th><th>n</th>
+            </tr>
+        {%for rank in range(14,0,-1)%}
+            <tr>
+                <th>{{rank}}</th>
+                {%for file in 'abcdefghijklmn'%}
+                    <td class="square 
+                        {%if rank % 2%} 
+                            {%if file in 'acegikm'%}black{%else%}white{%endif%} 
+                        {%else%} 
+                            {%if file in 'bdfhjln'%}black{%else%}white{%endif%} 
+                        {%endif%} 
 
-    <table id="playerlist">
-        {%for gp in game.gameplayer_set.all()%}
-        <tr>
-            <td>{{gp.get_color_display()}}</td>
-            <td>{{macros.render_avatar(gp.player)}}</td>
-        </tr>
+                        {%if (rank < 4 and file in 'abclmn') or (rank > 11 and file in 'abclmn') %}
+                            unusable
+                        {%endif%}
+                        " 
+                        id="square-{{file}}{{rank}}">
+                    </td>
+                {%endfor%}
+                <th>{{rank}}</th>
+            </tr>
         {%endfor%}
-    </table>
+            <tr>
+                <th></th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th><th>h</th><th>i</th><th>j</th><th>k</th><th>l</th><th>m</th><th>n</th>
+            </tr>
+        </table>
+    </section>
 
-    <table id="movelist">
-        <tr><th></th><th>White</th><th>Red</th><th>Black</th><th>Green</th></tr>
-    </table>
-
+    <section class="game-log">
+        <table id="movelist">
+            <tr class="names">
+                <th></th>
+                <th>White {{macros.render_avatar(players[0])}}</th>
+                <th>Red {{macros.render_avatar(players[1])}}</th>
+                <th>Black {{macros.render_avatar(players[2])}}</th>
+                <th>Green {{macros.render_avatar(players[3])}}</th>
+            </tr>
+        </table>
+    </section>
 
 {%endblock%}

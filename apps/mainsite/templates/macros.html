@@ -1,8 +1,10 @@
 
 
 {%macro render_avatar(player) -%}
-	<section class="player">
+{%if player%}
+	<div class="player">
 	    <img class="avatar" src="{{gravatar_image_url(player.user.email)}}?s=40"/>
 	    <div class="username">{{player.user}}</div>
-	</section>
+	</div>
+	{%endif%}
 {%endmacro%}

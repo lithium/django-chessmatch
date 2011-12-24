@@ -27,7 +27,13 @@ class BoardView(DetailView):
 
     def get_context_data(self, **kwargs):
         c = super(BoardView, self).get_context_data(**kwargs)
+
+        players = {}
+        for gp in self.object.gameplayer_set.all():
+            if gp.color >= 0:
+                players[gp.color] = gp.player
         c.update({
+            'players': players,
         })
         return c
 
