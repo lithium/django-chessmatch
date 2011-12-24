@@ -5,38 +5,48 @@ from django.template.defaultfilters import slugify
 import re
 import random
 import datetime
+import string
 
-import chessmatch.boards
 
 
-COLOR_NONE=-1
-COLOR_WHITE=0
-COLOR_RED=1
-COLOR_BLACK=2
-COLOR_GREEN=3
-COLOR_CHOICES = (
-    (COLOR_NONE, '---'),
-    (COLOR_WHITE, 'White'),
-    (COLOR_RED, 'Red'),
-    (COLOR_BLACK, 'Black'),
-    (COLOR_GREEN, 'Green'),
-)
+class PieceColorManager(models.Manager):
+    def letters_array(self):
+        ret = ""
+        for pc in self.all().order_by('turn_order'):
+            ret += pc.letter
+        return ret
+
+
 class PieceColor(models.Model):
-    number = models.IntegerField()
+    turn_order = models.IntegerField()
     name = models.CharField(max_length=64)
+    letter = models.CharField(max_length=1, unique=True)
     hexvalue = models.CharField(max_length=64, blank=True)
 
+    objects = PieceColorManager()
+
     class Meta:
-        ordering = ('number',)
+        ordering = ('turn_order',)
 
     def __unicode__(self):
         return self.name
 
+class BoardSetup(basic_models.SlugModel):
+    description = models.TextField(blank=True)
+    num_rows = models.PositiveIntegerField(default=14)
+    num_cols = models.PositiveIntegerField(default=14)
+    squares = models.TextField(blank=True)
+    min_players = models.PositiveIntegerField(default=4)
+    max_players = models.PositiveIntegerField(default=4)
+    pieces = models.TextField()
 
-BOARD_SETUP_HUGHES='all_queens_on_left'
-BOARD_SETUP_CHOICES = (
-    (BOARD_SETUP_HUGHES, 'Hughes (Queens always on the left)'),
-)
+    def is_coord_valid(self, file, rank):
+        col = string.ascii_lowercase.find(file)+1
+        return  (col > 0 and col <= self.num_cols) and \
+                (rank > 0 and rank <= self.num_rows) and \
+                ('%s%s'%(file,rank) not in self.squares)
+
+
 
 PIECE_PAWN='P'
 PIECE_ROOK='R'
@@ -62,7 +72,7 @@ class Player(basic_models.ActiveModel):
 
 
 class Game(basic_models.SlugModel):
-    board_setup = models.CharField(max_length=64, choices=BOARD_SETUP_CHOICES, default=BOARD_SETUP_HUGHES)
+    board_setup = models.ForeignKey(BoardSetup)
     started_at = models.DateTimeField(blank=True, null=True, default=None)
     turn_number = models.PositiveIntegerField(default=0)
     turn_color = models.IntegerField(default=0)
@@ -81,14 +91,11 @@ class Game(basic_models.SlugModel):
     def start_new_game(self):
         if self.started_at is not None:
             return
-        starting_pieces = getattr(chessmatch.boards, self.board_setup, None)
-        if starting_pieces is None:
-            raise AttributeError("Could not find board setup '%s'" % (self.board_setup,))
 
-        color_letters = 'wrbg'
+        color_letters = PieceColor.objects.letters_array()
         piece_letters = 'PRNBQK'
 
-        for placement in re.split(r'\s+', starting_pieces):
+        for placement in re.split(r'\s+', self.board_setup.pieces):
             placement = placement.strip()
             if not placement:
                 continue
@@ -113,7 +120,7 @@ class Game(basic_models.SlugModel):
 
         self.started_at = datetime.datetime.now()
         self.turn_number = 1
-        self.turn_color = COLOR_WHITE
+        self.turn_color = 0
         self.save()
 
     def next_turn(self):
@@ -140,7 +147,7 @@ class GamePlayer(models.Model):
     controller = models.ForeignKey('self', blank=True, null=True, default=None)
 
     def __unicode__(self):
-        return "%s (%s)" % (self.get_color_display(), self.controller if self.controller else self.player)
+        return "%s (%s)" % (self.color, self.controller if self.controller else self.player)
 
 
 

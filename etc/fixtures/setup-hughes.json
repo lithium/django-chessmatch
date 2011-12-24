@@ -1,0 +1,22 @@
+[
+  {
+    "pk": 1, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "Hughes", 
+      "min_players": 4, 
+      "created_at": "2011-12-24 01:11:15", 
+      "description": "All queens on the left", 
+      "is_active": true, 
+      "updated_at": "2011-12-24 01:11:15", 
+      "created_by": 1, 
+      "pieces": "wPd2 wPe2 wPf2 wPg2 wPh2 wPi2 wPj2 wPk2\r\nwRd1 wNe1 wBf1 wQg1 wKh1 wBi1 wNj1 wRk1\r\n\r\nrPb11 rPb10 rPb9 rPb8 rPb7 rPb6 rPb5 rPb4\r\nrRa11 rNa10 rBa9 rQa8 rKa7 rBa6 rNa5 rRa4\r\n\r\nbPd13 bPe13 bPf13 bPg13 bPh13 bPi13 bPj13 bPk13\r\nbRd14 bNe14 bBf14 bKg14 bQh14 bBi14 bNj14 bRk14\r\n\r\ngPm11 gPm10 gPm9 gPm8 gPm7 gPm6 gPm5 gPm4\r\ngRn11 gNn10 gBn9 gKn8 gQn7 gBn6 gNn5 gRn4\r\n", 
+      "num_cols": 14, 
+      "num_rows": 14, 
+      "max_players": 4, 
+      "squares": "a1 a2 a3 b1 b2 b3 c1 c2 c3\r\nl1 l2 l3 m1 m2 m3 n1 n2 n3\r\na12 a13 a14 b12 b13 b14 c12 c13 c14\r\nl12 l13 l14 m12 m13 m14 n12 n13 n14\r\n", 
+      "slug": "hughes", 
+      "updated_by": 1
+    }
+  }
+]

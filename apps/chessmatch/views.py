@@ -32,8 +32,16 @@ class BoardView(DetailView):
         for gp in self.object.gameplayer_set.all():
             if gp.color >= 0:
                 players[gp.color] = gp.player
+
+        files = string.ascii_lowercase[:self.object.board_setup.num_cols]
+        files_odds = files[::2]
+        files_evens = files[1::2]
+
         c.update({
             'players': players,
+            'files': files,
+            'files_odds': files_odds,
+            'files_evens': files_evens,
         })
         return c
 

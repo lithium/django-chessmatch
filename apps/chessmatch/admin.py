@@ -15,3 +15,12 @@ class GameAdmin(SlugModelAdmin):
     inlines = (GamePlayerInline, GameActionInline)
 
 admin.site.register(Game, GameAdmin)
+
+
+class PieceColorAdmin(DefaultModelAdmin):
+	list_display = ('name','turn_order','hexvalue')
+admin.site.register(PieceColor, PieceColorAdmin)
+
+class BoardSetupAdmin(SlugModelAdmin):
+	pass
+admin.site.register(BoardSetup, BoardSetupAdmin)

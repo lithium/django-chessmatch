@@ -1,0 +1,42 @@
+[
+  {
+    "pk": 1, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "turn_order": 0, 
+      "hexvalue": "#ffffff", 
+      "name": "White", 
+      "letter": "w"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "turn_order": 1, 
+      "hexvalue": "#ff0000", 
+      "name": "Red", 
+      "letter": "r"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "turn_order": 2, 
+      "hexvalue": "#000000", 
+      "name": "Black", 
+      "letter": "b"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "turn_order": 3, 
+      "hexvalue": "#00ff00", 
+      "name": "Green", 
+      "letter": "g"
+    }
+  }
+]
