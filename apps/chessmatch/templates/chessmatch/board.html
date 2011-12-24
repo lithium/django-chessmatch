@@ -17,6 +17,33 @@
 
     window.game_actions = []
 
+    function apply_move(move) {
+        // create and/or position piece
+        var $square = $('#square-'+move.to_coord)
+        var color = window.colors[move.color]
+        if (move.from_coord) {
+            var $piece = $('#square-'+move.from_coord+' .piece')
+        }
+        else { // first placement, create it
+            var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
+            $piece.draggable({
+                /*
+                start: function(event, ui) {
+                    for (var i=0; i < MY_COLORS.length; i++) {
+                        if ($(this).hasClass(window.colors[MY_COLORS[i]])) {
+                            return true;
+                        }
+                    }
+                    return false
+                },*/
+            });
+            $piece.html(window.unicodes[move.piece])
+        }
+        $piece.attr('square', move.to_coord)
+        $square.empty()
+        $square.append($piece)
+    }
+
     function fetch_history() {
         $.get('{{url('chessmatch_history', slug=game.slug)}}'+latest_seen, function(data) {
             window.MY_COLORS = data.my_colors
@@ -28,43 +55,20 @@
             // moves
             for (var i=0; i < data.moves.length; i++) {
                 move = data.moves[i]
-
-                // create and/or position piece
-                var $square = $('#square-'+move.to_coord)
                 var color = window.colors[move.color]
-                if (move.from_coord) {
-                    var $piece = $('#square-'+move.from_coord+' .piece')
-                }
-                else { // first placement, create it
-                    var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
-                    $piece.draggable({
-                        start: function(event, ui) {
-                            for (var i=0; i < MY_COLORS.length; i++) {
-                                if ($(this).hasClass(window.colors[MY_COLORS[i]])) {
-                                    return true;
-                                }
-                            }
-                            return false
-                        },
-                    });
-                    $piece.html(window.unicodes[move.piece])
-                }
-                $piece.attr('square', move.to_coord)
-                $square.empty()
-                $square.append($piece)
+                apply_move(move)
 
-
-                // game log
+                // add to game log
                 window.game_actions.push(move)
                 if (move.turn > 0) {
                     var $tr = $('tr#turn-'+move.turn);
                     if ($tr.length < 1) {
-                        $tr = $('<tr id="turn-'+move.turn+'" actions_idx="'+(window.game_actions.length-1)+'"><th>'+move.turn+'.</th></tr>')
+                        $tr = $('<tr id="turn-'+move.turn+'" ><th>'+move.turn+'.</th></tr>')
                         $('#movelist').append($tr)
                     }
                     var $td = $tr.find('td.color-'+color)
                     if ($td.length < 1) { // add move to the log
-                        $td = $('<td class="color-'+color+'">'+move.expr+'</td>')
+                        $td = $('<td class="move color-'+color+'"  actions_idx="'+(window.game_actions.length-1)+'">'+move.expr+'</td>')
                         $tr.append($td)
                     }
                 }
@@ -78,6 +82,23 @@
 
     $(function() {
         fetch_history();
+
+        $('td.move').live('click', function() {
+            //replay the moves up to the one clicked on
+            var $this = $(this);
+            var actions_idx = $this.attr('actions_idx')
+
+            $('div.piece').remove()
+            for (var i=0; i <= actions_idx; i++) {
+                apply_move(window.game_actions[i]) 
+            }
+
+            $('#id_to_coord').val("")
+            $('#id_from_coord').val("")
+            $('.square').removeClass('move-destination').removeClass('move-source')
+
+
+        })
 
         $('td.square').droppable({
             drop: function(event,ui) {

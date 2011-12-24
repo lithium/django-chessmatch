@@ -111,7 +111,6 @@ class MakeMoveView(DetailView):
         return http.HttpResponseBadRequest()
 
     def post(self, request, *args, **kwargs):
-        import pdb; pdb.set_trace()
         game = self.get_object()
         if not request.user.is_authenticated():
             return http.HttpResponseForbidden()

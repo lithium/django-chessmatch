@@ -95,7 +95,6 @@ section.game-move input[type=text] {
    width: 3em; 
    text-align: center;
 }
-
 section.game-log {
     float: left;
 }
@@ -104,6 +103,11 @@ section.game-log {
     padding: 4px;
     width: 40px; 
 }
+.game-log td.move {
+    cursor: pointer;
+    
+}
+
 
 section.game-info {
     text-align: center; 
