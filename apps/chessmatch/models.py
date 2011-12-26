@@ -72,7 +72,7 @@ class BoardSetup(basic_models.SlugModel):
                 return mark_safe('<div class="piece %(color)s id="piece_%(piece)s-%(color)s" piece="%(name)s">%(unicode)s</div>' % {
                     'color': colors[p[0]],
                     'piece': p[1],
-                    'unicode': unicodes[p[1]],
+                    'unicode': unicodes[p[1].upper()],
                     'name': p,
                 })
         return ''
