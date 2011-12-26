@@ -189,6 +189,13 @@ class EditBoardView(UpdateView):
     def get_success_url(self, **kwargs):
         return reverse('chessmatch_manage_boards')
 
+    def get_context_data(self, **kwargs):
+        c = super(EditBoardView, self).get_context_data(**kwargs)
+        c.update({
+            'colors': PieceColor.objects.all(),
+        })
+        return c
+
 class NewBoardView(CreateView):
     model = BoardSetup
     form_name = BoardSetupForm

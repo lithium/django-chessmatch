@@ -2,16 +2,124 @@
 
 {% import "macros.html" as macros%}
 
+
+{%block scripts%}
+{{super()}}
+
+<script>
+
+function add_coord(text, coord) {
+	text = text.replace(coord, '')
+}
+
+
+function text_add_entry(text, entry) {
+	return text + ' ' + entry
+}
+function text_rem_entry(text, entry) {
+	var re = new RegExp('\\b'+entry+'\\b')
+	return text.replace(re, '')
+}
+
+
+
+window.BRUSH_COLOR = "unusable"
+window.BRUSH_TYPE = "0"
+window.unicodes = {
+'K': '&#9818',
+'Q': '&#9819',
+'R': '&#9820',
+'B': '&#9821',
+'N': '&#9822',
+'P': '&#9823',
+}
+window.colors = {
+	{%for color in colors%}
+	'{{color.letter}}': '{{color.name.lower()}}',
+	{%endfor%}
+}
+
+
+$(function() {
+
+	$('input:radio[name=piececolor]').click(function() {
+		window.BRUSH_COLOR = $(this).val()
+	})
+	$('input:radio[name=piecetype]').click(function() {
+		window.BRUSH_TYPE = $(this).val()
+	})
+
+	$('.square').live('click', function() {
+		var $this = $(this)
+		var coord = $this.attr('square')
+		var $squares = $('#id_squares')
+		var $pieces = $('#id_pieces')
+		var $existing_piece = $this.find('.piece');
+
+		$existing_piece.remove()
+		$pieces.val(text_rem_entry($pieces.val(), $existing_piece.attr('piece')))
+
+		if (window.BRUSH_COLOR == 'unusable') {
+			$this.toggleClass('unusable')	
+			if ($this.hasClass('unusable')) {
+				$squares.val(text_add_entry($squares.val(), coord))
+			} else {
+				$squares.val(text_rem_entry($squares.val(), coord))
+			}
+		}
+		else if (window.BRUSH_TYPE != 0) {
+			if (!$this.hasClass('unusable')) {
+				
+				var name = window.BRUSH_COLOR+window.BRUSH_TYPE;
+				var color = window.BRUSH_COLOR
+				var $piece = $('<div class="piece '+window.colors[color]+'" piece="'+(name+coord)+'"/>')
+	            $piece.html(window.unicodes[window.BRUSH_TYPE])
+				$this.append($piece)
+				$pieces.val(text_add_entry($pieces.val(), name+coord))
+			}
+		}
+	})
+})
+</script>
+
+{%endblock%}
+
+
+
 {%block content%}
 
 
 <h1>Edit Board Setup</h1>
+
+<section class="toolbar">
+	<ul class="colors">
+	<li><input type="radio" name="piececolor" value="unusable" checked="checked">Blocked</li>
+	{%for color in colors%}
+	<li><input type="radio" name="piececolor" value="{{color.letter}}">{{color}}</li>
+	{%endfor%}
+	</ul>
+
+	<ul class="pieces">
+		<li><input type="radio" name="piecetype" value="0" checked="checked"/>Empty</li>
+		<li><input type="radio" name="piecetype" value="P"/>&#9823;</li>
+		<li><input type="radio" name="piecetype" value="N"/>&#9822;</li>
+		<li><input type="radio" name="piecetype" value="B"/>&#9821;</li>
+		<li><input type="radio" name="piecetype" value="R"/>&#9820;</li>
+		<li><input type="radio" name="piecetype" value="Q"/>&#9819;</li>
+		<li><input type="radio" name="piecetype" value="K"/>&#9818;</li>
+	</ul>
+
+	<div class="piece-brush">
+	</div>
+
+</section>
 
 {%if boardsetup%}
 {{macros.render_chessboard(boardsetup, preview=True)}}
 {%endif%}
 
 <form method="POST" action=""> {{csrf()}}
+
 
 {{form.as_p()|safe}}
 

@@ -34,11 +34,11 @@ class PieceColor(models.Model):
 
 class BoardSetup(basic_models.SlugModel):
     description = models.TextField(blank=True)
-    num_rows = models.PositiveIntegerField(default=14)
-    num_cols = models.PositiveIntegerField(default=14)
+    num_rows = models.PositiveIntegerField(choices=((c,c) for c in range(8,27)), default=14)
+    num_cols = models.PositiveIntegerField(choices=((c,c) for c in range(8,27)), default=14)
+    min_players = models.PositiveIntegerField(choices=((c,c) for c in range(2,17)), default=4)
+    max_players = models.PositiveIntegerField(choices=((c,c) for c in range(2,17)), default=4)
     squares = models.TextField(blank=True)
-    min_players = models.PositiveIntegerField(default=4)
-    max_players = models.PositiveIntegerField(default=4)
     pieces = models.TextField()
 
     @property
@@ -52,14 +52,16 @@ class BoardSetup(basic_models.SlugModel):
                 ('%s%s'%(file,rank) not in self.squares)
 
     def get_space_color(self, file, rank):
+        color = ""
         if not self.is_coord_valid(file,rank):
-            return "unusable"
+            color = "unusable "
         files_odds = self.files[::2]
         files_evens = self.files[1::2]
         if rank % 2:
-            return "black" if file in files_odds else "white"
+            color += "black" if file in files_odds else "white"
         else:
-            return "black" if file in files_evens else "white"
+            color += "black" if file in files_evens else "white"
+        return color
 
     def get_starting_piece(self, file, rank):
         unicodes = {'K': '&#9818', 'Q': '&#9819', 'R': '&#9820', 'B': '&#9821', 'N': '&#9822', 'P': '&#9823', }
@@ -67,10 +69,11 @@ class BoardSetup(basic_models.SlugModel):
         for p in re.split(r'\s+', self.pieces):
             p = p.strip()
             if p.endswith("%s%s" % (file,rank)):
-                return mark_safe('<div class="piece %(color)s id="piece_%(piece)s-%(color)s">%(unicode)s</div>' % {
+                return mark_safe('<div class="piece %(color)s id="piece_%(piece)s-%(color)s" piece="%(name)s">%(unicode)s</div>' % {
                     'color': colors[p[0]],
                     'piece': p[1],
                     'unicode': unicodes[p[1]],
+                    'name': p,
                 })
         return ''
 
