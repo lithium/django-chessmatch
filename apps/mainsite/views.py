@@ -46,3 +46,5 @@ def logout(request):
         auth.logout(request)
     return http.HttpResponseRedirect(request.META.get('referer', '/'))
     
+
+

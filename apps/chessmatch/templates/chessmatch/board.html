@@ -13,14 +13,12 @@
         'N': '&#9822',
         'P': '&#9823',
     }
-    window.colors = ['white','red','black','green'];
-
     window.game_actions = []
 
     function apply_move(move) {
         // create and/or position piece
         var $square = $('#square-'+move.to_coord)
-        var color = window.colors[move.color]
+        var color = window.COLORS[move.color]
         if (move.from_coord) {
             var $piece = $('#square-'+move.from_coord+' .piece')
         }
@@ -46,16 +44,33 @@
 
     function fetch_history() {
         $.get('{{url('chessmatch_history', slug=game.slug)}}'+latest_seen, function(data) {
+            window.COLORS = data.colors
+            console.log(window.COLORS)
             window.MY_COLORS = data.my_colors
             window.MY_CONTROLLER = data.my_controller
             var parts = data.turn.split('.')
             window.CUR_TURN = parts[0]
             window.CUR_COLOR = parts[1]
 
+            var i;
+
+            //player lsit
+            var $names = $('#movelist .names')
+            $names.empty()
+            $names.append('<th/>')
+            for (i=0; i < data.players.length; i++) {
+                var $th = $('<th class="player"/>')
+                $th.append('<div class="color">'+data.colors[i]+'</div>')
+                $th.append('<img class="avatar" src="'+data.players[i].gravatar+'"/>')
+                $th.append('<div class="username">'+data.players[i].username+'</div>')
+                $names.append($th);
+            }
+
+
             // moves
-            for (var i=0; i < data.moves.length; i++) {
+            for (i=0; i < data.moves.length; i++) {
                 move = data.moves[i]
-                var color = window.colors[move.color]
+                var color = window.COLORS[move.color]
                 apply_move(move)
 
                 // add to game log
@@ -177,6 +192,7 @@
         <table id="movelist">
             <tr class="names">
                 <th></th>
+
                 <th>White {{macros.render_avatar(players[0])}}</th>
                 <th>Red {{macros.render_avatar(players[1])}}</th>
                 <th>Black {{macros.render_avatar(players[2])}}</th>

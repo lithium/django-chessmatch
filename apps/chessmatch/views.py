@@ -5,9 +5,18 @@ from django.db import models
 from django import http
 from django.core import serializers
 
+from mainsite.helpers import gravatar_image_url
+
 from chessmatch.models import *
 from chessmatch.forms import *
 import json
+
+
+class JsonDetailView(DetailView):
+    def render_to_response(self, context):
+        content = json.dumps(context)
+        return http.HttpResponse(content, content_type='application/json')
+
 
 
 class LobbyView(TemplateView):
@@ -46,19 +55,30 @@ class BoardView(DetailView):
         return c
 
 
-class HistoryView(DetailView):
+class HistoryView(JsonDetailView):
     model = Game
-    def render_to_response(self, context):
+
+    def get_context_data(self, **kwargs):
         queryset = self.object.gameaction_set.all()
         last_seen = self.kwargs.get('last_seen', None)
         if last_seen:
             turn, color = last_seen.split('.')
             queryset = queryset.filter(models.Q(turn__gt=turn) | models.Q(turn=turn,color__gt=color))
 
+        colors = PieceColor.objects.all()[:self.object.num_players]
+        players = []
+        for gp in self.object.gameplayer_set.all().order_by('color'):
+            players.append({
+                'username': unicode(gp.player),
+                'gravatar': gravatar_image_url(gp.player.user.email),
+            })
+
         state = {
             'turn': "%s.%s" % (self.object.turn_number, self.object.turn_color),
             'moves': [],
             'my_colors': [],
+            'colors': [c.name.lower() for c in colors],
+            'players': players,
         }
 
         if self.request.user.is_authenticated():
@@ -75,11 +95,7 @@ class HistoryView(DetailView):
                 'piece': move.piece,
                 'expr': move.expression,
             })
-        content = json.dumps(state)
-        #content = serializers.serialize('json', moves)
-
-
-        return http.HttpResponse(content, content_type='application/json')
+        return state
 
 class NewGameView(CreateView):
     model = Game

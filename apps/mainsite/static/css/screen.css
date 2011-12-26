@@ -113,6 +113,10 @@ section.game-info {
     text-align: center; 
 }
 
+#movelist .names img.avatar {
+    width: 40px;
+    
+}
 
 /* chess board and pieces */
 table.chessboard {
