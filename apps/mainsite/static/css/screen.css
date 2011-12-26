@@ -159,6 +159,15 @@ table.chessboard {
 .piece.black {
     color: black;
 }
+.piece.yellow {
+    color: yellow;
+}
+.piece.purple {
+    color: yellow;
+}
+.piece.blue {
+    color: blue;
+}
 
 .square.move-source {
     border: 1px dotted red;
