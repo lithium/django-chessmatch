@@ -39,7 +39,7 @@ class BoardSetup(basic_models.SlugModel):
     min_players = models.PositiveIntegerField(choices=((c,c) for c in range(2,17)), default=4)
     max_players = models.PositiveIntegerField(choices=((c,c) for c in range(2,17)), default=4)
     squares = models.TextField(blank=True)
-    pieces = models.TextField()
+    pieces = models.TextField(blank=True)
 
     @property
     def files(self):
