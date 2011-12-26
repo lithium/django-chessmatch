@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+
+{% import "macros.html" as macros%}
+
+{%block content%}
+
+
+<h1>Edit Board Setup</h1>
+
+{%if boardsetup%}
+{{macros.render_chessboard(boardsetup, preview=True)}}
+{%endif%}
+
+<form method="POST" action=""> {{csrf()}}
+
+{{form.as_p()|safe}}
+
+<input type="submit" value="Save"/>
+</form>
+
+
+
+{%endblock%}

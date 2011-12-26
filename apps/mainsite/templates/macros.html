@@ -8,3 +8,28 @@
 	</div>
 	{%endif%}
 {%endmacro%}
+
+
+
+{%macro render_chessboard(board_setup, label=True, preview=False) -%}
+    <table class="chessboard">
+	    {%for rank in range(board_setup.num_rows,0,-1)%}
+	        <tr>
+	            {%if label%}
+	            <th>{{rank}}</th>
+	            {%endif%}
+	            {%for file in board_setup.files%}
+	                <td class="square {{board_setup.get_space_color(file,rank)}}" id="square-{{file}}{{rank}}" square="{{file}}{{rank}}">
+	                {%if preview%}
+	                	{{board_setup.get_starting_piece(file,rank)|safe}}
+	                {%endif%}
+	                </td>
+	            {%endfor%}
+	        </tr>
+	    {%endfor%}
+
+    	{%if label%}
+        <tr> <th></th> {%for file in board_setup.files%} <th>{{file}}</th> {%endfor%} </tr>
+        {%endif%}
+    </table>
+{%endmacro%}

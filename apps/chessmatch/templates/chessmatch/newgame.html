@@ -5,11 +5,14 @@
 
 <h1>Create a new Game</h1>
 
+<a href="{{url('chessmatch_manage_boards')}}">Manage Board Layouts</a>
+
 <form method="POST" action=""> {{csrf()}}
 
 {{form.as_p()|safe}}
 <input type="submit" value="Create Game"/>
 </form>
+
 
 
 {%endblock%}

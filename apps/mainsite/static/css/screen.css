@@ -168,3 +168,17 @@ table.chessboard {
 }
 
 
+/* board setup management */
+#manage-boards .board-setup .square {
+    min-width: 8px;
+    min-height: 8px;
+    width: 8px;
+    height: 8px;
+}
+.board-setup .piece {
+    min-width: 8px;
+    min-height: 8px;
+    width: 8px;
+    height: 8px;
+    font-size: 8px;
+}

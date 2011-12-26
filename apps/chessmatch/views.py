@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, DetailView, CreateView, RedirectView
+from django.views.generic import TemplateView, DetailView, CreateView, RedirectView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -171,3 +171,28 @@ class MakeMoveView(DetailView):
 
 
 
+class ManageBoardsView(TemplateView):
+    template_name = 'chessmatch/manage_boards.html'
+
+    def get_context_data(self, **kwargs):
+        c = super(ManageBoardsView, self).get_context_data(**kwargs)
+        c.update({
+            'board_setups': BoardSetup.objects.all(),
+        })
+        return c
+
+class EditBoardView(UpdateView):
+    model = BoardSetup
+    form_name = BoardSetupForm 
+    template_name = 'chessmatch/edit_board.html'
+    context_object_name = 'boardsetup'
+    def get_success_url(self, **kwargs):
+        return reverse('chessmatch_manage_boards')
+
+class NewBoardView(CreateView):
+    model = BoardSetup
+    form_name = BoardSetupForm
+    template_name = 'chessmatch/edit_board.html'
+    context_object_name = 'boardsetup'
+    def get_success_url(self, **kwargs):
+        return reverse('chessmatch_manage_boards')

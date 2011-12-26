@@ -161,31 +161,7 @@
     </section>
 
     <section class="game-board">
-        <table class="chessboard">
-            <tr> <th></th> {%for file in files%} <th>{{file}}</th> {%endfor%} </tr>
-        {%for rank in range(game.board_setup.num_rows,0,-1)%}
-            <tr>
-                <th>{{rank}}</th>
-                {%for file in files%}
-                    <td class="square 
-                        {%if rank % 2%} 
-                            {%if file in files_odds%}black{%else%}white{%endif%} 
-                        {%else%} 
-                            {%if file in files_evens%}black{%else%}white{%endif%} 
-                        {%endif%} 
-
-                        {%if not game.board_setup.is_coord_valid(file,rank)%}
-                            unusable
-                        {%endif%}
-                        " 
-                        id="square-{{file}}{{rank}}" square="{{file}}{{rank}}">
-                    </td>
-                {%endfor%}
-                <th>{{rank}}</th>
-            </tr>
-        {%endfor%}
-            <tr> <th></th> {%for file in files%} <th>{{file}}</th> {%endfor%} </tr>
-        </table>
+        {{macros.render_chessboard(game.board_setup)}}
     </section>
 
     <section class="game-log">

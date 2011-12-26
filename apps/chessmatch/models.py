@@ -1,6 +1,7 @@
 from django.db import models
 from basic_models import models as basic_models
 from django.template.defaultfilters import slugify
+from django.utils.safestring import mark_safe
 
 import re
 import random
@@ -40,11 +41,40 @@ class BoardSetup(basic_models.SlugModel):
     max_players = models.PositiveIntegerField(default=4)
     pieces = models.TextField()
 
+    @property
+    def files(self):
+        return string.ascii_lowercase[:self.num_cols]
+
     def is_coord_valid(self, file, rank):
         col = string.ascii_lowercase.find(file)+1
         return  (col > 0 and col <= self.num_cols) and \
                 (rank > 0 and rank <= self.num_rows) and \
                 ('%s%s'%(file,rank) not in self.squares)
+
+    def get_space_color(self, file, rank):
+        if not self.is_coord_valid(file,rank):
+            return "unusable"
+        files_odds = self.files[::2]
+        files_evens = self.files[1::2]
+        if rank % 2:
+            return "black" if file in files_odds else "white"
+        else:
+            return "black" if file in files_evens else "white"
+
+    def get_starting_piece(self, file, rank):
+        unicodes = {'K': '&#9818', 'Q': '&#9819', 'R': '&#9820', 'B': '&#9821', 'N': '&#9822', 'P': '&#9823', }
+        colors = dict(((pc.letter,pc.name.lower()) for pc in PieceColor.objects.all()))
+        for p in re.split(r'\s+', self.pieces):
+            p = p.strip()
+            if p.endswith("%s%s" % (file,rank)):
+                return mark_safe('<div class="piece %(color)s id="piece_%(piece)s-%(color)s">%(unicode)s</div>' % {
+                    'color': colors[p[0]],
+                    'piece': p[1],
+                    'unicode': unicodes[p[1]],
+                })
+        return ''
+
+
 
 
 
