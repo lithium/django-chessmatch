@@ -18,9 +18,13 @@ admin.site.register(Game, GameAdmin)
 
 
 class PieceColorAdmin(DefaultModelAdmin):
-	list_display = ('name','turn_order','hexvalue')
+	list_display = ('name','hexvalue')
+	fields = ('name','letter','hexvalue')
 admin.site.register(PieceColor, PieceColorAdmin)
 
 class BoardSetupAdmin(SlugModelAdmin):
-	pass
+	class BoardSetupColorInline(admin.TabularInline):
+		model = BoardSetupColor
+		extra = 0
+	inlines = (BoardSetupColorInline,)
 admin.site.register(BoardSetup, BoardSetupAdmin)

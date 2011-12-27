@@ -120,8 +120,19 @@ $(function() {
 
 <form method="POST" action=""> {{csrf()}}
 
-
 {{form.as_p()|safe}}
+
+<h3>Turn Order</h3>
+{{formset.management_form|safe}}
+{%for colorform in formset%}
+{{colorform.id|safe}}
+<table>
+	<tr>
+		<td>{{colorform.turn_order|safe}}</td>
+		<td>{{colorform.color|safe}}</td>
+	</tr>
+</table>
+{%endfor%}
 
 <input type="submit" value="Save"/>
 </form>

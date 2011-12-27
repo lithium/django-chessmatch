@@ -8,6 +8,7 @@ class NewGameForm(forms.ModelForm):
 		fields = ('name','board_setup','num_players')
 
 
+
 class BoardSetupForm(forms.ModelForm):
 	class Meta:
 		model = BoardSetup

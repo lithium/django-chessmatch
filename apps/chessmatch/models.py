@@ -10,12 +10,6 @@ import string
 
 
 
-class PieceColorManager(models.Manager):
-    def letters_array(self):
-        ret = ""
-        for pc in self.all().order_by('turn_order'):
-            ret += pc.letter
-        return ret
 
 
 class PieceColor(models.Model):
@@ -24,10 +18,8 @@ class PieceColor(models.Model):
     letter = models.CharField(max_length=1, unique=True)
     hexvalue = models.CharField(max_length=64, blank=True)
 
-    objects = PieceColorManager()
-
-    class Meta:
-        ordering = ('turn_order',)
+    #class Meta:
+        #ordering = ('turn_order',)
 
     def __unicode__(self):
         return self.name
@@ -77,6 +69,24 @@ class BoardSetup(basic_models.SlugModel):
                 })
         return ''
 
+    def get_color_letters(self):
+        ret = ""
+        for pc in self.get_piece_colors():
+            ret += pc.letter
+        return ret
+
+    def get_piece_colors(self):
+        return [bsc.color for bsc in self.boardsetupcolor_set.all().order_by('turn_order').select_related()]
+
+
+class BoardSetupColor(models.Model):
+    board_setup = models.ForeignKey(BoardSetup)
+    turn_order = models.IntegerField(choices=((c,c) for c in range(0,33)))
+    color = models.ForeignKey(PieceColor)
+
+    class Meta:
+        ordering = ('turn_order',)
+
 
 
 
@@ -115,7 +125,6 @@ class Game(basic_models.SlugModel):
     def comma_players(self):
         return ', '.join(unicode(gp.player) for gp in self.gameplayer_set.all())
 
-
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
@@ -125,31 +134,35 @@ class Game(basic_models.SlugModel):
         if self.started_at is not None:
             return
 
-        color_letters = PieceColor.objects.letters_array()
+        color_letters = self.board_setup.get_color_letters()
         piece_letters = 'PRNBQK'
+        piece_colors = self.board_setup.get_piece_colors()
 
         for placement in re.split(r'\s+', self.board_setup.pieces):
             placement = placement.strip()
             if not placement:
                 continue
-            color = color_letters.find(placement[0].lower())
+            turn_order = color_letters.find(placement[0].lower())
             piece = placement[1].upper()
             square = placement[2:].lower()
-            if color == -1 or piece not in piece_letters:
+            if turn_order == -1 or piece not in piece_letters:
                 continue
             action, created = GameAction.objects.get_or_create(game=self,
-                turn=0,color=color,
+                turn=0,color=turn_order,
                 piece=piece,
                 from_coord='',
                 to_coord=square)
 
+
+
         # randomize player positions
-        turns = sorted(zip([random.random() for c in range(0,4)], [player for player in self.gameplayer_set.all()]), lambda a,b: cmp(a[0],b[0]))
-        color = 0
+        turns = sorted(zip([random.random() for c in range(0,self.num_players)], [player for player in self.gameplayer_set.all()]), lambda a,b: cmp(a[0],b[0]))
+        turn_order = 0
         for weight,player in turns:
-            player.color = color
+            player.turn_order = turn_order
+            player.color = piece_colors[turn_order]
             player.save()
-            color += 1
+            turn_order += 1
 
         self.started_at = datetime.datetime.now()
         self.turn_number = 1
@@ -179,8 +192,12 @@ class Game(basic_models.SlugModel):
 class GamePlayer(models.Model):
     game = models.ForeignKey(Game)
     player = models.ForeignKey(Player)
-    color = models.IntegerField(default=-1)
+    turn_order = models.IntegerField(default=-1)
+    color = models.ForeignKey(PieceColor, blank=True, null=True)
     controller = models.ForeignKey('self', blank=True, null=True, default=None)
+
+    class Meta:
+        ordering = ('turn_order',)
 
     def __unicode__(self):
         return "%s (%s)" % (self.color, self.controller if self.controller else self.player)

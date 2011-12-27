@@ -45,7 +45,6 @@
     function fetch_history() {
         $.get('{{url('chessmatch_history', slug=game.slug)}}'+latest_seen, function(data) {
             window.COLORS = data.colors
-            console.log(window.COLORS)
             window.MY_COLORS = data.my_colors
             window.MY_CONTROLLER = data.my_controller
             var parts = data.turn.split('.')

@@ -2,6 +2,7 @@ from django.views.generic import TemplateView, DetailView, CreateView, RedirectV
 from django.views.generic.detail import SingleObjectMixin
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.forms.models import inlineformset_factory
 from django import http
 from django.core import serializers
 
@@ -65,13 +66,15 @@ class HistoryView(JsonDetailView):
             turn, color = last_seen.split('.')
             queryset = queryset.filter(models.Q(turn__gt=turn) | models.Q(turn=turn,color__gt=color))
 
-        colors = PieceColor.objects.all()[:self.object.num_players]
+        #colors = PieceColor.objects.all()[:self.object.num_players]
+        colors = []
         players = []
-        for gp in self.object.gameplayer_set.all().order_by('color'):
+        for gp in self.object.gameplayer_set.all().order_by('turn_order'):
             players.append({
                 'username': unicode(gp.player),
                 'gravatar': gravatar_image_url(gp.player.user.email),
             })
+            colors.append(gp.color)
 
         state = {
             'turn': "%s.%s" % (self.object.turn_number, self.object.turn_color),
@@ -84,7 +87,7 @@ class HistoryView(JsonDetailView):
         if self.request.user.is_authenticated():
             player = self.request.user.get_profile()
             for gp in self.object.gameplayer_set.filter(models.Q(player=player) | models.Q(controller=player)):
-                state['my_colors'].append(gp.color)
+                state['my_colors'].append(gp.turn_order)
 
         for move in queryset:
             state['moves'].append({
@@ -104,12 +107,11 @@ class NewGameView(CreateView):
     success_url = '/'
 
     def form_valid(self, form):
-        ret = super(NewGameView, self).form_valid(form)
         gp, created = GamePlayer.objects.get_or_create(
             game=self.object, 
             player=self.request.user.get_profile()
         )
-        return ret
+        return super(NewGameView, self).form_valid(form)
 
 class JoinGameView(DetailView):
     model = Game
@@ -141,7 +143,7 @@ class MakeMoveView(DetailView):
 
         player = request.user.get_profile()
         qs = game.gameplayer_set.filter(models.Q(player=player) | models.Q(controller=player))
-        legal_colors = [gp.color for gp in qs.all()]
+        legal_colors = [gp.turn_order for gp in qs.all()]
         if len(legal_colors) < 1 or game.turn_color not in legal_colors:
             return http.HttpResponseForbidden()
 
@@ -189,12 +191,31 @@ class EditBoardView(UpdateView):
     def get_success_url(self, **kwargs):
         return reverse('chessmatch_manage_boards')
 
+    @property
+    def color_formset(self):
+        return inlineformset_factory(BoardSetup, BoardSetupColor, extra=1)
+
     def get_context_data(self, **kwargs):
         c = super(EditBoardView, self).get_context_data(**kwargs)
+        if self.request.method == 'POST':
+            formset = self.color_formset(self.request.POST, self.request.FILES, instance=self.object)
+        else:
+            formset = self.color_formset(instance=self.object)
+
         c.update({
             'colors': PieceColor.objects.all(),
+            'formset': formset,
         })
         return c
+
+    def form_valid(self, form):
+        formset = self.color_formset(self.request.POST, self.request.FILES, instance=self.object)
+        if not formset.is_valid():
+            return self.form_invalid(form)
+        formset.save()
+        return super(EditBoardView, self).form_valid(form)
+
+
 
 class NewBoardView(CreateView):
     model = BoardSetup
