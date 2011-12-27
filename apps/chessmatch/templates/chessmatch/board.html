@@ -53,13 +53,18 @@
 
             var i;
 
+            if (COLORS[CUR_COLOR]) {
+                $('#cur-move').html(COLORS[CUR_COLOR]+"'s turn (#"+CUR_TURN+'.'+COLORS[CUR_COLOR][0]+')')
+            }
+
             //player lsit
             var $names = $('#movelist .names')
             $names.empty()
             $names.append('<th/>')
             for (i=0; i < data.players.length; i++) {
                 var $th = $('<th class="player"/>')
-                $th.append('<div class="color">'+data.colors[i]+'</div>')
+                if (data.colors[i])
+                    $th.append('<div class="color">'+data.colors[i]+'</div>')
                 $th.append('<img class="avatar" src="'+data.players[i].gravatar+'"/>')
                 $th.append('<div class="username">'+data.players[i].username+'</div>')
                 $names.append($th);
@@ -173,12 +178,14 @@
         <h1>{{game.name}}</h1>
         {# <h3>{{game.comma_players}}</h3> #}
 
-        {%if game.is_playing(user) and not game.started_at%}
+        {%if game.is_playing(user) and game.num_players >= game.board_setup.min_players and not game.started_at%}
         <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
         {%endif%}
     </section>
 
     <section class="game-move">
+        <div id="cur-move">
+        </div>
         <form method="POST" action="{{url('chessmatch_move', slug=game.slug)}}" id="next-move">
             {{csrf()}}
             <input type="text" placeholder="From Coordinate" name="from_coord" id="id_from_coord"/>
@@ -194,13 +201,6 @@
     <section class="game-log">
         <table id="movelist">
             <tr class="names">
-                <th></th>
-
-                <th>White {{macros.render_avatar(players[0])}}</th>
-                <th>Red {{macros.render_avatar(players[1])}}</th>
-                <th>Black {{macros.render_avatar(players[2])}}</th>
-                <th>Green {{macros.render_avatar(players[3])}}</th>
-            </tr>
         </table>
     </section>
 

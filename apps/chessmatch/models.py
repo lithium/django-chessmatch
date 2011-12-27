@@ -119,7 +119,11 @@ class Game(basic_models.SlugModel):
     started_at = models.DateTimeField(blank=True, null=True, default=None)
     turn_number = models.PositiveIntegerField(default=0)
     turn_color = models.IntegerField(default=0)
-    num_players = models.PositiveIntegerField(default=4)
+    #num_players = models.PositiveIntegerField(default=4)
+
+    @property
+    def num_players(self):
+        return self.gameplayer_set.all().count()
 
     @property
     def comma_players(self):

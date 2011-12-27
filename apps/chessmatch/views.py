@@ -74,7 +74,8 @@ class HistoryView(JsonDetailView):
                 'username': unicode(gp.player),
                 'gravatar': gravatar_image_url(gp.player.user.email),
             })
-            colors.append(gp.color)
+            if gp.color:
+                colors.append(gp.color)
 
         state = {
             'turn': "%s.%s" % (self.object.turn_number, self.object.turn_color),
