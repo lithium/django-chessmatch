@@ -178,13 +178,16 @@
         <h1>{{game.name}}</h1>
         {# <h3>{{game.comma_players}}</h3> #}
 
-        {%if game.is_playing(user) and game.num_players >= game.board_setup.min_players and not game.started_at%}
-        <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
-        {%endif%}
     </section>
 
     <section class="game-move">
         <div id="cur-move">
+            {%if not game.started_at%}
+                <p>{{game.num_players}} of {{game.board_setup.min_players}}{%if game.board_setup.max_players != game.board_setup.min_players%}..{{game.board_setup.max_players}}{%endif%} players </p>
+                {%if game.is_playing(user) and game.num_players >= game.board_setup.min_players and not game.started_at%}
+                <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
+                {%endif%}
+            {%endif%}
         </div>
         <form method="POST" action="{{url('chessmatch_move', slug=game.slug)}}" id="next-move">
             {{csrf()}}
