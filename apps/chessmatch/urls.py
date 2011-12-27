@@ -4,9 +4,9 @@ from chessmatch.views import *
 
 urlpatterns = patterns('',
     url(r'^newgame/$', NewGameView.as_view(), name='chessmatch_newgame'),
-    url(r'^manage-boards/$', ManageBoardsView.as_view(), name='chessmatch_manage_boards'),
     url(r'^manage-boards/create/$', NewBoardView.as_view(), name='chessmatch_new_board'),
     url(r'^manage-boards/(?P<pk>[^/]+)/$', EditBoardView.as_view(), name='chessmatch_edit_board'),
+    url(r'^manage-boards/$', ManageBoardsView.as_view(), name='chessmatch_manage_boards'),
 
     url(r'^join/(?P<slug>[^/]+)/$', JoinGameView.as_view(), name='chessmatch_join'),
     url(r'^start/(?P<slug>[^/]+)/$', StartGameView.as_view(), name='chessmatch_start'),

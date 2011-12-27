@@ -37,6 +37,12 @@ class BoardSetup(basic_models.SlugModel):
     def files(self):
         return string.ascii_lowercase[:self.num_cols]
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        return super(BoardSetup, self).save(*args, **kwargs)
+
+
     def is_coord_valid(self, file, rank):
         col = string.ascii_lowercase.find(file)+1
         return  (col > 0 and col <= self.num_cols) and \

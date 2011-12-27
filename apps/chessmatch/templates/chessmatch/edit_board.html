@@ -91,6 +91,7 @@ $(function() {
 
 <h1>Edit Board Setup</h1>
 
+{%if boardsetup%}
 <section class="toolbar">
 	<ul class="colors">
 	<li><input type="radio" name="piececolor" value="unusable" checked="checked">Blocked</li>
@@ -113,6 +114,7 @@ $(function() {
 	</div>
 
 </section>
+{%endif%}
 
 {%if boardsetup%}
 {{macros.render_chessboard(boardsetup, preview=True)}}
@@ -120,8 +122,22 @@ $(function() {
 
 <form method="POST" action=""> {{csrf()}}
 
+
 {{form.as_p()|safe}}
 
+{#
+{{form.errors|safe}}
+<p><label for="{{form.name.name}}">{{form.name.label}}</label> {{form.name|safe}} </p>
+<p><label>Board Size</label> Cols:{{form.num_cols|safe}} Rows:{{form.num_rows|safe}}</p>
+<p><label>Num Players</label> Min:{{form.min_players|safe}} Max:{{form.max_players|safe}}</p>
+<p><label for="{{form.description.name}}">{{form.description.label}}</label> {{form.description|safe}}</p>
+
+<p><label for="{{form.squares.name}}">Blocked Squares</label> {{form.squares|safe}}
+<label for="{{form.pieces.name}}">{{form.pieces.label}}</label> {{form.pieces|safe}}</p>
+
+#}
+
+{%if formset%}
 <h3>Turn Order</h3>
 {{formset.management_form|safe}}
 {%for colorform in formset%}
@@ -133,6 +149,7 @@ $(function() {
 	</tr>
 </table>
 {%endfor%}
+{%endif%}
 
 <input type="submit" value="Save"/>
 </form>

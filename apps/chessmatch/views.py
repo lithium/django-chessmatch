@@ -186,7 +186,7 @@ class ManageBoardsView(TemplateView):
 
 class EditBoardView(UpdateView):
     model = BoardSetup
-    form_name = BoardSetupForm 
+    form_class = BoardSetupForm 
     template_name = 'chessmatch/edit_board.html'
     context_object_name = 'boardsetup'
     def get_success_url(self, **kwargs):
@@ -194,7 +194,7 @@ class EditBoardView(UpdateView):
 
     @property
     def color_formset(self):
-        return inlineformset_factory(BoardSetup, BoardSetupColor, extra=1)
+        return inlineformset_factory(BoardSetup, BoardSetupColor, extra=self.object.max_players, max_num=self.object.max_players)
 
     def get_context_data(self, **kwargs):
         c = super(EditBoardView, self).get_context_data(**kwargs)
@@ -220,7 +220,7 @@ class EditBoardView(UpdateView):
 
 class NewBoardView(CreateView):
     model = BoardSetup
-    form_name = BoardSetupForm
+    form_class = BoardSetupForm
     template_name = 'chessmatch/edit_board.html'
     context_object_name = 'boardsetup'
     def get_success_url(self, **kwargs):
