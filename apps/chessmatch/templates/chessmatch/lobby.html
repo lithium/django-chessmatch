@@ -16,6 +16,7 @@
 	<table class="gamelist">
 	<tr>
 		<th>Game</th>
+		<th>Board Setup</th>
 		<th>Players</th>
 		<th>Turn</th>
 		<th>Started</th>
@@ -23,6 +24,7 @@
 	{%for game in games%}
 	<tr>
 	    <td><a href="{{url('chessmatch_game', slug=game.slug)}}">{{game.name}}</a></td>
+	    <td> {{game.board_setup}} </td>
 	    <td>
 	    	{%if request.user.is_authenticated() and not game.is_playing(request.user) and not game.started_at %}
 	    	<a href="{{url('chessmatch_join', slug=game.slug)}}">Join</a>
@@ -30,8 +32,9 @@
 	    	{{game.comma_players}}
 	    </td>
 	    <td>
-	    	{%if game.turn_number%}{{game.turn_number}}
-	    	{%else%}Seating...
+	    	{%if game.turn_number%}#{{game.turn_number}}.{{game.board_setup.get_turn_color(game.turn_color)}}
+ 	    	{%else%}
+	    		Seating {{game.num_players}} of {{game.board_setup.min_players}}{%if game.board_setup.min_players != game.board_setup.max_players%}..{{game.board_setup.max_players}}{%endif%}
 	    	{%endif%}
 	    </td>
 	    <td>{%if game.started_at%}{{game.started_at}}{%endif%}</td>

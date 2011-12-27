@@ -11,7 +11,7 @@
 <tr>
 	<td><a href="{{url('chessmatch_edit_board', pk=setup.id)}}">{{setup.name}}</a></td>
 	<td>{{setup.num_cols}}x{{setup.num_rows}}</td>
-	<td>{{setup.min_players}}{%if setup.min_players != setup.max_players%} - {{setup.max_players}}{%endif%} players</td>
+	<td>{{setup.min_players}}{%if setup.min_players != setup.max_players%}..{{setup.max_players}}{%endif%} players</td>
 
 	<td class="board-setup">
 	{{macros.render_chessboard(setup, label=False, preview=True)}}

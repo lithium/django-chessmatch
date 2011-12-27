@@ -84,6 +84,11 @@ class BoardSetup(basic_models.SlugModel):
     def get_piece_colors(self):
         return [bsc.color for bsc in self.boardsetupcolor_set.all().order_by('turn_order').select_related()]
 
+    def get_turn_color(self, turn_order):
+        bcs = self.boardsetupcolor_set.get(turn_order=turn_order)
+        return bcs.color
+
+
 
 class BoardSetupColor(models.Model):
     board_setup = models.ForeignKey(BoardSetup)
