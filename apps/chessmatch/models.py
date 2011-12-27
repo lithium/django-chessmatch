@@ -172,6 +172,9 @@ class Game(basic_models.SlugModel):
             return None
         return qs[0]
 
+    def is_playing(self, user):
+        return (self.gameplayer_set.filter(player__user=user.id).count() > 0)
+
 
 class GamePlayer(models.Model):
     game = models.ForeignKey(Game)

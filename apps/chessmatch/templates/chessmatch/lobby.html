@@ -21,7 +21,7 @@
 	<tr>
 	    <td><a href="{{url('chessmatch_game', slug=game.slug)}}">{{game.name}}</a></td>
 	    <td>
-	    	{%if not game.started_at %}
+	    	{%if request.user.is_authenticated() and not game.is_playing(request.user) and not game.started_at %}
 	    	<a href="{{url('chessmatch_join', slug=game.slug)}}">Join</a>
 	    	{%endif%}
 	    	{{game.comma_players}}

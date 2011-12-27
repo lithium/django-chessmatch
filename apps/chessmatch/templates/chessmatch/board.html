@@ -146,7 +146,7 @@
         <h1>{{game.name}}</h1>
         {# <h3>{{game.comma_players}}</h3> #}
 
-        {%if not game.started_at%}
+        {%if game.is_playing(user) and not game.started_at%}
         <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
         {%endif%}
     </section>
