@@ -89,9 +89,20 @@
 
                 window.latest_seen = move.turn+'.'+move.color;
             }
+            if (data.moves.length > 0) { // new move came in, reset board 
+                replay_to()
+            }
 
             setTimeout(fetch_history, 10000)
         })
+    }
+
+    function replay_to(actions_idx) {
+        var actions_idx = actions_idx || window.game_actions.length-1;
+        $('div.piece').remove()
+        for (var i=0; i <= actions_idx; i++) {
+            apply_move(window.game_actions[i]) 
+        }
     }
 
     $(function() {
@@ -102,10 +113,7 @@
             var $this = $(this);
             var actions_idx = $this.attr('actions_idx')
 
-            $('div.piece').remove()
-            for (var i=0; i <= actions_idx; i++) {
-                apply_move(window.game_actions[i]) 
-            }
+            replay_to(actions_idx)
 
             $('#id_to_coord').val("")
             $('#id_from_coord').val("")
@@ -135,6 +143,26 @@
                 $piece.draggable()
             }
         });
+
+        $('#submit-move').click(function() {
+            if (!($('#id_to_coord').val() && $('#id_from_coord').val())) {
+                return false;
+            }
+            var $form = $('#next-move')
+            $.ajax({
+                'type': "POST",
+                'url': $form.attr("action"),
+                'data': $form.serialize(),
+                'success': function() {
+                    fetch_history();
+                },
+                'error': function() {
+                    alert('cannot make that move')
+                }
+            })
+
+            return false;
+        })
     })
 </script>
 {%endblock%}
@@ -155,7 +183,7 @@
             {{csrf()}}
             <input type="text" placeholder="From Coordinate" name="from_coord" id="id_from_coord"/>
             <input type="text" placeholder="To Coordinate" name="to_coord" id="id_to_coord"/>
-            <button>Submit Move</button>
+            <button id="submit-move">Submit Move</button>
         </form>
     </section>
 

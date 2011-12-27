@@ -150,7 +150,7 @@ class MakeMoveView(DetailView):
         from_coord = request.POST.get('from_coord','').strip()
         to_coord = request.POST.get('to_coord','').strip()
 
-        if not from_coord or not to_coord:
+        if not from_coord or not to_coord or (from_coord == to_coord):
             return http.HttpResponseBadRequest()
 
         src_piece = game.get_latest_piece(from_coord)
