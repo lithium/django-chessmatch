@@ -107,7 +107,9 @@ section.game-log {
     cursor: pointer;
     
 }
-
+.game-rules {
+    clear: both;
+}
 
 section.game-info {
     text-align: center; 
