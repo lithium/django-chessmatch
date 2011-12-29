@@ -232,6 +232,7 @@ class AccountView(UpdateView):
     form_class = AccountForm
     template_name = 'chessmatch/account.html'
     context_object_name = 'player'
+    success_url = '/account/'
 
     def get(self, request, **kwargs):
         if not request.user.is_authenticated():
