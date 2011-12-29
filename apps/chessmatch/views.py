@@ -46,11 +46,15 @@ class BoardView(DetailView):
         files_odds = files[::2]
         files_evens = files[1::2]
 
+        is_lite = self.request.GET.get('lite','')
+
         c.update({
             'players': players,
             'files': files,
             'files_odds': files_odds,
             'files_evens': files_evens,
+            'lite': is_lite,
+            'base_template': 'lite.html' if is_lite else 'base.html',
         })
         return c
 

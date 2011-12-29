@@ -1,0 +1,22 @@
+{%import "macros.html" as macros%}
+
+<!doctype html>
+<html>
+    <head>
+        {% block styles %}
+        <link rel="StyleSheet" href="{{STATIC_URL}}css/screen.css">
+        <link rel="StyleSheet" href="{{STATIC_URL}}css/lite.css">
+        {% endblock %}
+    </head>
+    <body>
+        <section id="content">
+        {% block content %}{% endblock %}
+        </section>
+
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+        <script src="{{STATIC_URL}}js/site.js"></script>
+        {% endblock %}
+    </body>
+</html>

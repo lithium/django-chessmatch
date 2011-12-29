@@ -1,4 +1,4 @@
-{%extends "base.html"%}
+{%extends base_template%}
 
 {%block scripts%}
 {{super()}}
@@ -79,6 +79,8 @@
 
                 // add to game log
                 window.game_actions.push(move)
+
+{%if not lite %}
                 if (move.turn > 0) {
                     var $tr = $('tr#turn-'+move.turn);
                     if ($tr.length < 1) {
@@ -91,6 +93,7 @@
                         $tr.append($td)
                     }
                 }
+{%endif%}
 
                 window.latest_seen = move.turn+'.'+move.color;
             }
@@ -174,10 +177,15 @@
 
 {%block content%}
 
+{%if lite%}
+        <table class="lite" id="movelist">
+            <tr class="names"></tr>
+        </table>
+{%endif%}
+
+{%if not lite%}
     <section class="game-info">
         <h1>{{game.name}}</h1>
-        {# <h3>{{game.comma_players}}</h3> #}
-
     </section>
 
     <section class="game-move">
@@ -196,14 +204,17 @@
             <button id="submit-move">Submit Move</button>
         </form>
     </section>
+{%endif%}
 
     <section class="game-board">
         {{macros.render_chessboard(game.board_setup)}}
     </section>
 
+
+{%if not lite%}
     <section class="game-log">
         <table id="movelist">
-            <tr class="names">
+            <tr class="names"></tr>
         </table>
     </section>
 
@@ -211,5 +222,6 @@
         <h3>Rules</h3>
         <pre>{{game.board_setup.description}}</pre>
     </section>
+{%endif%}
 
 {%endblock%}
