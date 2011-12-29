@@ -80,7 +80,6 @@
                 // add to game log
                 window.game_actions.push(move)
 
-{%if not lite %}
                 if (move.turn > 0) {
                     var $tr = $('tr#turn-'+move.turn);
                     if ($tr.length < 1) {
@@ -93,7 +92,6 @@
                         $tr.append($td)
                     }
                 }
-{%endif%}
 
                 window.latest_seen = move.turn+'.'+move.color;
             }
