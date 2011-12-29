@@ -108,8 +108,7 @@ LOGGING = {
     }
 }
 
-
-
+DEFAULT_AVATAR_URL="http://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Chess_tile_pl.svg/120px-Chess_tile_pl.svg.png"
 
 # try to import local_settings if present
 try:

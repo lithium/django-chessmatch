@@ -6,7 +6,6 @@ from django.forms.models import inlineformset_factory
 from django import http
 from django.core import serializers
 
-from mainsite.helpers import gravatar_image_url
 
 from chessmatch.models import *
 from chessmatch.forms import *
@@ -71,8 +70,8 @@ class HistoryView(JsonDetailView):
         players = []
         for gp in self.object.gameplayer_set.all().order_by('turn_order'):
             players.append({
-                'username': unicode(gp.player),
-                'gravatar': gravatar_image_url(gp.player.user.email),
+                'username': gp.player.moniker,
+                'avatar': gp.player.avatar,
             })
             if gp.color:
                 colors.append(gp.color)

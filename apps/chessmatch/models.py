@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from basic_models import models as basic_models
 from django.template.defaultfilters import slugify
 from django.utils.safestring import mark_safe
@@ -129,6 +130,29 @@ class Player(basic_models.ActiveModel):
 
     def __unicode__(self):
         return unicode(self.user)
+       
+    @property
+    def moniker(self):
+        if self.nickname:
+            return self.nickname
+        if self.twitter_name:
+            return self.twitter_name 
+        if self.twitter_screen_name:
+            return self.twitter_screen_name 
+        return self.user.username
+
+    @property
+    def avatar(self):
+        from mainsite.helpers import gravatar_image_url
+
+        if self.avatar_url:
+            return self.avatar_url
+        if self.twitter_profile_image_url:
+            return self.twitter_profile_image_url
+        default = getattr(settings, 'DEFAULT_AVATAR_URL', None)
+        return gravatar_image_url(self.user.email, default=default)
+        
+
 
 
 class Game(basic_models.SlugModel):
