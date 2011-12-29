@@ -70,7 +70,7 @@ def twitter_return(request):
 
     consumer_key = getattr(settings, 'CONSUMER_KEY', None)
     consumer_secret = getattr(settings, 'CONSUMER_SECRET', None)
-    request_token = request.session.get('request_token', None)
+    request_token = request.session.get('twitter_request_token', None)
     if not (request_token and consumer_key and consumer_secret):
         return http.HttpResponseRedirect(request.META.get('referer', '/'))
 

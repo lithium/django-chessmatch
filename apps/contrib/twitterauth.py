@@ -9,10 +9,10 @@ class TwitterAuth(object):
     ACCESS_TOKEN_URL="https://twitter.com/oauth/access_token"
     VERIFY_CREDENTIALS_URL="https://api.twitter.com/1/account/verify_credentials.json"  
 
-    def __init__(self, consumer_key, secret_key):
+    def __init__(self, consumer_key, consumer_secret):
         self.consumer_key = consumer_key
-        self.secret_key = secret_key
-        self.consumer = oauth.OAuthConsumer(self.consumer_key, self.secret_key)
+        self.consumer_secret = consumer_secret
+        self.consumer = oauth.OAuthConsumer(self.consumer_key, self.consumer_secret)
         self.sig_method = oauth.OAuthSignatureMethod_HMAC_SHA1()
         self.connection = httplib.HTTPSConnection("twitter.com")
 
