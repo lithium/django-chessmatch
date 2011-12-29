@@ -1,12 +1,13 @@
 import oauth
 import urllib
 import httplib
+import json
 
 
 class TwitterAuth(object):
-    REQUEST_TOKEN_URL= "https://twitter.com/oauth/request_token"
-    AUTHORIZATION_URL="https://twitter.com/oauth/authorize"
-    ACCESS_TOKEN_URL="https://twitter.com/oauth/access_token"
+    REQUEST_TOKEN_URL= "https://api.twitter.com/oauth/request_token"
+    AUTHORIZATION_URL="https://api.twitter.com/oauth/authorize"
+    ACCESS_TOKEN_URL="https://api.twitter.com/oauth/access_token"
     VERIFY_CREDENTIALS_URL="https://api.twitter.com/1/account/verify_credentials.json"  
 
     def __init__(self, consumer_key, consumer_secret):
@@ -25,7 +26,7 @@ class TwitterAuth(object):
 
     def get_request_token(self, **oauth_params):
         request = oauth.OAuthRequest.from_consumer_and_token(self.consumer, 
-        													 http_url=TwitterAuth.REQUEST_TOKEN_URL,
+                                                             http_url=TwitterAuth.REQUEST_TOKEN_URL,
                                                              parameters=oauth_params)
         request.sign_request(self.sig_method, self.consumer, None)
         response = self._fetch_response(request)
@@ -36,17 +37,14 @@ class TwitterAuth(object):
         if request_token is None:
             token = self.get_request_token()
         request = oauth.OAuthRequest.from_consumer_and_token(self.consumer, 
-					     http_url=TwitterAuth.AUTHORIZATION_URL,
+                         http_url=TwitterAuth.AUTHORIZATION_URL,
                          token=request_token)
         request.sign_request(self.sig_method, self.consumer, request_token)
         return request.to_url()
 
-    def get_access_token(self, request_token, verifier=None):
-        oauth_params = {}
-        if verifier is not None:
-            oauth_params['oauth_verifier'] = verifier
+    def get_access_token(self, request_token, **oauth_params):
         request = oauth.OAuthRequest.from_consumer_and_token(self.consumer, 
-        												     http_url=TwitterAuth.ACCESS_TOKEN_URL,
+                                                             http_url=TwitterAuth.ACCESS_TOKEN_URL,
                                                              token=request_token, 
                                                              parameters=oauth_params)
         request.sign_request(self.sig_method, self.consumer, request_token)
@@ -61,8 +59,8 @@ class TwitterAuth(object):
                                                              token=access_token, 
                                                              http_method=http_method,
                                                              parameters=oauth_params)
-        request.sign_rAequest(self.sig_method, self.consumer, request_token)
-        data = self._fetch_response(url)
+        request.sign_request(self.sig_method, self.consumer, access_token)
+        data = self._fetch_response(request)
         resource = json.loads(data)
         return resource
 

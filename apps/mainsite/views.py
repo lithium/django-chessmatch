@@ -2,10 +2,11 @@ from django import http
 from django import template
 from django.conf import settings
 from django.views.generic import FormView
-from mainsite.forms import LoginForm
 from django.contrib import auth
 
 from contrib import twitterauth, oauth
+from mainsite.forms import LoginForm
+from chessmatch.models import Player
 
 def error500(request, template_name='500.html'):
     t = template.loader.get_template(template_name)
@@ -71,6 +72,7 @@ def twitter_return(request):
     consumer_key = getattr(settings, 'CONSUMER_KEY', None)
     consumer_secret = getattr(settings, 'CONSUMER_SECRET', None)
     request_token = request.session.get('twitter_request_token', None)
+    oauth_verifier = request.GET.get('oauth_verifier', None)
     if not (request_token and consumer_key and consumer_secret):
         return http.HttpResponseRedirect(request.META.get('referer', '/'))
 
@@ -82,7 +84,7 @@ def twitter_return(request):
 
     # get the access token
     twitter = twitterauth.TwitterAuth(consumer_key, consumer_secret)
-    access_token = twitter.get_access_token(token)
+    access_token = twitter.get_access_token(token, oauth_verifier=oauth_verifier)
     request.session['twitter_access_token'] = access_token.to_string()
 
     # lookup the twitter username
@@ -92,7 +94,7 @@ def twitter_return(request):
         return http.HttpResponseRedirect(login)
     username = credentials.get('screen_name', None)
 
-    user, created = User.objects.get_or_create(username=username)
+    user, created = auth.models.User.objects.get_or_create(username=username)
     if created: # if contrib.auth.user doesnt exist with matching username, create one
         user.set_password(access_token)
         user.save()
@@ -101,7 +103,15 @@ def twitter_return(request):
         del request.session['twitter_request_token']
         return http.HttpResponseRedirect(login)
 
+    # this jigpokery is because we didnt call authenticate()...
+    backend = auth.get_backends()[0]
+    user.backend = "%s.%s" % (backend.__module__, backend.__class__.__name__)
+
+    # log in the user
     auth.login(request, user)
+
+    # create the profile if needed
+    player, player_created = Player.objects.get_or_create(user=user)
     return http.HttpResponseRedirect(request.META.get('referer', '/'))
 
 
