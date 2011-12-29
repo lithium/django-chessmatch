@@ -20,6 +20,7 @@
             {%if request.user.is_authenticated()%}
                 {{request.user.username}}
                 <a href="{{url('logout')}}">Logout</a>
+                <a href="{{url('chessmatch_account')}}">Account</a>
             {%else%}
                 <a href="{{url('login')}}">Login</a>
             {%endif%}

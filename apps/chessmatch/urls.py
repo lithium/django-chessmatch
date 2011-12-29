@@ -2,7 +2,10 @@ from django.conf.urls.defaults import patterns, include, url
 
 from chessmatch.views import *
 
+
 urlpatterns = patterns('',
+    url(r'^account/$', AccountView.as_view(), name='chessmatch_account'),
+
     url(r'^newgame/$', NewGameView.as_view(), name='chessmatch_newgame'),
     url(r'^manage-boards/create/$', NewBoardView.as_view(), name='chessmatch_new_board'),
     url(r'^manage-boards/(?P<pk>[^/]+)/$', EditBoardView.as_view(), name='chessmatch_edit_board'),

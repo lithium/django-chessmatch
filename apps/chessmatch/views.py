@@ -226,3 +226,22 @@ class NewBoardView(CreateView):
     context_object_name = 'boardsetup'
     def get_success_url(self, **kwargs):
         return reverse('chessmatch_manage_boards')
+
+
+class AccountView(UpdateView):
+    model = Player
+    form_class = AccountForm
+    template_name = 'chessmatch/account.html'
+    context_object_name = 'player'
+
+    def get(self, request, **kwargs):
+        if not request.user.is_authenticated():
+            return http.HttpResponseRedirect('/')
+        return super(AccountView, self).get(request, **kwargs)
+
+    def get_object(self, *args, **kwargs):
+        return self.request.user.get_profile()
+
+
+
+        

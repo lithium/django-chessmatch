@@ -19,3 +19,8 @@ class BoardSetupForm(forms.ModelForm):
         #}
 
             
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = Player
+        fields = ('nickname','avatar_url')

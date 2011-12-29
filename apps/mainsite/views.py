@@ -68,8 +68,6 @@ def twitter_signin(request):
 
 def twitter_return(request):
     referer = request.META.get('referer', '/')
-    if request.user.is_authenticated():
-        return http.HttpResponseRedirect(referer)
 
     consumer_key = getattr(settings, 'CONSUMER_KEY', None)
     consumer_secret = getattr(settings, 'CONSUMER_SECRET', None)
@@ -107,16 +105,28 @@ def twitter_return(request):
         return http.HttpResponseRedirect(referer)
 
 
+    # find or create the profile/user that matches this twitter access_token
     user = None
 
     try:
+        # try to authenticate with this twitter account
         profile = profile_class.objects.get(twitter_access_token=access_token, twitter_screen_name=screen_name)
+        user = profile.user
     except profile_class.DoesNotExist as e:
-        user, user_created = auth.models.User.objects.get_or_create(username=screen_name)
-        if not user_created: # already a username with this screen_name exists?
-            profile.delete()
-            raise NotImplementedError("user already exists.. sorry")
-        profile = profile_class(twitter_access_token=access_token, twitter_screen_name=screen_name, user=user)
+        # no account existed,
+
+        # are we associating with an existing account?
+        if request.user.is_authenticated():
+            user = request.user
+            profile = user.get_profile()
+            profile.twitter_access_token = access_token
+            profile.twitter_screen_name = screen_name
+        else:
+            # we'll just create a new account
+            user, user_created = auth.models.User.objects.get_or_create(username=screen_name)
+            if not user_created:
+                raise NotImplementedError("trying to create account from twitter of existing username...")
+            profile = profile_class(twitter_access_token=access_token, twitter_screen_name=screen_name, user=user)
 
 
     # check and see if there are any fields on the profile that should be populated from twitter
@@ -124,8 +134,8 @@ def twitter_return(request):
         real_field_name = field_name[8:]
         if real_field_name in credentials and not getattr(profile, field_name, ''):
             setattr(profile, field_name, credentials[real_field_name])
-    profile.save()
 
+    profile.save()
 
     if not user:
         return http.HttpResponseRedirect(referer)

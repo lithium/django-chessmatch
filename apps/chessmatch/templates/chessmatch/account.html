@@ -1,0 +1,30 @@
+{%extends "base.html" %}
+
+{%block content%}
+
+
+<p><label>Username:</label> <span>{{player.user.username}}</span></p>
+
+
+<form method="POST" action=""> {{csrf()}}
+{{form.as_p()|safe}}
+
+<p><label>Twitter:</label> 
+<span>
+{%if player.twitter_screen_name%}
+{{player.twitter_screen_name}}
+<a href="{{url('login_twitter')}}">Change</a>
+{%else%}
+<a href="{{url('login_twitter')}}">Connect a twitter account</a>
+{%endif%}
+</span>
+
+</p>
+
+
+<input type="submit" value="Save"/>
+</form>
+
+
+
+{%endblock%}
