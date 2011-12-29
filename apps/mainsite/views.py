@@ -5,7 +5,7 @@ from django.views.generic import FormView
 from mainsite.forms import LoginForm
 from django.contrib import auth
 
-from contrib import twitterauth
+from contrib import twitterauth, oauth
 
 def error500(request, template_name='500.html'):
     t = template.loader.get_template(template_name)
