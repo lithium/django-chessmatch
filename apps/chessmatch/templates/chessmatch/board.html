@@ -179,7 +179,6 @@
         <h1>{{game.name}}</h1>
     </section>
 
-{%if not lite%}
     <section class="game-move">
         <div id="cur-move">
             {%if not game.started_at%}
@@ -189,14 +188,15 @@
                 {%endif%}
             {%endif%}
         </div>
+{%if not lite%}
         <form method="POST" action="{{url('chessmatch_move', slug=game.slug)}}" id="next-move">
             {{csrf()}}
             <input type="text" placeholder="From Coordinate" name="from_coord" id="id_from_coord"/>
             <input type="text" placeholder="To Coordinate" name="to_coord" id="id_to_coord"/>
             <button id="submit-move">Submit Move</button>
         </form>
-    </section>
 {%endif%}
+    </section>
 
     <section class="game-board">
         {{macros.render_chessboard(game.board_setup)}}
