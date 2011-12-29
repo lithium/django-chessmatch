@@ -13,7 +13,6 @@ import string
 
 
 class PieceColor(models.Model):
-    turn_order = models.IntegerField()
     name = models.CharField(max_length=64)
     letter = models.CharField(max_length=1, unique=True)
     hexvalue = models.CharField(max_length=64, blank=True)
