@@ -119,6 +119,13 @@ PIECE_CHOICES = (
 class Player(basic_models.ActiveModel):
     user = models.OneToOneField('auth.User')
     ranking = models.IntegerField(default=1500)
+    nickname = models.CharField(max_length=64, blank=True)
+    avatar_url = models.URLField(verify_exists=False, blank=True)
+
+    twitter_access_token = models.CharField(max_length=1024, blank=True)
+    twitter_screen_name = models.CharField(max_length=1024, blank=True)
+    twitter_profile_image_url = models.URLField(verify_exists=False, blank=True)
+    twitter_name = models.CharField(max_length=1024, blank=True)
 
     def __unicode__(self):
         return unicode(self.user)

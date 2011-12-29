@@ -1,5 +1,6 @@
 from django import http
 from django import template
+from django.db import models
 from django.conf import settings
 from django.views.generic import FormView
 from django.contrib import auth
@@ -66,21 +67,23 @@ def twitter_signin(request):
     return http.HttpResponseRedirect(signin_url)
 
 def twitter_return(request):
+    referer = request.META.get('referer', '/')
     if request.user.is_authenticated():
-        return http.HttpResponseRedirect(request.META.get('referer', '/'))
+        return http.HttpResponseRedirect(referer)
 
     consumer_key = getattr(settings, 'CONSUMER_KEY', None)
     consumer_secret = getattr(settings, 'CONSUMER_SECRET', None)
     request_token = request.session.get('twitter_request_token', None)
     oauth_verifier = request.GET.get('oauth_verifier', None)
     if not (request_token and consumer_key and consumer_secret):
-        return http.HttpResponseRedirect(request.META.get('referer', '/'))
+        return http.HttpResponseRedirect(referer)
+
+    del request.session['twitter_request_token']
 
     # check that the request token matches
     token = oauth.OAuthToken.from_string(request_token)
     if token.key != request.GET.get('oauth_token', 'no-token'):
-        del request.session['twitter_request_token']
-        return http.HttpResponseRedirect(login)
+        return http.HttpResponseRedirect(referer)
 
     # get the access token
     twitter = twitterauth.TwitterAuth(consumer_key, consumer_secret)
@@ -90,29 +93,50 @@ def twitter_return(request):
     # lookup the twitter username
     credentials = twitter.verify_credentials(access_token)
     if not credentials or 'screen_name' not in credentials: # not logged in to twitter
-        del request.session['twitter_request_token']
-        return http.HttpResponseRedirect(login)
-    username = credentials.get('screen_name', None)
+        return http.HttpResponseRedirect(referer)
 
-    user, created = auth.models.User.objects.get_or_create(username=username)
-    if created: # if contrib.auth.user doesnt exist with matching username, create one
-        user.set_password(access_token)
-        user.save()
-    elif not user.check_password(access_token): # if one exists check the access token against password
-        del request.session['twitter_access_token']
-        del request.session['twitter_request_token']
-        return http.HttpResponseRedirect(login)
+    screen_name = credentials.get('screen_name', None)
 
-    # this jigpokery is because we didnt call authenticate()...
-    backend = auth.get_backends()[0]
-    user.backend = "%s.%s" % (backend.__module__, backend.__class__.__name__)
+
+    # look up the profile class 
+    auth_profile_module = getattr(settings, 'AUTH_PROFILE_MODULE', None)
+    profile_class = models.get_model(*auth_profile_module.split('.'))
+    profile_field_names = [f.name for f in profile_class._meta.fields]
+    required_field_names = ('twitter_access_token','twitter_screen_name')
+    if not len(set(required_field_names) - set(profile_field_names)) == 0: # required fields present
+        return http.HttpResponseRedirect(referer)
+
+
+    user = None
+
+    try:
+        profile = profile_class.objects.get(twitter_access_token=access_token, twitter_screen_name=screen_name)
+    except profile_class.DoesNotExist as e:
+        user, user_created = auth.models.User.objects.get_or_create(username=screen_name)
+        if not user_created: # already a username with this screen_name exists?
+            profile.delete()
+            raise NotImplementedError("user already exists.. sorry")
+        profile = profile_class(twitter_access_token=access_token, twitter_screen_name=screen_name, user=user)
+
+
+    # check and see if there are any fields on the profile that should be populated from twitter
+    for field_name in filter(lambda f: f.startswith('twitter_'), profile_field_names):
+        real_field_name = field_name[8:]
+        if real_field_name in credentials and not getattr(profile, field_name, ''):
+            setattr(profile, field_name, credentials[real_field_name])
+    profile.save()
+
+
+    if not user:
+        return http.HttpResponseRedirect(referer)
 
     # log in the user
+    # set the user backend manually since we didnt use authenticate()
+    backend = auth.get_backends()[0]
+    user.backend = "%s.%s" % (backend.__module__, backend.__class__.__name__)
     auth.login(request, user)
 
-    # create the profile if needed
-    player, player_created = Player.objects.get_or_create(user=user)
-    return http.HttpResponseRedirect(request.META.get('referer', '/'))
+    return http.HttpResponseRedirect(referer)
 
 
 
