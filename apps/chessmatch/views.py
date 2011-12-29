@@ -108,8 +108,9 @@ class NewGameView(CreateView):
     success_url = '/'
 
     def form_valid(self, form):
+        obj = form.save()
         gp, created = GamePlayer.objects.get_or_create(
-            game=self.object, 
+            game=obj, 
             player=self.request.user.get_profile()
         )
         return super(NewGameView, self).form_valid(form)
