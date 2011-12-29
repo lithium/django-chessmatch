@@ -177,17 +177,11 @@
 
 {%block content%}
 
-{%if lite%}
-        <table class="lite" id="movelist">
-            <tr class="names"></tr>
-        </table>
-{%endif%}
-
-{%if not lite%}
     <section class="game-info">
         <h1>{{game.name}}</h1>
     </section>
 
+{%if not lite%}
     <section class="game-move">
         <div id="cur-move">
             {%if not game.started_at%}
@@ -211,13 +205,13 @@
     </section>
 
 
-{%if not lite%}
     <section class="game-log">
         <table id="movelist">
             <tr class="names"></tr>
         </table>
     </section>
 
+{%if not lite%}
     <section class="game-rules">
         <h3>Rules</h3>
         <pre>{{game.board_setup.description}}</pre>
