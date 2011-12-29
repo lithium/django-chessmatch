@@ -234,6 +234,33 @@ class Game(basic_models.SlugModel):
         return (self.gameplayer_set.filter(player__user=user.id).count() > 0)
 
 
+    def make_move(self, player, from_coord, to_coord):
+        qs = self.gameplayer_set.filter(models.Q(player=player) | models.Q(controller=player))
+        legal_colors = [gp.turn_order for gp in qs.all()]
+        if len(legal_colors) < 1 or self.turn_color not in legal_colors:
+            return False
+
+        if not from_coord or not to_coord or (from_coord == to_coord):
+            return False
+
+        src_piece = self.get_latest_piece(from_coord)
+        cap_piece = self.get_latest_piece(to_coord)
+        if src_piece is None:
+            return False
+
+        move, created = GameAction.objects.get_or_create(game=self,
+            turn=self.turn_number,
+            color=self.turn_color,
+            piece=src_piece.piece,
+            from_coord=from_coord,
+            to_coord=to_coord,
+            is_capture=(cap_piece is not None),
+        )
+        self.next_turn()
+        return True
+
+
+
 class GamePlayer(models.Model):
     game = models.ForeignKey(Game)
     player = models.ForeignKey(Player)

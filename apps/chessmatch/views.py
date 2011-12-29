@@ -143,33 +143,14 @@ class MakeMoveView(DetailView):
             return http.HttpResponseForbidden()
 
         player = request.user.get_profile()
-        qs = game.gameplayer_set.filter(models.Q(player=player) | models.Q(controller=player))
-        legal_colors = [gp.turn_order for gp in qs.all()]
-        if len(legal_colors) < 1 or game.turn_color not in legal_colors:
-            return http.HttpResponseForbidden()
-
         from_coord = request.POST.get('from_coord','').strip()
         to_coord = request.POST.get('to_coord','').strip()
 
-        if not from_coord or not to_coord or (from_coord == to_coord):
-            return http.HttpResponseBadRequest()
+        if game.make_move(player, from_coord, to_coord):
+            return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':game.slug}))
+        else:
+            return http.HttpResponseForbidden()
 
-        src_piece = game.get_latest_piece(from_coord)
-        cap_piece = game.get_latest_piece(to_coord)
-        if src_piece is None:
-            return http.HttpResponseBadRequest()
-
-
-        move, created = GameAction.objects.get_or_create(game=game,
-            turn=game.turn_number,
-            color=game.turn_color,
-            piece=src_piece.piece,
-            from_coord=from_coord,
-            to_coord=to_coord,
-            is_capture=(cap_piece is not None),
-        )
-        game.next_turn()
-        return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':game.slug}))
 
 
 
