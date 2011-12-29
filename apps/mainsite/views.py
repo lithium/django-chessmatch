@@ -82,7 +82,7 @@ def twitter_return(request):
 
     # get the access token
     twitter = twitterauth.TwitterAuth(consumer_key, consumer_secret)
-    access_token = twitter.get_access_token(request_token)
+    access_token = twitter.get_access_token(token)
     request.session['twitter_access_token'] = access_token.to_string()
 
     # lookup the twitter username

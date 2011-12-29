@@ -56,7 +56,7 @@ class TwitterAuth(object):
         token = oauth.OAuthToken.from_string(response)
         return token
 
-    def get_resource(access_token, url, http_method='GET', **oauth_params):
+    def get_resource(self, access_token, url, http_method='GET', **oauth_params):
         request = oauth.OAuthRequest.from_consumer_and_token(self.consumer, http_url=url,
                                                              token=access_token, 
                                                              http_method=http_method,
