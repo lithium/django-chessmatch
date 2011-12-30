@@ -24,6 +24,28 @@ class PieceColor(models.Model):
     def __unicode__(self):
         return self.name
 
+DIR_NONE = 'n'
+DIR_UP = 'u'
+DIR_UPRIGHT = 'ur'
+DIR_RIGHT = 'r'
+DIR_DOWNRIGHT = 'dr'
+DIR_DOWN = 'd'
+DIR_DOWNLEFT = 'dl'
+DIR_LEFT = 'l'
+DIR_UPLEFT = 'ul'
+DIR_CHOICES = (
+    (DIR_NONE, 'None'),
+    (DIR_UP, 'Up'),
+    (DIR_UPRIGHT, 'Up-Right'),
+    (DIR_RIGHT, 'Right'),
+    (DIR_DOWNRIGHT, 'Down-Right'),
+    (DIR_DOWN, 'Down'),
+    (DIR_DOWNLEFT, 'Down-Left'),
+    (DIR_LEFT, 'Left'),
+    (DIR_UPLEFT, 'Up-Left'),
+)
+
+
 class BoardSetup(basic_models.SlugModel):
     description = models.TextField(blank=True)
     num_rows = models.PositiveIntegerField(choices=((c,c) for c in range(8,27)), default=14)
@@ -61,16 +83,23 @@ class BoardSetup(basic_models.SlugModel):
             color += "black" if file in files_evens else "white"
         return color
 
-    def get_starting_piece(self, file, rank):
-        unicodes = {'K': '&#9818', 'Q': '&#9819', 'R': '&#9820', 'B': '&#9821', 'N': '&#9822', 'P': '&#9823', }
+    def get_starting_piece(self, file, rank, show_directions=True):
+        piece_unicode = {'K': '&#9818', 'Q': '&#9819', 'R': '&#9820', 'B': '&#9821', 'N': '&#9822', 'P': '&#9823', }
+        arrow_unicode = {DIR_UP: '&uarr;', DIR_UPRIGHT: '&#x2197;', DIR_RIGHT: '&rarr;', 
+                         DIR_DOWNRIGHT: '&#x2198;', DIR_DOWN: '&darr;', DIR_DOWNLEFT: '&#x2199;', 
+                         DIR_LEFT: '&larr;', DIR_UPLEFT: '&#x2196;', DIR_NONE: '', }
         colors = dict(((pc.letter,pc.name.lower()) for pc in PieceColor.objects.all()))
         for p in re.split(r'\s+', self.pieces):
             p = p.strip()
             if p.endswith("%s%s" % (file,rank)):
-                return mark_safe('<div class="piece %(color)s id="piece_%(piece)s-%(color)s" piece="%(name)s">%(unicode)s</div>' % {
+                # Get pawn direction
+                direction = p[1] in ('p', 'P') and self.get_pawn_direction(p[0]) or DIR_NONE
+                return mark_safe('<div class="piece %(color)s id="piece_%(piece)s-%(color)s" piece="%(name)s">%(unicode)s;<div class="arrow %(dirname)s">%(dirchar)s</div></div>' % {
                     'color': colors[p[0]],
                     'piece': p[1],
-                    'unicode': unicodes[p[1].upper()],
+                    'unicode': piece_unicode[p[1].upper()],
+                    'dirname': direction,
+                    'dirchar': show_directions and arrow_unicode[direction] or '',
                     'name': p,
                 })
         return ''
@@ -87,17 +116,21 @@ class BoardSetup(basic_models.SlugModel):
     def get_turn_color(self, turn_order):
         return self.boardsetupcolor_set.get(turn_order=turn_order)
 
-
+    def get_pawn_direction(self, color):
+        try:
+            bcs = self.boardsetupcolor_set.get(color__letter=color)
+            return bcs.pawn_vector
+        except BoardSetupColor.DoesNotExist:
+            return DIR_NONE
 
 class BoardSetupColor(models.Model):
     board_setup = models.ForeignKey(BoardSetup)
     turn_order = models.IntegerField(choices=((c,c) for c in range(0,33)))
+    pawn_vector = models.CharField(max_length=2, choices=DIR_CHOICES, default=DIR_NONE)
     color = models.ForeignKey(PieceColor)
 
     class Meta:
         ordering = ('turn_order',)
-
-
 
 
 

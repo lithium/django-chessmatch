@@ -13,6 +13,17 @@
         'N': '&#9822',
         'P': '&#9823',
     }
+    window.directions = {
+        'n': '',
+        'u': '&uarr;',
+        'ur': '&#x2197;',
+        'r': '&rarr;',
+        'dr': '&#x2198;',
+        'd': '&darr;',
+        'dl': '&#x2199;',
+        'l': '&larr;',
+        'ul': '&#x2196;'
+    }
     window.game_actions = []
 
     function apply_move(move) {
@@ -35,7 +46,7 @@
                     return false
                 },*/
             });
-            $piece.html(window.unicodes[move.piece])
+            $piece.html(window.unicodes[move.piece]).append($('<div/>').html(window.directions[move.direction]).addClass('arrow '+move.direction))
         }
         $piece.attr('square', move.to_coord)
         $square.empty()

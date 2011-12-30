@@ -201,6 +201,40 @@ table.chessboard {
     color: orange;
 }
 
+.arrow {
+    font-size: 14px;
+}
+.arrow.u {
+    margin-top: -40px;
+}
+.arrow.ur {
+    margin-top: -40px;
+    margin-left: 20px;
+}
+.arrow.r {
+    margin-top: -25px;
+    margin-left: 20px;
+}
+.arrow.dr {
+    margin-top: -12px;
+    margin-left: 20px;
+}
+.arrow.d {
+    margin-top: -12px;
+}
+.arrow.dl {
+    margin-top: -12px;
+    margin-left: -20px;
+}
+.arrow.l {
+    margin-top: -25px;
+    margin-left: -20px;
+}
+.arrow.ul {
+    margin-top: -40px;
+    margin-left: -20px;
+}
+
 .square.move-source {
     border: 1px dotted red;
 }

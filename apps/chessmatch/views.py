@@ -94,12 +94,14 @@ class HistoryView(JsonDetailView):
                 state['my_colors'].append(gp.turn_order)
 
         for move in queryset:
+            direction = move.piece == 'P' and move.game.board_setup.get_pawn_direction([c.letter for c in colors][move.color]) or DIR_NONE
             state['moves'].append({
                 'to_coord': move.to_coord,
                 'from_coord': move.from_coord,
                 'turn': move.turn,
                 'color': move.color,
                 'piece': move.piece,
+                'direction': direction,
                 'expr': move.expression,
             })
         return state

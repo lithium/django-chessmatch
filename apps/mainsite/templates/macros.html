@@ -11,7 +11,7 @@
 
 
 
-{%macro render_chessboard(board_setup, label=True, preview=False) -%}
+{%macro render_chessboard(board_setup, label=True, preview=False, show_directions=True) -%}
     <table class="chessboard">
 	    {%for rank in range(board_setup.num_rows,0,-1)%}
 	        <tr>
@@ -21,7 +21,7 @@
 	            {%for file in board_setup.files%}
 	                <td class="square {{board_setup.get_space_color(file,rank)}}" id="square-{{file}}{{rank}}" square="{{file}}{{rank}}">
 	                {%if preview%}
-	                	{{board_setup.get_starting_piece(file,rank)|safe}}
+	                	{{board_setup.get_starting_piece(file,rank,show_directions=show_directions)|safe}}
 	                {%endif%}
 	                </td>
 	            {%endfor%}

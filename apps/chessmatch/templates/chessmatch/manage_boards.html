@@ -14,7 +14,7 @@
 	<td>{{setup.min_players}}{%if setup.min_players != setup.max_players%}..{{setup.max_players}}{%endif%} players</td>
 
 	<td class="board-setup">
-	{{macros.render_chessboard(setup, label=False, preview=True)}}
+	{{macros.render_chessboard(setup, label=False, preview=True, show_directions=False)}}
 	</td>
 	<td>{{setup.description}}</td>
 </tr>
