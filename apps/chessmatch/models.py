@@ -235,7 +235,7 @@ class Game(basic_models.SlugModel):
 
 
     def make_move(self, player, from_coord, to_coord):
-        qs = self.gameplayer_set.filter(models.Q(player=player) | models.Q(controller=player))
+        qs = self.gameplayer_set.filter(models.Q(player=player) | models.Q(controller__player=player))
         legal_colors = [gp.turn_order for gp in qs.all()]
         if len(legal_colors) < 1 or self.turn_color not in legal_colors:
             return False
