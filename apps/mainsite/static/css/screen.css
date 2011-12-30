@@ -103,6 +103,11 @@ section.game-log {
     padding: 4px;
     width: 40px; 
 }
+
+.game-log #movelist th.active {
+    background: #caa;
+    
+}
 .game-log td.move {
     cursor: pointer;
     
