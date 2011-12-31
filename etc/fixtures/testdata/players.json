@@ -1,0 +1,167 @@
+[
+  {
+    "pk": 1, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "",
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 1, 
+      "nickname": "", 
+      "twitter_profile_image_url": "",
+      "twitter_name": "",
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "", 
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 2, 
+      "nickname": "", 
+      "twitter_profile_image_url": "", 
+      "twitter_name": ""
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "", 
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 3, 
+      "nickname": "", 
+      "twitter_profile_image_url": "", 
+      "twitter_name": ""
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "", 
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 4, 
+      "nickname": "", 
+      "twitter_profile_image_url": "", 
+      "twitter_name": ""
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "",
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 5, 
+      "nickname": "", 
+      "twitter_profile_image_url": "",
+      "twitter_name": ""
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "matt", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2011-12-29 00:54:05", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "!",
+      "email": "matt@example.com", 
+      "date_joined": "2011-12-24 00:05:22"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "kyle", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2011-12-30 13:26:48", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "!", 
+      "email": "kyle@example.com", 
+      "date_joined": "2011-12-26 10:39:42"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "josh", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2011-12-26 13:03:15", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "!", 
+      "email": "josh@example.com", 
+      "date_joined": "2011-12-26 13:03:15"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "sigh", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2011-12-30 12:27:57", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "!", 
+      "email": "sigh@example.com", 
+      "date_joined": "2011-12-26 19:55:10"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "eiji", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2011-12-30 07:46:10", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "!", 
+      "email": "eiji@example.com", 
+      "date_joined": "2011-12-28 11:47:57"
+    }
+  }
+]

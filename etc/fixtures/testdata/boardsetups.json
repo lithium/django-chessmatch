@@ -1,0 +1,504 @@
+[
+  {
+    "pk": 1, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "hexvalue": "#ffffff", 
+      "name": "White", 
+      "letter": "w"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "hexvalue": "#ff0000", 
+      "name": "Red", 
+      "letter": "r"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "hexvalue": "#000000", 
+      "name": "Black", 
+      "letter": "b"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "hexvalue": "#00ff00", 
+      "name": "Green", 
+      "letter": "g"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "hexvalue": "yellow", 
+      "name": "Yellow", 
+      "letter": "y"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "hexvalue": "purple", 
+      "name": "Purple", 
+      "letter": "p"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "hexvalue": "orange", 
+      "name": "Orange", 
+      "letter": "o"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "chessmatch.piececolor", 
+    "fields": {
+      "hexvalue": "#0000ff", 
+      "name": "Blue", 
+      "letter": "u"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "Hughes", 
+      "min_players": 4, 
+      "created_at": "2011-12-24 01:11:15", 
+      "description": "All queens start on the left.\r\nA player can not end their turn in check.\r\nIf a player can not make a valid move their turn is skipped.\r\nOnce a player captures an opponents king, they gain control of the defeated opponents turn.", 
+      "is_active": true, 
+      "updated_at": "2011-12-27 10:36:01", 
+      "created_by": 1, 
+      "pieces": "wPd2 wPe2 wPf2 wPg2 wPh2 wPi2 wPj2 wPk2\r\nwRd1 wNe1 wBf1 wQg1 wKh1 wBi1 wNj1 wRk1\r\n\r\nrPb11 rPb10 rPb9 rPb8 rPb7 rPb6 rPb5 rPb4\r\nrRa11 rNa10 rBa9 rQa8 rKa7 rBa6 rNa5 rRa4\r\n\r\nbPd13 bPe13 bPf13 bPg13 bPh13 bPi13 bPj13 bPk13\r\nbRd14 bNe14 bBf14 bKg14 bQh14 bBi14 bNj14 bRk14\r\n\r\ngPm11 gPm10 gPm9 gPm8 gPm7 gPm6 gPm5 gPm4\r\ngRn11 gNn10 gBn9 gKn8 gQn7 gBn6 gNn5 gRn4\r\n", 
+      "num_cols": 14, 
+      "num_rows": 14, 
+      "max_players": 4, 
+      "squares": "a1 a2 a3 b1 b2 b3 c1 c2 c3\r\nl1 l2 l3 m1 m2 m3 n1 n2 n3\r\na12 a13 a14 b12 b13 b14 c12 c13 c14\r\nl12 l13 l14 m12 m13 m14 n12 n13 n14\r\n", 
+      "slug": "hughes", 
+      "updated_by": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "Traditional", 
+      "min_players": 2, 
+      "created_at": "2011-12-26 00:20:32", 
+      "description": "", 
+      "is_active": true, 
+      "updated_at": "2011-12-26 22:23:58", 
+      "created_by": 1, 
+      "pieces": "wPa2 wPb2 wPc2 wPd2 wPe2 wPf2 wPg2 wPh2\r\nwRa1 wNb1 wBc1 wQd1 wKe1 wBf1 wNg1 wRh1\r\n\r\nbPa7 bPb7 bPc7 bPd7 bPe7 bPf7 bPg7 bPh7\r\nbRa8 bNb8 bBc8 bQd8 bKe8 bBf8 bNg8 bRh8\r\n", 
+      "num_cols": 8, 
+      "num_rows": 8, 
+      "max_players": 2, 
+      "squares": "", 
+      "slug": "traditional", 
+      "updated_by": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "Chaos", 
+      "min_players": 4, 
+      "created_at": "2011-12-26 10:16:53", 
+      "description": "Pawns move forward diagonally and can attack orthogonally.  \r\n\r\nEn-Passant is not allowed.\r\n\r\nCastling is not allowed.\r\n\r\nYou can not make a move if your turn would end with you in check.\r\n\r\nIf you capture an opponents king, you gain control of their turn.", 
+      "is_active": true, 
+      "updated_at": "2011-12-27 14:32:04", 
+      "created_by": 1, 
+      "pieces": " wPe2 wPe3  wPe4 wPe5 wPd5 wPc5 wPb5 wPd4 wNe1 wNa5   wRa4 wRd1   rPe13 rPe12 rPe11 rPe10 rPd10 rPd11 rPc10 rPb10 rNe14 rNa10 rRd14 rRa11 rBd13 rBb11 rQd12 rKc11 wBb4 wBd2 wQc4 wKd3 bPj12 bPj13 bPj11 bPj10 bPk11 bPl10 bPk10 bPm10 bNj14 bNn10 bBm11 bBk13 bRk14 bRn11 bQl11 bKk12  gKl4 gQk3 gRn4 gRk1 gBm4 gBk2 gNn5 gNj1 gPj2 gPj3 gPj4 gPj5 gPk5 gPk4 gPl5 gPm5", 
+      "num_cols": 14, 
+      "num_rows": 14, 
+      "max_players": 4, 
+      "squares": "  c3 a3 b3 b2  a1 a2 c2 c1 b1 n1 m1 l3 m3 n3 n2 m2 l2 l1 a12 c12 b12 a13 b13 c13 c14 b14 a14 l14 m14 n14 n13 m13 l13 l12 m12 n12", 
+      "slug": "chaos", 
+      "updated_by": 1
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "josh_test", 
+      "min_players": 4, 
+      "created_at": "2011-12-26 13:08:27", 
+      "description": "", 
+      "is_active": true, 
+      "updated_at": "2011-12-26 13:08:27", 
+      "created_by": 1, 
+      "pieces": "wpd2", 
+      "num_cols": 16, 
+      "num_rows": 16, 
+      "max_players": 4, 
+      "squares": "", 
+      "slug": "josh_test", 
+      "updated_by": 1
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "6 Players", 
+      "min_players": 6, 
+      "created_at": "2011-12-26 13:14:24", 
+      "description": "", 
+      "is_active": true, 
+      "updated_at": "2011-12-26 22:47:16", 
+      "created_by": 1, 
+      "pieces": "  wPd2 wPe2 wPf2 wPg2 wPh2 wPi2 wPj2 wPk2   rPb4 rPb5 rPb6 rPb7 rPb8 rPb9 rPb10 rPb11     bPd13 bPe13 bPf13 bPg13 bPh13 bPi13 bPj13 bPk13 gPm13 gPn13 gPo13  gPp13  gPr13 gPq13 gPs13 gPt13 yPv11 yPv10 yPv9 yPv8 yPv7 yPv6 yPv5 yPv4 pPm2 pPo2 pPn2 pPp2 pPq2 pPr2 pPs2 pPt2 wRd1 wRk1 wBe1 wBj1 wNi1 wNf1   rKa7 rQa8 rRa11 rRa4 rBa9 rBa6 rNa10 rNa5 wQg1 wKh1 bKg14   bBi14 bBf14   bRk14 bRd14 bNj14 bNe14  bQh14 gRm14 gRt14 gNn14 gNs14 gBo14 gBr14 gQq14 gKp14 yNw10 yNw5 yRw11 yRw4 yBw9 yBw6 yQw7 yKw8 pKq1 pQp1 pRt1 pRm1 pBo1 pBr1 pNs1 pNn1", 
+      "num_cols": 23, 
+      "num_rows": 14, 
+      "max_players": 6, 
+      "squares": " a14 b14 c14 c13 c12   b13 a12 b12 a13 l14 l13 l12 u14 v14 w14 u13 u12 v12 w12 w13 v13 l3  l1 l2 u3 v3 w3 w2  u1 v1 w1 v2 u2 c3 b3 a3 a2 b2 c2 c1 b1 a1", 
+      "slug": "6players", 
+      "updated_by": 1
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "8 handed chess", 
+      "min_players": 8, 
+      "created_at": "2011-12-28 11:12:52", 
+      "description": "Queens on the left.\r\nTwo teams of two; each player is on a team with the player that is farthest away.\r\nYou cannot end your turn in check. If it is not possible for you to escape check, your turn is skipped.\r\nWhen you capture another player's king, you gain control of their turn.", 
+      "is_active": true, 
+      "updated_at": "2011-12-28 11:53:40", 
+      "created_by": 1, 
+      "pieces": "                  wPd2 wPe2 wPf2 wPg2 wPh2 wPi2 wPj2 wPk2 rPb11 rPb10 rPb9 rPb8 rPb7 rPb6 rPb5 rPb4 bPb13 bPb14 bPb15 bPb16 bPb17 bPb18 bPb19 bPb20 gPd22 gPe22 gPf22  gPg22 gPh22 gPi22 gPj22 gPk22  yPo22 yPm22 yPn22 yPq22 yPp22 yPr22 yPs22 yPt22 pPv20 pPv19 pPv18 pPv17 pPv16 pPv15 pPv14 pPv13 oPv11 oPv10 oPv9 oPv8 oPv7 oPv6 oPv5 oPv4 uPt2 uPs2 uPr2 uPq2 uPp2 uPo2 uPn2 uPm2 oNw10 oNw5 oBw9 oBw6 oRw4 oRw11 oQw8 oKw7 uNn1 uNs1   uBo1 uBr1 uKq1 uQp1 uRt1 uRm1 wNe1 wNj1 wBf1 wBi1 wRd1 wRk1 wQg1 wKh1 pNw19 pNw14 pBw15 pBw18 pRw20 pRw13 pQw16 pKw17 yKp23 yQq23 yRt23 yRm23 yBr23 yBo23 yNs23 yNn23 gNj23 gNe23 gBi23 gBf23 gRk23 gRd23 gQg23 gKh23  bKa16 bQa17 bBa15 bBa18 bNa14 bNa19 bRa20 bRa13 rRa11 rRa4 rNa10 rNa5 rBa6 rBa9 rQa8 rKa7", 
+      "num_cols": 23, 
+      "num_rows": 23, 
+      "max_players": 8, 
+      "squares": "  a1 a2 b2 b3 a3 c3 c2  c1 b1 z3  x3 y3 y2 x2 z2 y1 x1 z1 a26 a25 a24 b24 b25 b26 c26 c25 c24 z26 y26 x26  y25 x25 x24 y24 z24 z25 z15 y15 x15 a23 a22 a21 b21 b22 b23 c23 c22 c21 w23 v23 u22 u23 v22 w22 w21 u21 v21 w3 v3 u3 u2 v2 w2 w1 v1 u1 l1 l2 l3   a12 b12 c12 l21 l22 l23 u12 v12 w12", 
+      "slug": "8-handed-chess", 
+      "updated_by": 1
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "Tablut", 
+      "min_players": 2, 
+      "created_at": "2011-12-28 13:54:55", 
+      "description": "The king starts on the central square, once it leaves that square;  no other piece may occupy it.\r\n\r\nAll pieces can move any number of vacant orthogonal spaces.\r\n\r\nPieces are captured if they are surrounded on two sides by an opponent.\r\n\r\nBlack wins by surrounding the white king on 4 sides.\r\n\r\nWhite wins by moving his king off of the board (there must be a clear path to the dge of the board)\r\n\r\n  ", 
+      "is_active": true, 
+      "updated_at": "2011-12-29 15:36:59", 
+      "created_by": 1, 
+      "pieces": " wKe5                                                           wRe7 wRe6 wRf5 wRg5 wRe3 wRe4 wRd5 wRc5 bRd9 bRe9 bRe8 bRf9 bRh5 bRi5 bRi6 bRi4 bRf1  bRe2 bRe1 bRd1 bRa4 bRa5 bRb5 bRa6", 
+      "num_cols": 9, 
+      "num_rows": 9, 
+      "max_players": 2, 
+      "squares": "", 
+      "slug": "tablut", 
+      "updated_by": 1
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "chessmatch.boardsetup", 
+    "fields": {
+      "name": "Melee", 
+      "min_players": 4, 
+      "created_at": "2011-12-28 14:19:07", 
+      "description": "", 
+      "is_active": true, 
+      "updated_at": "2011-12-28 15:52:52", 
+      "created_by": 1, 
+      "pieces": " wPc7 wPc6 wPc5                                                                      wPc8 wQa7 wKa6 wRa8 wRa5 wBb7 wBb6 wNb8 wNb5 rNe11 rNh11 rPe10 rPf10 rPg10 rPh10 rBg11 rBf11 rQg12 rKf12 rRh12 rRe12 bPj8 bPj7 bPj6 bPj5 bNk8 bNk5 bBk7 bBk6 bQl6 bKl7 bRl8 bRl5 gRe1 gRh1 gQf1 gKg1 gNh2 gNe2 gBg2 gBf2 gPh3 gPg3 gPf3 gPe3", 
+      "num_cols": 12, 
+      "num_rows": 12, 
+      "max_players": 4, 
+      "squares": "   d11 d12 c12 c11 b11  a11 a12 b12 b9 c10 b10 a10 a9 c9      c3 c2    b1 b2 b3 a3 a2 a1       j1 j2 i2   i1  i3 j3     i9  i10 j10  j9 c1 i11 j11 k11 k10 k9 d10  d3 d2 k3 k2 k1  d9        i12 j12 l12 k12  l11 l10 l9  d4 c4 b4 a4 i4 j4 k4 l4 l2 l3 l1", 
+      "slug": "melee", 
+      "updated_by": 1
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 1, 
+      "board_setup": 1, 
+      "turn_order": 0
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 1, 
+      "board_setup": 8, 
+      "turn_order": 0
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 1, 
+      "board_setup": 3, 
+      "turn_order": 0
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 1, 
+      "board_setup": 5, 
+      "turn_order": 0
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 1, 
+      "board_setup": 2, 
+      "turn_order": 0
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 1, 
+      "board_setup": 7, 
+      "turn_order": 0
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 1, 
+      "board_setup": 6, 
+      "turn_order": 0
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 3, 
+      "board_setup": 6, 
+      "turn_order": 1
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 3, 
+      "board_setup": 5, 
+      "turn_order": 1
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 2, 
+      "board_setup": 7, 
+      "turn_order": 1
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 3, 
+      "board_setup": 8, 
+      "turn_order": 1
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 3, 
+      "board_setup": 3, 
+      "turn_order": 1
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 2, 
+      "board_setup": 2, 
+      "turn_order": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 3, 
+      "board_setup": 1, 
+      "turn_order": 1
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 2, 
+      "board_setup": 3, 
+      "turn_order": 2
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 2, 
+      "board_setup": 5, 
+      "turn_order": 2
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 2, 
+      "board_setup": 8, 
+      "turn_order": 2
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 2, 
+      "board_setup": 1, 
+      "turn_order": 2
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 2, 
+      "board_setup": 6, 
+      "turn_order": 2
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 4, 
+      "board_setup": 6, 
+      "turn_order": 3
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 4, 
+      "board_setup": 1, 
+      "turn_order": 3
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 4, 
+      "board_setup": 3, 
+      "turn_order": 3
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 4, 
+      "board_setup": 5, 
+      "turn_order": 3
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 4, 
+      "board_setup": 8, 
+      "turn_order": 3
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 5, 
+      "board_setup": 6, 
+      "turn_order": 4
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 5, 
+      "board_setup": 5, 
+      "turn_order": 4
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 6, 
+      "board_setup": 6, 
+      "turn_order": 5
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 6, 
+      "board_setup": 5, 
+      "turn_order": 5
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 7, 
+      "board_setup": 6, 
+      "turn_order": 6
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "chessmatch.boardsetupcolor", 
+    "fields": {
+      "color": 8, 
+      "board_setup": 6, 
+      "turn_order": 7
+    }
+  }
+]
