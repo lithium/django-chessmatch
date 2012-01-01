@@ -150,8 +150,9 @@ table.chessboard {
     height: 40px;
     min-width: 40px;
     min-height: 40px;
-    font-size: 28px;
     cursor: pointer;
+    font-size: 40px;
+    margin-top: -22px;
 }
 .piece.white {
     color: white;
