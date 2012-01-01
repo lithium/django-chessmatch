@@ -24,14 +24,27 @@ section#page-header h1 a:visited,
 section#page-header h1 a:hover  {
     text-decoration: none;
     color: black;
+
 }
 
 section#page-header p.loginout {
-    vertical-align: top;
     float: right;
     padding: 0;
     margin:0;
+    padding-top: 5px;
 }
+section#page-header p.loginout a:link,
+section#page-header p.loginout a:visited,
+section#page-header p.loginout a:hover {
+
+    
+       color: #33c; 
+   text-decoration: none;
+   font-weight: bold;
+   font-size: 18px;
+   font-family: helvetica;
+}
+
 
 section#content {
     margin: 20px;
@@ -42,40 +55,49 @@ section#content {
 /* lobby layout */
 
 section.lobby {
-    margin: 50px auto 100px auto;
-    width: 600px;    
+    margin: auto;
+    width: 800px;    
+   font-family: helvetica;
+
 }
+
+.lobby a:link,
+.lobby a:visited,
+.lobby a:hover {
+   color: #33c; 
+   text-decoration: none;
+   font-weight: bold;
+   font-size: 16px;
+}
+
 .lobby table.gamelist {
-    width: 600px;    
-    border-spacing: 0;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
+    width: 100%;
+    border-spacing: 1px;
+    margin-top: 20px;
 }
 .lobby table.gamelist th {
     text-align: left; 
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    background: #eeeeee;
+
+    padding: 4px;
+    background: #aaa;
+    font-family: helvetica;
 } 
 .lobby table.gamelist td {
-    vertical-align: top; 
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    padding: 3px 3px 0 3px;
+    vertical-align: bottom; 
+
+    padding: 4px;
+    background: #eee;
 }
 
-.lobby .newgame { 
-    float: right;
-    font-size: 20px;
-    font-weight: bold;
-}
-.lobby .newgame a:link,
-.lobby .newgame a:visited,
-.lobby .newgame a:hover
+
+.lobby aside a.action:link,
+.lobby aside a.action:visited,
+.lobby aside a.action:hover
 {
-    text-decoration: none;
-    color: black;
-    
+    font-size: 20px;    
+}
+.lobby .boardsetups { 
+    float: right;
 }
 
 
@@ -174,6 +196,9 @@ table.chessboard {
 }
 .piece.blue {
     color: blue;
+}
+.piece.orange {
+    color: orange;
 }
 
 .square.move-source {

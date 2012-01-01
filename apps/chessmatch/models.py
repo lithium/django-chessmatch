@@ -85,8 +85,7 @@ class BoardSetup(basic_models.SlugModel):
         return [bsc.color for bsc in self.boardsetupcolor_set.all().order_by('turn_order').select_related()]
 
     def get_turn_color(self, turn_order):
-        bcs = self.boardsetupcolor_set.get(turn_order=turn_order)
-        return bcs.color
+        return self.boardsetupcolor_set.get(turn_order=turn_order)
 
 
 
@@ -258,6 +257,12 @@ class Game(basic_models.SlugModel):
         )
         self.next_turn()
         return True
+
+    def current_turn_player(self):
+        gp = self.gameplayer_set.filter(turn_order=self.turn_color)
+        if len(gp) > 0:
+            return gp[0].player
+
 
 
 

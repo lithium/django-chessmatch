@@ -6,40 +6,52 @@
 
 <section class="lobby">
 
-	<aside class="newgame">
-		<a class="action" href="{{url('chessmatch_newgame')}}">New Game</a>
-	</aside>
+    <aside class="boardsetups">
+        <a class="action" href="{{url('chessmatch_manage_boards')}}">Board Setups</a>
+    </aside>
 
-	<a class="action" href="{{url('chessmatch_manage_boards')}}">Manage Board Layouts</a>
+    <aside class="newgame">
+        <a class="action" href="{{url('chessmatch_newgame')}}">New Game</a>
+    </aside>
 
 
-	<table class="gamelist">
-	<tr>
-		<th>Game</th>
-		<th>Board Setup</th>
-		<th>Players</th>
-		<th>Turn</th>
-		<th>Started</th>
-	</tr>
-	{%for game in games%}
-	<tr>
-	    <td><a href="{{url('chessmatch_game', slug=game.slug)}}">{{game.name}}</a></td>
-	    <td> {{game.board_setup}} </td>
-	    <td>
-	    	{%if request.user.is_authenticated() and not game.is_playing(request.user) and not game.started_at %}
-	    	<a href="{{url('chessmatch_join', slug=game.slug)}}">Join</a>
-	    	{%endif%}
-	    	{{game.comma_players}}
-	    </td>
-	    <td>
-	    	{%if game.turn_number%}#{{game.turn_number}}.{{game.board_setup.get_turn_color(game.turn_color)}}
- 	    	{%else%}
-	    		Seating {{game.num_players}} of {{game.board_setup.min_players}}{%if game.board_setup.min_players != game.board_setup.max_players%}..{{game.board_setup.max_players}}{%endif%}
-	    	{%endif%}
-	    </td>
-	    <td>{%if game.started_at%}{{game.started_at}}{%endif%}</td>
-	</tr>
-	{%endfor%}
-	</table>
+    <table class="gamelist">
+    <tr>
+        <th>Game</th>
+        <th>Board Setup</th>
+        <th>Players</th>
+        <th>Turn</th>
+    </tr>
+    {%for game in games%}
+    <tr>
+        <td><a href="{{url('chessmatch_game', slug=game.slug)}}">{{game.name}}</a></td>
+        <td> {{game.board_setup}} </td>
+        <td>
+            {%if request.user.is_authenticated() and not game.is_playing(request.user) and not game.started_at %}
+            <a href="{{url('chessmatch_join', slug=game.slug)}}">Join</a>
+            {%endif%}
+            {{game.comma_players}}
+        </td>
+        <td>
+            {%if game.started_at%}
+            <div>
+                <label>Turn:<label>  
+                #{{game.turn_number}}.{{game.board_setup.get_turn_color(game.turn_color).color.letter}} 
+                ({{game.current_turn_player().moniker}})
+            </div>
+            <div>
+                <label>Started:</label>
+                {{game.started_at.strftime("%b %d %H:%M")}}
+            </div>
+            {%else%}
+            <div>
+                <label>Seating:</label>
+                {{game.num_players}} of {{game.board_setup.min_players}}{%if game.board_setup.min_players != game.board_setup.max_players%}..{{game.board_setup.max_players}}{%endif%}
+            </div>
+            {%endif%}
+        </td>
+    </tr>
+    {%endfor%}
+    </table>
 </section>
 {%endblock%}
