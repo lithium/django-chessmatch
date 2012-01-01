@@ -5,8 +5,8 @@ tweetstream==1.1.1
 
 
 # LDAP authentication
-django-auth-ldap==1.0.12
-python-ldap==2.3.13
+#django-auth-ldap==1.0.12
+#python-ldap==2.3.13
 
 
 # jinja2 templates
