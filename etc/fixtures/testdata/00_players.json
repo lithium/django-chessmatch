@@ -1,81 +1,6 @@
 [
   {
     "pk": 1, 
-    "model": "chessmatch.player", 
-    "fields": {
-      "ranking": 1500, 
-      "twitter_screen_name": "", 
-      "twitter_access_token": "",
-      "is_active": true, 
-      "avatar_url": "", 
-      "user": 1, 
-      "nickname": "", 
-      "twitter_profile_image_url": "",
-      "twitter_name": "",
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "chessmatch.player", 
-    "fields": {
-      "ranking": 1500, 
-      "twitter_screen_name": "", 
-      "twitter_access_token": "", 
-      "is_active": true, 
-      "avatar_url": "", 
-      "user": 2, 
-      "nickname": "", 
-      "twitter_profile_image_url": "", 
-      "twitter_name": ""
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "chessmatch.player", 
-    "fields": {
-      "ranking": 1500, 
-      "twitter_screen_name": "", 
-      "twitter_access_token": "", 
-      "is_active": true, 
-      "avatar_url": "", 
-      "user": 3, 
-      "nickname": "", 
-      "twitter_profile_image_url": "", 
-      "twitter_name": ""
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "chessmatch.player", 
-    "fields": {
-      "ranking": 1500, 
-      "twitter_screen_name": "", 
-      "twitter_access_token": "", 
-      "is_active": true, 
-      "avatar_url": "", 
-      "user": 4, 
-      "nickname": "", 
-      "twitter_profile_image_url": "", 
-      "twitter_name": ""
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "chessmatch.player", 
-    "fields": {
-      "ranking": 1500, 
-      "twitter_screen_name": "", 
-      "twitter_access_token": "",
-      "is_active": true, 
-      "avatar_url": "", 
-      "user": 5, 
-      "nickname": "", 
-      "twitter_profile_image_url": "",
-      "twitter_name": ""
-    }
-  }, 
-  {
-    "pk": 1, 
     "model": "auth.user", 
     "fields": {
       "username": "matt", 
@@ -163,5 +88,81 @@
       "email": "eiji@example.com", 
       "date_joined": "2011-12-28 11:47:57"
     }
+  },
+  {
+    "pk": 1, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "",
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 1, 
+      "nickname": "", 
+      "twitter_profile_image_url": "",
+      "twitter_name": ""
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "", 
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 2, 
+      "nickname": "", 
+      "twitter_profile_image_url": "", 
+      "twitter_name": ""
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "", 
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 3, 
+      "nickname": "", 
+      "twitter_profile_image_url": "", 
+      "twitter_name": ""
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "", 
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 4, 
+      "nickname": "", 
+      "twitter_profile_image_url": "", 
+      "twitter_name": ""
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "chessmatch.player", 
+    "fields": {
+      "ranking": 1500, 
+      "twitter_screen_name": "", 
+      "twitter_access_token": "",
+      "is_active": true, 
+      "avatar_url": "", 
+      "user": 5, 
+      "nickname": "", 
+      "twitter_profile_image_url": "",
+      "twitter_name": ""
+    }
   }
+
 ]
