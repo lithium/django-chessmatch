@@ -44,11 +44,12 @@ class BoardView(DetailView):
             if gp.color >= 0:
                 players[gp.color] = gp.player
 
+        current_player = None
         try:
             if self.request.user.is_authenticated():
                 current_player = self.object.gameplayer_set.get(player=self.request.user.get_profile())
         except GamePlayer.DoesNotExist as e:
-            current_player = None
+            pass
 
         files = string.ascii_lowercase[:self.object.board_setup.num_cols]
         files_odds = files[::2]
