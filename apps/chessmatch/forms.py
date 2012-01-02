@@ -27,7 +27,8 @@ class GameMovesForm(forms.Form):
         if gameplayer:
             choices = [('','---')]
             for gp in gameplayer.game.gameplayer_set.exclude(id=gameplayer.id):
-                choices.append( (gp.color.letter, "%s (%s)" % (gp.color.name, gp.player.moniker)) )
+                if gp.color:
+                    choices.append( (gp.color.letter, "%s (%s)" % (gp.color.name, gp.player.moniker)) )
             self.fields['other_players'] = forms.ChoiceField(choices=choices)
             
 

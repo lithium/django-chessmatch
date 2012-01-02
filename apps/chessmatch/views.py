@@ -25,7 +25,8 @@ class LobbyView(TemplateView):
     def get_context_data(self, **kwargs):
         c = super(LobbyView, self).get_context_data(**kwargs)
         c.update({
-            'games': Game.objects.active(),
+            'games': Game.objects.active().filter(started_at__isnull=False),
+            'open_games': Game.objects.active().filter(started_at=None),
             'archive': Game.objects.filter(is_active=False),
         })
         return c

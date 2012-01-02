@@ -1,28 +1,7 @@
 {%extends "base.html"%}
 
-{%block content%}
 
-
-
-<section class="lobby">
-
-    <aside class="boardsetups">
-        <a class="action" href="{{url('chessmatch_manage_boards')}}">Board Setups</a>
-    </aside>
-
-    <aside class="newgame">
-        <a class="action" href="{{url('chessmatch_newgame')}}">New Game</a>
-    </aside>
-
-
-    <table class="gamelist">
-    <tr>
-        <th>Game</th>
-        <th>Board Setup</th>
-        <th>Players</th>
-        <th>Turn</th>
-    </tr>
-    {%for game in games%}
+{%macro game_row(game)%}
     <tr>
         <td><a href="{{url('chessmatch_game', slug=game.slug)}}">{{game.name}}</a></td>
         <td> {{game.board_setup}} </td>
@@ -51,9 +30,50 @@
             {%endif%}
         </td>
     </tr>
+{%endmacro%}
+
+{%block content%}
+
+
+
+<section class="lobby">
+
+    <aside class="boardsetups">
+        <a class="action" href="{{url('chessmatch_manage_boards')}}">Board Setups</a>
+    </aside>
+
+    <aside class="newgame">
+        <a class="action" href="{{url('chessmatch_newgame')}}">New Game</a>
+    </aside>
+
+
+
+
+    <h3>Open</h3>
+    <table class="gamelist">
+    <tr>
+        <th>Game</th>
+        <th>Board Setup</th>
+        <th>Players</th>
+        <th>Turn</th>
+    </tr>
+    {%for game in open_games%}
+    {{game_row(game)}}
     {%endfor%}
     </table>
 
+    <h3>Playing</h3>
+    <table class="gamelist">
+    <tr>
+        <th>Game</th>
+        <th>Board Setup</th>
+        <th>Players</th>
+        <th>Turn</th>
+    </tr>
+    {%for game in games%}
+    {{game_row(game)}}
+    {%endfor%}
+    </table>
 
     <h3>Archive</h3>
     <table class="gamelist archive">
