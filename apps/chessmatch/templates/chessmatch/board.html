@@ -1,5 +1,13 @@
 {%extends base_template%}
 
+{%block styles%}
+{{super()}}
+{%if lite%}
+    <link rel="StyleSheet" href="{{STATIC_URL}}css/lite.css">
+{%endif%}
+{%endblock%}
+
+
 {%block scripts%}
 {{super()}}
 <script>
