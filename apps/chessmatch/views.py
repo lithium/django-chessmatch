@@ -45,7 +45,8 @@ class BoardView(DetailView):
                 players[gp.color] = gp.player
 
         try:
-            current_player = self.object.gameplayer_set.get(player=self.request.user.get_profile())
+            if self.request.user.is_authenticated():
+                current_player = self.object.gameplayer_set.get(player=self.request.user.get_profile())
         except GamePlayer.DoesNotExist as e:
             current_player = None
 
