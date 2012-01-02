@@ -8,14 +8,14 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding field 'BoardSetupColor.pawn_vector'
-        db.add_column('chessmatch_boardsetupcolor', 'pawn_vector', self.gf('django.db.models.fields.CharField')(max_length=2))
+        # Adding field 'Game.winner'
+        db.add_column('chessmatch_game', 'winner', self.gf('django.db.models.fields.related.ForeignKey')(default=None, related_name='games_won', null=True, blank=True, to=orm['chessmatch.GamePlayer']), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Deleting field 'BoardSetupColor.pawn_vector'
-        db.delete_column('chessmatch_boardsetupcolor', 'pawn_vector')
+        # Deleting field 'Game.winner'
+        db.delete_column('chessmatch_game', 'winner_id')
 
 
     models = {
@@ -71,7 +71,7 @@ class Migration(SchemaMigration):
             'board_setup': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['chessmatch.BoardSetup']"}),
             'color': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['chessmatch.PieceColor']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'pawn_vector': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
+            'pawn_vector': ('django.db.models.fields.CharField', [], {'default': "'n'", 'max_length': '2'}),
             'turn_order': ('django.db.models.fields.IntegerField', [], {})
         },
         'chessmatch.game': {
@@ -87,7 +87,8 @@ class Migration(SchemaMigration):
             'turn_color': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'turn_number': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
             'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'updated_by': ('django.db.models.fields.related.ForeignKey', [], {'default': '1', 'related_name': "'game_updated'", 'null': 'True', 'blank': 'True', 'to': "orm['auth.User']"})
+            'updated_by': ('django.db.models.fields.related.ForeignKey', [], {'default': '1', 'related_name': "'game_updated'", 'null': 'True', 'blank': 'True', 'to': "orm['auth.User']"}),
+            'winner': ('django.db.models.fields.related.ForeignKey', [], {'default': 'None', 'related_name': "'games_won'", 'null': 'True', 'blank': 'True', 'to': "orm['chessmatch.GamePlayer']"})
         },
         'chessmatch.gameaction': {
             'Meta': {'ordering': "('turn', 'color')", 'object_name': 'GameAction'},

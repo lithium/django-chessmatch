@@ -53,5 +53,27 @@
     </tr>
     {%endfor%}
     </table>
+
+
+    <h3>Archive</h3>
+    <table class="gamelist archive">
+    <tr>
+        <th>Game</th>
+        <th>Players</th>
+        <th>Outcome</th>
+    </tr>
+    {%for game in archive%}
+    <tr>
+        <td><a href="{{url('chessmatch_game', slug=game.slug)}}">{{game.name}}</a> / {{game.board_setup}}</td>
+        <td> {{game.comma_players}}</td>
+        <td> 
+        {%if game.winner%}
+        {{game.winner.player.moniker}}
+        {%endif%}
+        #{{game.turn_number}}.{{game.board_setup.get_turn_color(game.turn_color).color.letter}} 
+        </td>
+    </tr>
+    {%endfor%}
+
 </section>
 {%endblock%}

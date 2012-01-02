@@ -14,17 +14,6 @@
         'P': '&#9823',
     }
     window.directions = {
-        /*
-        'u': '&uarr;',
-        'ur': '&#x2197;',
-        'r': '&rarr;',
-        'dr': '&#x2198;',
-        'd': '&darr;',
-        'dl': '&#x2199;',
-        'l': '&larr;',
-        'ul': '&#x2196;'
-        */
-
         'u':  '&#x21d1',
         'ur': '&#x21d7',
         'r':  '&#x21d2',
@@ -46,18 +35,11 @@
         }
         else { // first placement, create it
             var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
-            $piece.draggable({
-                /*
-                start: function(event, ui) {
-                    for (var i=0; i < MY_COLORS.length; i++) {
-                        if ($(this).hasClass(window.colors[MY_COLORS[i]])) {
-                            return true;
-                        }
-                    }
-                    return false
-                },*/
-            });
-            $piece.html(window.unicodes[move.piece]).append($('<div/>').html(window.directions[move.direction]).addClass('arrow '+move.direction))
+            $piece.draggable({});
+            $piece.html(window.unicodes[move.piece])
+            if (move.direction in window.directions) {
+                $piece.append('<div class="arrow '+move.direction+'">'+window.directions[move.direction]+'</div>')
+            }
         }
         $piece.attr('square', move.to_coord)
         $square.empty()
@@ -76,10 +58,14 @@
             var i;
 
             if (COLORS[CUR_COLOR]) {
+                {%if game.is_active%}
                 $('#cur-move').html(COLORS[CUR_COLOR]+"'s turn (#"+CUR_TURN+'.'+COLORS[CUR_COLOR][0]+')')
+                {%else%}
+                $('#cur-move').html(COLORS[CUR_COLOR]+" (#"+CUR_TURN+'.'+COLORS[CUR_COLOR][0]+')')
+                {%endif%}
             }
 
-            //player lsit
+            //player list
             var $names = $('#movelist .names')
             $names.empty()
             $names.append('<th/>')
@@ -202,6 +188,7 @@
     </section>
 
     <section class="game-move">
+        {%if game.is_active%}
         <div id="cur-move">
             {%if not game.started_at%}
                 <p>{{game.num_players}} of {{game.board_setup.min_players}}{%if game.board_setup.max_players != game.board_setup.min_players%}..{{game.board_setup.max_players}}{%endif%} players </p>
@@ -210,14 +197,17 @@
                 {%endif%}
             {%endif%}
         </div>
-{%if not lite%}
+        {%if not lite %}
         <form method="POST" action="{{url('chessmatch_move', slug=game.slug)}}" id="next-move">
             {{csrf()}}
             <input type="text" placeholder="From Coordinate" name="from_coord" id="id_from_coord"/>
             <input type="text" placeholder="To Coordinate" name="to_coord" id="id_to_coord"/>
             <button id="submit-move">Submit Move</button>
         </form>
-{%endif%}
+        {%endif%}
+        {%elif game.winner%}
+        Winner: {{game.winner.player.moniker}}
+        {%endif%}
     </section>
 
     <section class="game-board">

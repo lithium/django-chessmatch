@@ -192,7 +192,7 @@ class Game(basic_models.SlugModel):
     started_at = models.DateTimeField(blank=True, null=True, default=None)
     turn_number = models.PositiveIntegerField(default=0)
     turn_color = models.IntegerField(default=0)
-    #num_players = models.PositiveIntegerField(default=4)
+    winner = models.ForeignKey("chessmatch.GamePlayer", blank=True, null=True, default=None, related_name='games_won')
 
     @property
     def num_players(self):
@@ -305,6 +305,7 @@ class GamePlayer(models.Model):
     turn_order = models.IntegerField(default=-1)
     color = models.ForeignKey(PieceColor, blank=True, null=True)
     controller = models.ForeignKey('self', blank=True, null=True, default=None)
+
 
     class Meta:
         ordering = ('turn_order',)
