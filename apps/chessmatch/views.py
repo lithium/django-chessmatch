@@ -162,6 +162,8 @@ class MakeMoveView(DetailView):
         to_coord = request.POST.get('to_coord','').strip()
 
         if game.make_move(player, from_coord, to_coord):
+            # notify next player its their move if they want.
+            game.notify_next_player()
             return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':game.slug}))
         else:
             return http.HttpResponseForbidden()

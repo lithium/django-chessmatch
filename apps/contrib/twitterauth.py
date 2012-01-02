@@ -66,3 +66,4 @@ class TwitterAuth(object):
 
     def verify_credentials(self, access_token):
         return self.get_resource(access_token, TwitterAuth.VERIFY_CREDENTIALS_URL)
+

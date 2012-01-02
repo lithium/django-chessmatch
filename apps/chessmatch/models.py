@@ -10,7 +10,7 @@ import datetime
 import string
 
 
-
+from chessmatch import tasks
 
 
 class PieceColor(models.Model):
@@ -150,10 +150,20 @@ PIECE_CHOICES = (
 )
 
 class Player(basic_models.ActiveModel):
+    NOTIFY_NONE = ''
+    NOTIFY_TWITTER = 'twitter'
+    NOTIFY_CHOICES = (
+       (NOTIFY_NONE, 'Dont notify'),
+       (NOTIFY_TWITTER, 'Twitter'),
+    )
+
     user = models.OneToOneField('auth.User')
     ranking = models.IntegerField(default=1500)
     nickname = models.CharField(max_length=64, blank=True)
     avatar_url = models.URLField(verify_exists=False, blank=True)
+
+    notify_type = models.CharField(max_length=64, choices=NOTIFY_CHOICES, default=NOTIFY_NONE, blank=True)
+    notify_after = models.IntegerField(default=1) # in minutes
 
     twitter_access_token = models.CharField(max_length=1024, blank=True)
     twitter_screen_name = models.CharField(max_length=1024, blank=True)
@@ -364,6 +374,14 @@ class Game(basic_models.SlugModel):
         if len(gp) > 0:
             return gp[0].player
 
+    def notify_next_player(self):
+        gp = self.gameplayer_set.filter(turn_order=self.turn_color)
+        if len(gp) < 1:
+            return
+        gp = gp[0]
+        if gp.player.notify_type == Player.NOTIFY_TWITTER and gp.player.twitter_screen_name:
+            when = datetime.datetime.now() + datetime.timedelta(minutes=gp.player.notify_after)
+            tasks.notify_player_twitter.apply_async(args=[gp.id], eta=when)
 
 
 
