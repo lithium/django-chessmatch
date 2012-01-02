@@ -285,12 +285,15 @@ class Game(basic_models.SlugModel):
 
     def generate_board_state(self):
         board = {}
+
+        nix_check_re = re.compile(r'\+.*$')
         for action in self.gameaction_set.all().order_by('turn','color'):
             if action.from_coord in ('x','-','yield'):
                 continue
             if action.from_coord:
-                del board[action.from_coord]
-            board[action.to_coord] = "%s%s" % (action.color, action.piece)
+                board[action.from_coord] = None
+            to_coord = nix_check_re.sub('', action.to_coord)
+            board[to_coord] = "%s%s" % (action.color, action.piece)
         return board
 
 
@@ -354,7 +357,7 @@ class Game(basic_models.SlugModel):
 
         board = self.generate_board_state()
         src_piece = board.get(from_coord, None)
-        cap_piece = board.get(to_coord, None)
+        cap_piece = board.get(re.sub(r'\+.*$', '', to_coord), None)
         if src_piece is None:
             return False
 
@@ -415,8 +418,6 @@ class GameAction(models.Model):
     from_coord = models.CharField(max_length=64, blank=True)
     to_coord = models.CharField(max_length=64)
     is_capture = models.BooleanField(default=False)
-    is_check = models.BooleanField(default=False)
-    is_mate = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('turn','color')
@@ -428,10 +429,6 @@ class GameAction(models.Model):
         if self.from_coord == 'yield':
             return ">%s" % (self.to_coord,)
         suffix = ''
-        if self.is_mate:
-            suffix = '#'
-        elif self.is_check:
-            suffix = '+'
 
         cap = ''
         if self.is_capture:

@@ -27,8 +27,9 @@
     window.game_actions = []
 
     function apply_move(move) {
+        to_coord = move.to_coord.replace(/\+.*/, '')
         // create and/or position piece
-        var $square = $('#square-'+move.to_coord)
+        var $square = $('#square-'+to_coord)
         var color = window.COLORS[move.color]
         if (move.from_coord) {
             var $piece = $('#square-'+move.from_coord+' .piece')
@@ -41,7 +42,7 @@
                 $piece.append('<div class="arrow '+move.direction+'">'+window.directions[move.direction]+'</div>')
             }
         }
-        $piece.attr('square', move.to_coord)
+        $piece.attr('square', to_coord)
         $square.empty()
         $square.append($piece)
     }
@@ -195,11 +196,19 @@
             $('#id_to_coord').val('X')
             return false;
         })
-        $('#id_other_players').change(function() {
+        $('#submit-yield select').change(function() {
             $('#id_from_coord').val('yield')
             $('#id_to_coord').val($(this).val())
             return false;
         })
+        $('#submit-check select').change(function() {
+            var cur = $('#id_to_coord').val()
+            cur += '+'+$(this).val()
+            $('#id_to_coord').val(cur)
+            return false;
+        })
+    })
+</script>
     })
 </script>
 {%endblock%}
@@ -229,7 +238,8 @@
             <section class="extra-moves">
                 <button id="submit-pass">Pass</button>
                 <button id="submit-concede">Concede</button>
-                Yield to: {{moves_form.other_players|safe}}
+                <span id="submit-check">Check: {{moves_form.other_players|safe}}</span>
+                <span id="submit-yield">Yield to: {{moves_form.other_players|safe}}</span>
             </section>
         </form>
         {%endif%}
