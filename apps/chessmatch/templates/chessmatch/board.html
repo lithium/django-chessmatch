@@ -35,7 +35,7 @@
     window.game_actions = []
 
     function apply_move(move) {
-        to_coord = move.to_coord.replace(/\+.*/, '')
+        to_coord = move.to_coord.replace(/[\+x].*/, '')
         // create and/or position piece
         var $square = $('#square-'+to_coord)
         var color = window.COLORS[move.color]
@@ -50,6 +50,12 @@
                 $piece.append('<div class="arrow '+move.direction+'">'+window.directions[move.direction]+'</div>')
             }
         }
+        cap_parts = move.to_coord.split('x')
+        if (cap_parts.length > 1) 
+        {   
+            // also includes extra capture
+            $('#square-'+cap_parts[1]).empty()
+        } 
         $piece.attr('square', to_coord)
         $square.empty()
         $square.append($piece)
