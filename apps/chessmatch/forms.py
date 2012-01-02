@@ -18,6 +18,17 @@ class BoardSetupForm(forms.ModelForm):
         #   'num_rows': forms.Select(choices=((c,c) for c in range(1,100)))
         #}
 
+
+class GameMovesForm(forms.Form):
+
+    def __init__(self, gameplayer, *args, **kwargs):
+        self.gameplayer = gameplayer
+        super(GameMovesForm, self).__init__(*args, **kwargs)
+        if gameplayer:
+            choices = [('','---')]
+            for gp in gameplayer.game.gameplayer_set.exclude(id=gameplayer.id):
+                choices.append( (gp.color.letter, "%s (%s)" % (gp.color.name, gp.player.moniker)) )
+            self.fields['other_players'] = forms.ChoiceField(choices=choices)
             
 
 class AccountForm(forms.ModelForm):

@@ -43,6 +43,11 @@ class BoardView(DetailView):
             if gp.color >= 0:
                 players[gp.color] = gp.player
 
+        try:
+            current_player = self.object.gameplayer_set.get(player=self.request.user.get_profile())
+        except GamePlayer.DoesNotExist as e:
+            current_player = None
+
         files = string.ascii_lowercase[:self.object.board_setup.num_cols]
         files_odds = files[::2]
         files_evens = files[1::2]
@@ -56,6 +61,7 @@ class BoardView(DetailView):
             'files_evens': files_evens,
             'lite': is_lite,
             'base_template': 'lite.html' if is_lite else 'base.html',
+            'moves_form': GameMovesForm(current_player),
         })
         return c
 

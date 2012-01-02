@@ -177,6 +177,22 @@
 
             return false;
         })
+
+        $('#submit-pass').click(function() {
+            $('#id_from_coord').val('-')
+            $('#id_to_coord').val('-')
+            return false;
+        })
+        $('#submit-concede').click(function() {
+            $('#id_from_coord').val('X')
+            $('#id_to_coord').val('X')
+            return false;
+        })
+        $('#id_other_players').change(function() {
+            $('#id_from_coord').val('yield')
+            $('#id_to_coord').val($(this).val())
+            return false;
+        })
     })
 </script>
 {%endblock%}
@@ -203,6 +219,11 @@
             <input type="text" placeholder="From Coordinate" name="from_coord" id="id_from_coord"/>
             <input type="text" placeholder="To Coordinate" name="to_coord" id="id_to_coord"/>
             <button id="submit-move">Submit Move</button>
+            <section class="extra-moves">
+                <button id="submit-pass">Pass</button>
+                <button id="submit-concede">Concede</button>
+                Yield to: {{moves_form.other_players|safe}}
+            </section>
         </form>
         {%endif%}
         {%elif game.winner%}

@@ -247,10 +247,17 @@ class Game(basic_models.SlugModel):
         self.save()
 
     def next_turn(self):
-        self.turn_color += 1
-        if self.turn_color >= self.num_players:
-            self.turn_color = 0
-            self.turn_number += 1
+        def _inc_color():
+            self.turn_color += 1
+            if self.turn_color >= self.num_players:
+                self.turn_color = 0
+                self.turn_number += 1
+        players = self.gameplayer_set.all()
+        if len(players.filter(is_playing=True)) == 1:
+            return
+        _inc_color()
+        while not players[self.turn_color].is_playing:
+            _inc_color()
         self.save()
 
     def action_log(self):
@@ -271,6 +278,54 @@ class Game(basic_models.SlugModel):
         legal_colors = [gp.turn_order for gp in qs.all()]
         if len(legal_colors) < 1 or self.turn_color not in legal_colors:
             return False
+
+        cur_player = self.gameplayer_set.get(turn_order=self.turn_color)
+
+        from_coord = from_coord.lower()
+        to_coord = to_coord.lower()
+
+        if from_coord == '-' and to_coord == '-':  # pass
+            move, created = GameAction.objects.get_or_create(game=self,
+                turn=self.turn_number,
+                color=self.turn_color,
+                piece='',
+                from_coord='-',
+                to_coord='-',
+                is_capture=False,
+            )
+            self.next_turn()
+            return True
+
+        if from_coord == 'x' and to_coord == 'x':  # concede
+            cur_player.is_playing = False
+            cur_player.save()
+            move, created = GameAction.objects.get_or_create(game=self,
+                turn=self.turn_number,
+                color=self.turn_color,
+                piece='',
+                from_coord='x',
+                to_coord='x',
+                is_capture=False,
+            )
+            self.next_turn()
+            return True
+
+        if from_coord == 'yield':  # yield control
+            qs = self.gameplayer_set.filter(color__letter=to_coord)
+            if len(qs) < 1: # invalid color letter
+                return False 
+            cur_player.controller = qs[0]
+            cur_player.save()
+            move, created = GameAction.objects.get_or_create(game=self,
+                turn=self.turn_number,
+                color=self.turn_color,
+                piece='',
+                from_coord=from_coord,
+                to_coord=to_coord,
+                is_capture=False,
+            )
+            return True
+
 
         if not from_coord or not to_coord or (from_coord == to_coord):
             return False
@@ -305,6 +360,7 @@ class GamePlayer(models.Model):
     turn_order = models.IntegerField(default=-1)
     color = models.ForeignKey(PieceColor, blank=True, null=True)
     controller = models.ForeignKey('self', blank=True, null=True, default=None)
+    is_playing = models.BooleanField(default=True)
 
 
     class Meta:
