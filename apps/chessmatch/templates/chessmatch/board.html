@@ -59,11 +59,13 @@
             var i;
 
             if (COLORS[CUR_COLOR]) {
+{%if not lite%}
                 {%if game.is_active%}
                 $('#cur-move').html(COLORS[CUR_COLOR]+"'s turn (#"+CUR_TURN+'.'+COLORS[CUR_COLOR][0]+')')
                 {%else%}
                 $('#cur-move').html(COLORS[CUR_COLOR]+" (#"+CUR_TURN+'.'+COLORS[CUR_COLOR][0]+')')
                 {%endif%}
+{%endif%}
             }
 
             //player list
@@ -207,8 +209,6 @@
             $('#id_to_coord').val(cur)
             return false;
         })
-    })
-</script>
     })
 </script>
 {%endblock%}

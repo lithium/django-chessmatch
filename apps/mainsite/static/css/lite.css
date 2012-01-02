@@ -13,3 +13,11 @@ section#content {
     margin: 0;
     padding: 0;
 }
+
+
+section.game-board {
+    float: none;
+}
+section.game-log {
+    float: none;
+}
