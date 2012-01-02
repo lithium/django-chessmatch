@@ -120,13 +120,13 @@ section.game-move input[type=text] {
 section.game-log {
     float: left;
 }
-.game-log #movelist tr.names th {
+.game-log tr.names th {
     vertical-align: top;
     padding: 4px;
     width: 40px; 
 }
 
-.game-log #movelist th.active {
+.game-log th.active {
     background: #caa;
     
 }

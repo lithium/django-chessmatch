@@ -66,7 +66,7 @@
             }
 
             //player list
-            var $names = $('#movelist .names')
+            var $names = $('.game-log .names')
             $names.empty()
             $names.append('<th/>')
             for (i=0; i < data.players.length; i++) {
@@ -97,7 +97,7 @@
                     var $tr = $('tr#turn-'+move.turn);
                     if ($tr.length < 1) {
                         $tr = $('<tr id="turn-'+move.turn+'" ><th>'+move.turn+'.</th></tr>')
-                        $('#movelist').append($tr)
+                        $('#movelist').prepend($tr)
                     }
                     var $td = $tr.find('td.color-'+color)
                     if ($td.length < 1) { // add move to the log
@@ -244,8 +244,10 @@
 
 
     <section class="game-log">
-        <table id="movelist">
+        <table>
             <tr class="names"></tr>
+            <tbody id="movelist">
+            </tbody>
         </table>
     </section>
 
