@@ -35,4 +35,4 @@ class GameMovesForm(forms.Form):
 class AccountForm(forms.ModelForm):
     class Meta:
         model = Player
-        fields = ('nickname','avatar_url')
+        fields = ('nickname','avatar_url','notify_type','notify_after')
