@@ -74,7 +74,12 @@
                 if (data.colors[i])
                     $th.append('<div class="color">'+data.colors[i]+'</div>')
                 $th.append('<img class="avatar" src="'+data.players[i].avatar+'"/>')
-                $th.append('<div class="username">'+data.players[i].username+'</div>')
+                $username = $('<div class="username">'+data.players[i].username+'</div>')
+                if (data.players[i].owner != data.players[i].username) {
+                    $username.prepend($('<div style="text-decoration: line-through;"/>').html(data.players[i].owner))
+                    
+                }
+                $th.append($username)
                 $names.append($th);
             }
 
@@ -96,8 +101,10 @@
                     }
                     var $td = $tr.find('td.color-'+color)
                     if ($td.length < 1) { // add move to the log
-                        $td = $('<td class="move color-'+color+'"  actions_idx="'+(window.game_actions.length-1)+'">'+move.expr+'</td>')
+                        $td = $('<td class="color-'+color+'"><div class="move" actions_idx="'+(window.game_actions.length-1)+'">'+move.expr+'</div></td>')
                         $tr.append($td)
+                    } else {
+                        $td.append('<div class="move" actions_idx="'+(window.game_actions.length-1)+'">'+move.expr+'</div>')
                     }
                 }
 
@@ -122,7 +129,7 @@
     $(function() {
         fetch_history();
 
-        $('td.move').live('click', function() {
+        $('.move').live('click', function() {
             //replay the moves up to the one clicked on
             var $this = $(this);
             var actions_idx = $this.attr('actions_idx')

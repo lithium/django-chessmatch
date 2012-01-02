@@ -273,6 +273,17 @@ class Game(basic_models.SlugModel):
         return (self.gameplayer_set.filter(player__user=user.id).count() > 0)
 
 
+    def generate_board_state(self):
+        board = {}
+        for action in self.gameaction_set.all().order_by('turn','color'):
+            if action.from_coord in ('x','-','yield'):
+                continue
+            if action.from_coord:
+                del board[action.from_coord]
+            board[action.to_coord] = "%s%s" % (action.color, action.piece)
+        return board
+
+
     def make_move(self, player, from_coord, to_coord):
         qs = self.gameplayer_set.filter(models.Q(player=player) | models.Q(controller__player=player))
         legal_colors = [gp.turn_order for gp in qs.all()]
@@ -330,15 +341,17 @@ class Game(basic_models.SlugModel):
         if not from_coord or not to_coord or (from_coord == to_coord):
             return False
 
-        src_piece = self.get_latest_piece(from_coord)
-        cap_piece = self.get_latest_piece(to_coord)
+
+        board = self.generate_board_state()
+        src_piece = board.get(from_coord, None)
+        cap_piece = board.get(to_coord, None)
         if src_piece is None:
             return False
 
         move, created = GameAction.objects.get_or_create(game=self,
             turn=self.turn_number,
             color=self.turn_color,
-            piece=src_piece.piece,
+            piece=src_piece[-1],
             from_coord=from_coord,
             to_coord=to_coord,
             is_capture=(cap_piece is not None),
@@ -369,6 +382,10 @@ class GamePlayer(models.Model):
     def __unicode__(self):
         return "%s (%s)" % (self.color, self.controller if self.controller else self.player)
 
+    @property
+    def controlling_player(self):
+        return self.controller.player if self.controller_id else self.player
+
 
 
 
@@ -376,7 +393,7 @@ class GameAction(models.Model):
     game = models.ForeignKey(Game)
     turn = models.PositiveIntegerField()
     color = models.IntegerField()
-    piece = models.CharField(max_length=64, choices=PIECE_CHOICES)
+    piece = models.CharField(max_length=64, choices=PIECE_CHOICES, blank=True)
     from_coord = models.CharField(max_length=64, blank=True)
     to_coord = models.CharField(max_length=64)
     is_capture = models.BooleanField(default=False)
@@ -388,15 +405,26 @@ class GameAction(models.Model):
 
     @property
     def expression(self):
+        if self.from_coord == 'x' and self.to_coord == 'x':
+            return "#"
+        if self.from_coord == 'yield':
+            return ">%s" % (self.to_coord,)
         suffix = ''
         if self.is_mate:
             suffix = '#'
         elif self.is_check:
             suffix = '+'
+
+        cap = ''
+        if self.is_capture:
+            cap = 'x'
+            if self.piece == 'P':
+                cap = self.from_coord[0]+cap 
+
         return "%(piece)s%(is_cap)s%(to_coord)s%(suffix)s" % {
             'piece': self.piece if self.piece != PIECE_PAWN else '',
             'to_coord': self.to_coord,
-            'is_cap': 'x' if self.is_capture else '',
+            'is_cap': cap,
             'suffix': suffix,
         }
 

@@ -81,8 +81,9 @@ class HistoryView(JsonDetailView):
         players = []
         for gp in self.object.gameplayer_set.all().order_by('turn_order'):
             players.append({
-                'username': gp.player.moniker,
-                'avatar': gp.player.avatar,
+                'username': gp.controlling_player.moniker,
+                'avatar': gp.controlling_player.avatar,
+                'owner': gp.player.moniker,
             })
             if gp.color:
                 colors.append(gp.color)

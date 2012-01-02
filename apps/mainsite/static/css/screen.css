@@ -130,7 +130,7 @@ section.game-log {
     background: #caa;
     
 }
-.game-log td.move {
+.game-log .move {
     cursor: pointer;
     
 }
