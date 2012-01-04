@@ -48,8 +48,8 @@ DIR_CHOICES = (
 
 class BoardSetup(basic_models.SlugModel):
     description = models.TextField(blank=True)
-    num_rows = models.PositiveIntegerField(choices=((c,c) for c in range(8,27)), default=14)
-    num_cols = models.PositiveIntegerField(choices=((c,c) for c in range(8,27)), default=14)
+    num_rows = models.PositiveIntegerField(choices=((c,c) for c in range(2,27)), default=14)
+    num_cols = models.PositiveIntegerField(choices=((c,c) for c in range(2,27)), default=14)
     min_players = models.PositiveIntegerField(choices=((c,c) for c in range(2,17)), default=4)
     max_players = models.PositiveIntegerField(choices=((c,c) for c in range(2,17)), default=4)
     squares = models.TextField(blank=True)
