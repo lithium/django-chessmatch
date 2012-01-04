@@ -280,10 +280,14 @@
             <button id="submit-move">Submit Move</button>
             <a id="extra-moves-toggle" href="#" target="#extra-moves">More</a>
             <section id="extra-moves" style="display: none">
+                <div>
                 <button id="submit-pass">Pass</button>
-                <button id="submit-concede">Concede</button>
                 <span id="submit-check">Check: {{moves_form.other_players|safe}}</span>
+                </div>
+                <div>
+                <button id="submit-concede">Concede</button>
                 <span id="submit-yield">Yield to: {{moves_form.other_players|safe}}</span>
+                </div>
             </section>
         </form>
         {%endif%}
