@@ -34,13 +34,15 @@
     }
     window.game_actions = []
 
-    function apply_move(move) {
+    function apply_move(move, animate) {
         to_coord = move.to_coord.replace(/[\+x].*/, '')
         // create and/or position piece
         var $square = $('#square-'+to_coord)
+        var $src_square = null
         var color = window.COLORS[move.color]
         if (move.from_coord) {
             var $piece = $('#square-'+move.from_coord+' .piece')
+            $src_square = $('#square-'+move.from_coord)
         }
         else { // first placement, create it
             var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
@@ -50,15 +52,36 @@
                 $piece.append('<div class="arrow '+move.direction+'">'+window.directions[move.direction]+'</div>')
             }
         }
-        cap_parts = move.to_coord.split('x')
-        if (cap_parts.length > 1) 
-        {   
-            // also includes extra capture
-            $('#square-'+cap_parts[1]).empty()
-        } 
         $piece.attr('square', to_coord)
-        $square.empty()
-        $square.append($piece)
+
+
+        var finish_move = function() {
+            $square.empty()
+            $square.append($piece)
+            $piece.css({'left':0,'top':0})
+
+            cap_parts = move.to_coord.split('x')
+            if (cap_parts.length > 1) 
+            {   
+                // also includes extra capture
+                $('#square-'+cap_parts[1]).empty()
+            } 
+        }
+
+        if (move.from_coord && animate) { // animate the move
+            console.log("src_square: ",$src_square.position())
+            console.log("square: ",$square.position())
+            var topdelta = $square.position().top - $src_square.position().top
+            var leftdelta = $square.position().left - $src_square.position().left
+            $piece.animate({
+                'top': '+='+topdelta,
+                'left': '+='+leftdelta,
+            }, 750, finish_move)
+        }
+        else {
+            finish_move() 
+        }
+
     }
 
     function fetch_history() {
@@ -139,7 +162,7 @@
         var actions_idx = actions_idx || window.game_actions.length-1;
         $('div.piece').remove()
         for (var i=0; i <= actions_idx; i++) {
-            apply_move(window.game_actions[i]) 
+            apply_move(window.game_actions[i], i == actions_idx) 
         }
     }
 
