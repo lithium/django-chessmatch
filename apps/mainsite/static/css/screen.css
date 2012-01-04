@@ -100,6 +100,21 @@ section.lobby {
     float: right;
 }
 
+div.player {
+    float: left;
+    text-align: center;
+    margin-right: 4px;
+}
+div.player p {
+    margin: 0; 
+    padding: 0;
+}
+div.player img {
+    width: 30px;
+}
+div.player.notplaying p {
+    text-decoration: line-through;
+}
 
 
 /* board layout */

@@ -9,7 +9,12 @@
             {%if request.user.is_authenticated() and not game.is_playing(request.user) and not game.started_at %}
             <a href="{{url('chessmatch_join', slug=game.slug)}}">Join</a>
             {%endif%}
-            {{game.comma_players}}
+            {%for gp in game.gameplayer_set.all()%}
+            <div class="player {%if not gp.is_playing%}notplaying{%endif%}">
+                <img class="avatar" src="{{gp.player.avatar}}"/>
+                <p>{{gp.player.moniker}}</p>
+            </div>
+            {%endfor%}
         </td>
         <td>
             {%if game.started_at%}

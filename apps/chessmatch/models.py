@@ -210,7 +210,7 @@ class Game(basic_models.SlugModel):
 
     @property
     def comma_players(self):
-        return ', '.join(unicode(gp.player) for gp in self.gameplayer_set.all())
+        return ', '.join(gp.player.moniker for gp in self.gameplayer_set.all())
 
     def save(self, *args, **kwargs):
         if not self.slug:
