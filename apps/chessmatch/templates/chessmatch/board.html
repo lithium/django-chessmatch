@@ -223,6 +223,12 @@
             $('#id_to_coord').val(cur)
             return false;
         })
+
+        $('#extra-moves-toggle').click(function() {
+            var $target = $($(this).attr('target'))
+            $target.slideToggle();
+            return false 
+        })
     })
 </script>
 {%endblock%}
@@ -249,7 +255,8 @@
             <input type="text" placeholder="From Coordinate" name="from_coord" id="id_from_coord"/>
             <input type="text" placeholder="To Coordinate" name="to_coord" id="id_to_coord"/>
             <button id="submit-move">Submit Move</button>
-            <section class="extra-moves">
+            <a id="extra-moves-toggle" href="#" target="#extra-moves">More</a>
+            <section id="extra-moves" style="display: none">
                 <button id="submit-pass">Pass</button>
                 <button id="submit-concede">Concede</button>
                 <span id="submit-check">Check: {{moves_form.other_players|safe}}</span>
