@@ -19,8 +19,8 @@
         'R': '&#9820',
         'B': '&#9821',
         'N': '&#9822',
-        'P': '&#9823',
-    }
+        'P': '&#9823'
+    };
     window.directions = {
         'u':  '&#x21d1',
         'ur': '&#x21d7',
@@ -34,8 +34,65 @@
     }
     window.game_actions = []
 
+    function click_piece() {
+        var $from = $('#id_from_coord')
+        var coord = $(this).attr('square')
+        var $square = $('#square-'+coord)
+
+        if (! $from.val()) {
+            $from.val(coord)
+            $square.addClass('move-source')
+        } else {
+           click_square.apply($square,[]) 
+        }
+        return false;
+    }
+    function click_square() {
+        var $from = $('#id_from_coord')
+        var $to = $('#id_to_coord')
+        var $this = $(this)
+        var $from_square = $('.square.move-source')
+
+        if ($from_square && $from.val() && !$to.val()) {
+            var $piece = $from_square.find('.piece')
+            $to.val( $this.attr('square') )
+            $(this).addClass('move-destination')
+            animate_piece($from_square, $this, $piece)
+        }
+
+        return false;
+    }
+
+    function animate_piece($from_square, $to_square, $piece)
+    {
+        var topdelta = $to_square.position().top - $from_square.position().top
+        var leftdelta = $to_square.position().left - $from_square.position().left
+        $piece.animate({
+            'top': '+='+topdelta,
+            'left': '+='+leftdelta,
+        }, 750, function() {
+            place_piece($to_square, $piece)
+        })
+    }
+    function place_piece($square, $piece, to_coord)
+    {
+        $square.empty()
+        $square.append($piece)
+        $piece.css({'left':0,'top':0})
+
+        if (to_coord) {
+            cap_parts = to_coord.split('x')
+            if (cap_parts.length > 1) 
+            {   
+                // also includes extra capture
+                $('#square-'+cap_parts[1]).empty()
+            } 
+        }
+
+    }
+
     function apply_move(move, animate) {
-        to_coord = move.to_coord.replace(/[\+x].*/, '')
+        var to_coord = move.to_coord.replace(/[\+x].*/, '')
         // create and/or position piece
         var $square = $('#square-'+to_coord)
         var $src_square = null
@@ -54,32 +111,11 @@
         }
         $piece.attr('square', to_coord)
 
-
-        var finish_move = function() {
-            $square.empty()
-            $square.append($piece)
-            $piece.css({'left':0,'top':0})
-
-            cap_parts = move.to_coord.split('x')
-            if (cap_parts.length > 1) 
-            {   
-                // also includes extra capture
-                $('#square-'+cap_parts[1]).empty()
-            } 
-        }
-
         if (move.from_coord && animate) { // animate the move
-            console.log("src_square: ",$src_square.position())
-            console.log("square: ",$square.position())
-            var topdelta = $square.position().top - $src_square.position().top
-            var leftdelta = $square.position().left - $src_square.position().left
-            $piece.animate({
-                'top': '+='+topdelta,
-                'left': '+='+leftdelta,
-            }, 750, finish_move)
+            animate_piece($src_square, $square, $piece)
         }
         else {
-            finish_move() 
+            place_piece($square, $piece, move.to_coord)
         }
 
     }
@@ -148,9 +184,12 @@
                     }
                 }
 
-                window.latest_seen = move.turn+'.'+move.color;
+                window.latest_seen = move.turn+'.'+move.color+'/';
             }
             if (data.moves.length > 0) { // new move came in, reset board 
+                $('#id_to_coord').val("")
+                $('#id_from_coord').val("")
+                $('.square').removeClass('move-destination').removeClass('move-source')
                 replay_to()
             }
 
@@ -179,9 +218,10 @@
             $('#id_to_coord').val("")
             $('#id_from_coord').val("")
             $('.square').removeClass('move-destination').removeClass('move-source')
-
-
         })
+
+        $('.piece').live('click', click_piece)
+        $('.square').live('click', click_square)
 
         $('td.square').droppable({
             drop: function(event,ui) {
@@ -252,7 +292,7 @@
             $target.slideToggle();
             return false 
         })
-    })
+    });
 </script>
 {%endblock%}
 
