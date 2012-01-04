@@ -286,7 +286,7 @@ class Game(basic_models.SlugModel):
     def generate_board_state(self):
         board = {}
 
-        nix_check_re = re.compile(r'\+.*$')
+        nix_check_re = re.compile(r'[\+x].*$')
         for action in self.gameaction_set.all().order_by('turn','color'):
             if action.from_coord in ('x','-','yield'):
                 continue
@@ -357,7 +357,7 @@ class Game(basic_models.SlugModel):
 
         board = self.generate_board_state()
         src_piece = board.get(from_coord, None)
-        cap_piece = board.get(re.sub(r'\+.*$', '', to_coord), None)
+        cap_piece = board.get(re.sub(r'[\+x].*$', '', to_coord), None)
         if src_piece is None:
             return False
 
