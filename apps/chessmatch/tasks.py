@@ -25,7 +25,8 @@ def notify_player_twitter(gameplayer_id):
         return
 
     api = twitter.Api(consumer_key=consumer_key, consumer_secret=consumer_secret, access_token_key=access_token_key, access_token_secret=access_token_secret)
-    tweet = "@%s your move on #%s" % (gameplayer.player.twitter_screen_name, gameplayer.game.slug)
+    tweet = "@%s it's turn %s.%s on #%s, your move." % (gameplayer.player.twitter_screen_name, gameplayer.game.turn_number, gameplayer.color.letter, gameplayer.game.slug)
+
     api.PostUpdate(tweet)
 
 
