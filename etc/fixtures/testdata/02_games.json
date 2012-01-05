@@ -261,10 +261,8 @@
       "to_coord": "d1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -276,10 +274,8 @@
       "to_coord": "h1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -291,10 +287,8 @@
       "to_coord": "i1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -306,10 +300,8 @@
       "to_coord": "j1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -321,10 +313,8 @@
       "to_coord": "k1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -336,10 +326,8 @@
       "to_coord": "d4", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -351,10 +339,8 @@
       "to_coord": "e2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -366,10 +352,8 @@
       "to_coord": "f2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -381,10 +365,8 @@
       "to_coord": "g2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -396,10 +378,8 @@
       "to_coord": "c4", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -411,10 +391,8 @@
       "to_coord": "h2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -426,10 +404,8 @@
       "to_coord": "i2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -441,10 +417,8 @@
       "to_coord": "j2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -456,10 +430,8 @@
       "to_coord": "g1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -471,10 +443,8 @@
       "to_coord": "e2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -486,10 +456,8 @@
       "to_coord": "a4", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -501,10 +469,8 @@
       "to_coord": "a5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -516,10 +482,8 @@
       "to_coord": "e1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -531,10 +495,8 @@
       "to_coord": "b4", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -546,10 +508,8 @@
       "to_coord": "d2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -561,10 +521,8 @@
       "to_coord": "b5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -576,10 +534,8 @@
       "to_coord": "d3", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -591,10 +547,8 @@
       "to_coord": "c5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -606,10 +560,8 @@
       "to_coord": "d5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -621,10 +573,8 @@
       "to_coord": "e5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -636,10 +586,8 @@
       "to_coord": "e4", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -651,10 +599,8 @@
       "to_coord": "e3", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -666,10 +612,8 @@
       "to_coord": "k2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -681,10 +625,8 @@
       "to_coord": "d1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -696,10 +638,8 @@
       "to_coord": "c6", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -711,10 +651,8 @@
       "to_coord": "c5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -726,10 +664,8 @@
       "to_coord": "c8", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -741,10 +677,8 @@
       "to_coord": "a7", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -756,10 +690,8 @@
       "to_coord": "b5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -771,10 +703,8 @@
       "to_coord": "b8", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -786,10 +716,8 @@
       "to_coord": "b6", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -801,10 +729,8 @@
       "to_coord": "c7", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -816,10 +742,8 @@
       "to_coord": "b7", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -831,10 +755,8 @@
       "to_coord": "a5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -846,10 +768,8 @@
       "to_coord": "a8", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -861,10 +781,8 @@
       "to_coord": "e1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -876,10 +794,8 @@
       "to_coord": "f1", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -891,10 +807,8 @@
       "to_coord": "a6", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -906,10 +820,8 @@
       "to_coord": "d2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -921,10 +833,8 @@
       "to_coord": "e12", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -936,10 +846,8 @@
       "to_coord": "f12", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -951,10 +859,8 @@
       "to_coord": "g12", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -966,10 +872,8 @@
       "to_coord": "g11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -981,10 +885,8 @@
       "to_coord": "h10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -996,10 +898,8 @@
       "to_coord": "b11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1011,10 +911,8 @@
       "to_coord": "h12", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1026,10 +924,8 @@
       "to_coord": "e13", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1041,10 +937,8 @@
       "to_coord": "e12", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1056,10 +950,8 @@
       "to_coord": "e11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1071,10 +963,8 @@
       "to_coord": "e10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1086,10 +976,8 @@
       "to_coord": "d10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1101,10 +989,8 @@
       "to_coord": "g10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1116,10 +1002,8 @@
       "to_coord": "f10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1131,10 +1015,8 @@
       "to_coord": "e10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1146,10 +1028,8 @@
       "to_coord": "a11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1161,10 +1041,8 @@
       "to_coord": "f11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1176,10 +1054,8 @@
       "to_coord": "e11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -1191,10 +1067,8 @@
       "to_coord": "h11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -1206,10 +1080,8 @@
       "to_coord": "b10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1221,10 +1093,8 @@
       "to_coord": "b9", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1236,10 +1106,8 @@
       "to_coord": "b8", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1251,10 +1119,8 @@
       "to_coord": "b7", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1266,10 +1132,8 @@
       "to_coord": "b6", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1281,10 +1145,8 @@
       "to_coord": "b5", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1296,10 +1158,8 @@
       "to_coord": "a7", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -1311,10 +1171,8 @@
       "to_coord": "a8", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -1326,10 +1184,8 @@
       "to_coord": "a9", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1341,10 +1197,8 @@
       "to_coord": "a10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -1356,10 +1210,8 @@
       "to_coord": "a6", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1371,10 +1223,8 @@
       "to_coord": "a5", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -1386,10 +1236,8 @@
       "to_coord": "a4", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1401,10 +1249,8 @@
       "to_coord": "b4", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1416,10 +1262,8 @@
       "to_coord": "d11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1431,10 +1275,8 @@
       "to_coord": "c10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1446,10 +1288,8 @@
       "to_coord": "c11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -1461,10 +1301,8 @@
       "to_coord": "d12", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -1476,10 +1314,8 @@
       "to_coord": "b11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1491,10 +1327,8 @@
       "to_coord": "d13", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1506,10 +1340,8 @@
       "to_coord": "a11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1521,10 +1353,8 @@
       "to_coord": "d14", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1536,10 +1366,8 @@
       "to_coord": "a10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -1551,10 +1379,8 @@
       "to_coord": "e14", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -1566,10 +1392,8 @@
       "to_coord": "b10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1581,10 +1405,8 @@
       "to_coord": "f13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1596,10 +1418,8 @@
       "to_coord": "e13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1611,10 +1431,8 @@
       "to_coord": "d13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1626,10 +1444,8 @@
       "to_coord": "m10", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1641,10 +1457,8 @@
       "to_coord": "j14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -1656,10 +1470,8 @@
       "to_coord": "f14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1671,10 +1483,8 @@
       "to_coord": "j5", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1686,10 +1496,8 @@
       "to_coord": "d14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1701,10 +1509,8 @@
       "to_coord": "k13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1716,10 +1522,8 @@
       "to_coord": "j13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1731,10 +1535,8 @@
       "to_coord": "g14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -1746,10 +1548,8 @@
       "to_coord": "h14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -1761,10 +1561,8 @@
       "to_coord": "n10", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -1776,10 +1574,8 @@
       "to_coord": "m11", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1791,10 +1587,8 @@
       "to_coord": "k14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1806,10 +1600,8 @@
       "to_coord": "j8", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1821,10 +1613,8 @@
       "to_coord": "j7", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1836,10 +1626,8 @@
       "to_coord": "j6", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1851,10 +1639,8 @@
       "to_coord": "k12", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -1866,10 +1652,8 @@
       "to_coord": "l11", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -1881,10 +1665,8 @@
       "to_coord": "g13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1896,10 +1678,8 @@
       "to_coord": "h13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1911,10 +1691,8 @@
       "to_coord": "i13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -1926,10 +1704,8 @@
       "to_coord": "n11", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1941,10 +1717,8 @@
       "to_coord": "k14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -1956,10 +1730,8 @@
       "to_coord": "k13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1971,10 +1743,8 @@
       "to_coord": "i14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -1986,10 +1756,8 @@
       "to_coord": "k8", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2001,10 +1769,8 @@
       "to_coord": "k5", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2016,10 +1782,8 @@
       "to_coord": "j12", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2031,10 +1795,8 @@
       "to_coord": "j13", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2046,10 +1808,8 @@
       "to_coord": "j11", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2061,10 +1821,8 @@
       "to_coord": "k11", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2076,10 +1834,8 @@
       "to_coord": "l10", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2091,10 +1847,8 @@
       "to_coord": "k10", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2106,10 +1860,8 @@
       "to_coord": "j10", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2121,10 +1873,8 @@
       "to_coord": "e14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2136,10 +1886,8 @@
       "to_coord": "l8", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -2151,10 +1899,8 @@
       "to_coord": "l5", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -2166,10 +1912,8 @@
       "to_coord": "l7", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -2181,10 +1925,8 @@
       "to_coord": "l6", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -2196,10 +1938,8 @@
       "to_coord": "j14", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2211,10 +1951,8 @@
       "to_coord": "k6", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -2226,10 +1964,8 @@
       "to_coord": "k7", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -2241,10 +1977,8 @@
       "to_coord": "e3", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2256,10 +1990,8 @@
       "to_coord": "n10", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2271,10 +2003,8 @@
       "to_coord": "n9", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -2286,10 +2016,8 @@
       "to_coord": "m11", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2301,10 +2029,8 @@
       "to_coord": "m4", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2316,10 +2042,8 @@
       "to_coord": "n11", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -2331,10 +2055,8 @@
       "to_coord": "m5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2346,10 +2068,8 @@
       "to_coord": "m6", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2361,10 +2081,8 @@
       "to_coord": "m7", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2376,10 +2094,8 @@
       "to_coord": "m8", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2391,10 +2107,8 @@
       "to_coord": "m9", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2406,10 +2120,8 @@
       "to_coord": "m10", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2421,10 +2133,8 @@
       "to_coord": "n8", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -2436,10 +2146,8 @@
       "to_coord": "n7", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -2451,10 +2159,8 @@
       "to_coord": "n6", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -2466,10 +2172,8 @@
       "to_coord": "h1", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -2481,10 +2185,8 @@
       "to_coord": "f1", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -2496,10 +2198,8 @@
       "to_coord": "g1", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -2511,10 +2211,8 @@
       "to_coord": "h2", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2526,10 +2224,8 @@
       "to_coord": "e2", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2541,10 +2237,8 @@
       "to_coord": "g2", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -2556,10 +2250,8 @@
       "to_coord": "f2", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -2571,10 +2263,8 @@
       "to_coord": "h3", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2586,10 +2276,8 @@
       "to_coord": "f3", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2601,10 +2289,8 @@
       "to_coord": "g3", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2616,10 +2302,8 @@
       "to_coord": "n4", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -2631,10 +2315,8 @@
       "to_coord": "n5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2646,10 +2328,8 @@
       "to_coord": "e1", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -2661,10 +2341,8 @@
       "to_coord": "j4", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2676,10 +2354,8 @@
       "to_coord": "n5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2691,10 +2367,8 @@
       "to_coord": "k2", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -2706,10 +2380,8 @@
       "to_coord": "m5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2721,10 +2393,8 @@
       "to_coord": "j5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2736,10 +2406,8 @@
       "to_coord": "m4", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "B"
     }
@@ -2751,10 +2419,8 @@
       "to_coord": "j3", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2766,10 +2432,8 @@
       "to_coord": "j2", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2781,10 +2445,8 @@
       "to_coord": "l5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2796,10 +2458,8 @@
       "to_coord": "k1", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -2811,10 +2471,8 @@
       "to_coord": "n4", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "R"
     }
@@ -2826,10 +2484,8 @@
       "to_coord": "k3", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "Q"
     }
@@ -2841,10 +2497,8 @@
       "to_coord": "l4", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "K"
     }
@@ -2856,10 +2510,8 @@
       "to_coord": "k5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2871,10 +2523,8 @@
       "to_coord": "k4", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "P"
     }
@@ -2886,10 +2536,8 @@
       "to_coord": "j1", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 0, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "", 
       "piece": "N"
     }
@@ -2901,10 +2549,8 @@
       "to_coord": "g2", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e1", 
       "piece": "N"
     }
@@ -2916,10 +2562,8 @@
       "to_coord": "d7", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "c7", 
       "piece": "P"
     }
@@ -2931,10 +2575,8 @@
       "to_coord": "j3", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "j2", 
       "piece": "P"
     }
@@ -2946,10 +2588,8 @@
       "to_coord": "g9", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "h11", 
       "piece": "N"
     }
@@ -2961,10 +2601,8 @@
       "to_coord": "d9", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "c10", 
       "piece": "P"
     }
@@ -2976,10 +2614,8 @@
       "to_coord": "c7", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "b7", 
       "piece": "P"
     }
@@ -2991,10 +2627,8 @@
       "to_coord": "e12", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "e13", 
       "piece": "P"
     }
@@ -3006,10 +2640,8 @@
       "to_coord": "i7", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "k8", 
       "piece": "N"
     }
@@ -3021,10 +2653,8 @@
       "to_coord": "h8", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "j10", 
       "piece": "P"
     }
@@ -3036,10 +2666,8 @@
       "to_coord": "l8", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "m8", 
       "piece": "P"
     }
@@ -3051,10 +2679,8 @@
       "to_coord": "f5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "f3", 
       "piece": "P"
     }
@@ -3066,10 +2692,8 @@
       "to_coord": "l6", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 1, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "n5", 
       "piece": "N"
     }
@@ -3081,10 +2705,8 @@
       "to_coord": "d6", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 2, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "c6", 
       "piece": "P"
     }
@@ -3096,10 +2718,8 @@
       "to_coord": "h4", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 2, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "h2", 
       "piece": "P"
     }
@@ -3111,10 +2731,8 @@
       "to_coord": "e7", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 2, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "c5", 
       "piece": "P"
     }
@@ -3126,10 +2744,8 @@
       "to_coord": "f7", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 2, 
       "game": 8, 
-      "is_check": false, 
       "from_coord": "g9", 
       "piece": "N"
     }
@@ -3141,10 +2757,8 @@
       "to_coord": "c10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 2, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "b11", 
       "piece": "B"
     }
@@ -3156,10 +2770,8 @@
       "to_coord": "c10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 2, 
       "game": 2, 
-      "is_check": false, 
       "from_coord": "b10", 
       "piece": "P"
     }
@@ -3171,10 +2783,8 @@
       "to_coord": "i8", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 2, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "k10", 
       "piece": "P"
     }
@@ -3186,10 +2796,8 @@
       "to_coord": "n8", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 2, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "n4", 
       "piece": "R"
     }
@@ -3201,10 +2809,8 @@
       "to_coord": "e6", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 3, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "d5", 
       "piece": "P"
     }
@@ -3216,10 +2822,8 @@
       "to_coord": "f10", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 3, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e11", 
       "piece": "P"
     }
@@ -3231,10 +2835,8 @@
       "to_coord": "j8", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 3, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "l10", 
       "piece": "P"
     }
@@ -3246,10 +2848,8 @@
       "to_coord": "h5", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 3, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "j3", 
       "piece": "P"
     }
@@ -3261,10 +2861,8 @@
       "to_coord": "f6", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 4, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e5", 
       "piece": "P"
     }
@@ -3276,10 +2874,8 @@
       "to_coord": "e9", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 4, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "d10", 
       "piece": "P"
     }
@@ -3291,10 +2887,8 @@
       "to_coord": "l10", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 4, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "l11", 
       "piece": "Q"
     }
@@ -3306,10 +2900,8 @@
       "to_coord": "n7", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 4, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "n8", 
       "piece": "R"
     }
@@ -3321,10 +2913,8 @@
       "to_coord": "c6", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 5, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "a5", 
       "piece": "N"
     }
@@ -3336,10 +2926,8 @@
       "to_coord": "f9", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 5, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e10", 
       "piece": "P"
     }
@@ -3351,10 +2939,8 @@
       "to_coord": "i7", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 5, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "j8", 
       "piece": "P"
     }
@@ -3366,10 +2952,8 @@
       "to_coord": "i4", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 5, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "k2", 
       "piece": "B"
     }
@@ -3381,10 +2965,8 @@
       "to_coord": "f4", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 6, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "g2", 
       "piece": "N"
     }
@@ -3396,10 +2978,8 @@
       "to_coord": "f11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 6, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e12", 
       "piece": "P"
     }
@@ -3411,10 +2991,8 @@
       "to_coord": "l9", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 6, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "l10", 
       "piece": "Q"
     }
@@ -3426,10 +3004,8 @@
       "to_coord": "n4", 
       "is_capture": true, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 6, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "n7", 
       "piece": "R"
     }
@@ -3441,10 +3017,8 @@
       "to_coord": "f7", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 7, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e6", 
       "piece": "P"
     }
@@ -3456,10 +3030,8 @@
       "to_coord": "f12", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 7, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e14", 
       "piece": "N"
     }
@@ -3471,10 +3043,8 @@
       "to_coord": "j8", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 7, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "m11", 
       "piece": "B"
     }
@@ -3486,10 +3056,8 @@
       "to_coord": "g6", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 7, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "h5", 
       "piece": "P"
     }
@@ -3501,10 +3069,8 @@
       "to_coord": "f5", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 8, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e4", 
       "piece": "P"
     }
@@ -3516,10 +3082,8 @@
       "to_coord": "e10", 
       "is_capture": true, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 8, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "d11", 
       "piece": "P"
     }
@@ -3531,10 +3095,8 @@
       "to_coord": "m8", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 8, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "n10", 
       "piece": "N"
     }
@@ -3546,10 +3108,8 @@
       "to_coord": "f6", 
       "is_capture": true, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 8, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "g6", 
       "piece": "P"
     }
@@ -3561,10 +3121,8 @@
       "to_coord": "f6", 
       "is_capture": true, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 9, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "f5", 
       "piece": "P"
     }
@@ -3576,10 +3134,8 @@
       "to_coord": "b11", 
       "is_capture": true, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 9, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "c11", 
       "piece": "K"
     }
@@ -3591,10 +3147,8 @@
       "to_coord": "n4", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 9, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "n11", 
       "piece": "R"
     }
@@ -3606,10 +3160,8 @@
       "to_coord": "m8", 
       "is_capture": true, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 9, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "l6", 
       "piece": "N"
     }
@@ -3621,10 +3173,8 @@
       "to_coord": "e6", 
       "is_capture": true, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 10, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "c4", 
       "piece": "Q"
     }
@@ -3636,10 +3186,8 @@
       "to_coord": "c9", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 10, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "a10", 
       "piece": "N"
     }
@@ -3651,10 +3199,8 @@
       "to_coord": "m8", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 10, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "l9", 
       "piece": "Q"
     }
@@ -3666,10 +3212,8 @@
       "to_coord": "h6", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 10, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "j4", 
       "piece": "P"
     }
@@ -3681,10 +3225,8 @@
       "to_coord": "j1", 
       "is_capture": true, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 11, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "d1", 
       "piece": "R"
     }
@@ -3696,10 +3238,8 @@
       "to_coord": "a4", 
       "is_capture": true, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 11, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "a11", 
       "piece": "R"
     }
@@ -3711,10 +3251,8 @@
       "to_coord": "h9", 
       "is_capture": false, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 11, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "j11", 
       "piece": "P"
     }
@@ -3726,10 +3264,8 @@
       "to_coord": "j1", 
       "is_capture": true, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 11, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "k1", 
       "piece": "R"
     }
@@ -3741,10 +3277,8 @@
       "to_coord": "j1", 
       "is_capture": true, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 12, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e6", 
       "piece": "Q"
     }
@@ -3756,10 +3290,8 @@
       "to_coord": "h13", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 12, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "f12", 
       "piece": "N"
     }
@@ -3771,10 +3303,8 @@
       "to_coord": "m5", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 12, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "m8", 
       "piece": "Q"
     }
@@ -3786,10 +3316,8 @@
       "to_coord": "-", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 12, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "-", 
       "piece": "P"
     }
@@ -3801,10 +3329,8 @@
       "to_coord": "d5", 
       "is_capture": true, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 13, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "f4", 
       "piece": "N"
     }
@@ -3816,10 +3342,8 @@
       "to_coord": "i11", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 13, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "h13", 
       "piece": "N"
     }
@@ -3831,10 +3355,8 @@
       "to_coord": "l11", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 13, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "k12", 
       "piece": "K"
     }
@@ -3846,10 +3368,8 @@
       "to_coord": "-", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 13, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "-", 
       "piece": "P"
     }
@@ -3861,10 +3381,8 @@
       "to_coord": "b6", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 14, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "d5", 
       "piece": "N"
     }
@@ -3876,10 +3394,8 @@
       "to_coord": "a8", 
       "is_capture": false, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 14, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "a4", 
       "piece": "R"
     }
@@ -3891,10 +3407,8 @@
       "to_coord": "l4", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 14, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "m5", 
       "piece": "Q"
     }
@@ -3906,10 +3420,8 @@
       "to_coord": "g3", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 14, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "k3", 
       "piece": "Q"
     }
@@ -3921,10 +3433,8 @@
       "to_coord": "a8", 
       "is_capture": true, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 15, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "b6", 
       "piece": "N"
     }
@@ -3936,10 +3446,8 @@
       "to_coord": "a8", 
       "is_capture": true, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 15, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "c10", 
       "piece": "B"
     }
@@ -3951,10 +3459,8 @@
       "to_coord": "j2", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 15, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "l4", 
       "piece": "Q"
     }
@@ -3966,10 +3472,8 @@
       "to_coord": "c7", 
       "is_capture": false, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 15, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "g3", 
       "piece": "Q"
     }
@@ -3981,10 +3485,8 @@
       "to_coord": "f8", 
       "is_capture": false, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 16, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e7", 
       "piece": "P"
     }
@@ -3996,10 +3498,8 @@
       "to_coord": "j13", 
       "is_capture": true, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 16, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "i11", 
       "piece": "N"
     }
@@ -4011,10 +3511,8 @@
       "to_coord": "e13", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 16, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "j8", 
       "piece": "B"
     }
@@ -4026,10 +3524,8 @@
       "to_coord": "c9", 
       "is_capture": true, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 16, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "c7", 
       "piece": "Q"
     }
@@ -4041,10 +3537,8 @@
       "to_coord": "a10", 
       "is_capture": true, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 17, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "j1", 
       "piece": "Q"
     }
@@ -4056,10 +3550,8 @@
       "to_coord": "a10", 
       "is_capture": true, 
       "color": 1, 
-      "is_mate": false, 
       "turn": 17, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "b11", 
       "piece": "K"
     }
@@ -4071,10 +3563,8 @@
       "to_coord": "d12", 
       "is_capture": true, 
       "color": 2, 
-      "is_mate": false, 
       "turn": 17, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "e13", 
       "piece": "B"
     }
@@ -4086,10 +3576,8 @@
       "to_coord": "b10", 
       "is_capture": true, 
       "color": 3, 
-      "is_mate": false, 
       "turn": 17, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "c9", 
       "piece": "Q"
     }
@@ -4101,10 +3589,8 @@
       "to_coord": "e4", 
       "is_capture": true, 
       "color": 0, 
-      "is_mate": false, 
       "turn": 18, 
       "game": 7, 
-      "is_check": false, 
       "from_coord": "d3", 
       "piece": "K"
     }
