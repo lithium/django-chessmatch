@@ -216,6 +216,12 @@ class Game(basic_models.SlugModel):
     def comma_players(self):
         return ', '.join(gp.player.moniker for gp in self.gameplayer_set.all())
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('chessmatch_game', (), {
+            'slug': self.slug, 
+        })
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = _hashtagify(self.name)

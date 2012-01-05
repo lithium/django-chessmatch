@@ -1,6 +1,6 @@
 from celery.task import task
 from django.conf import settings
-
+from mainsite.utils import get_canonical_url
 
 
 @task
@@ -25,7 +25,12 @@ def notify_player_twitter(gameplayer_id):
         return
 
     api = twitter.Api(consumer_key=consumer_key, consumer_secret=consumer_secret, access_token_key=access_token_key, access_token_secret=access_token_secret)
-    tweet = "@%s it's turn %s.%s on #%s, your move." % (gameplayer.player.twitter_screen_name, gameplayer.game.turn_number, gameplayer.color.letter, gameplayer.game.slug)
+    tweet = "@%s it's turn %s.%s on #%s, your move. %s" % (
+        gameplayer.player.twitter_screen_name, 
+        gameplayer.game.turn_number, gameplayer.color.letter, 
+        gameplayer.game.slug,
+        get_canonical_url(gameplayer.game.get_absolute_url()),
+        )
 
     api.PostUpdate(tweet)
 
