@@ -13,6 +13,10 @@ import string
 from chessmatch import tasks
 
 
+def _hashtagify(s):
+    return re.sub(r'-(.)', lambda match: match.group(1).upper(), slugify(s))
+
+
 class PieceColor(models.Model):
     name = models.CharField(max_length=64)
     letter = models.CharField(max_length=1, unique=True)
@@ -214,7 +218,7 @@ class Game(basic_models.SlugModel):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = _hashtagify(self.name)
         return super(Game, self).save(*args, **kwargs)
 
     def start_new_game(self):
