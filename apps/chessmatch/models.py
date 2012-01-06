@@ -382,7 +382,7 @@ class Game(basic_models.SlugModel):
             src_piece = board.get(from_coord, None)
             if src_piece is None:
                 return False
-            cap_piece = board.get(re.sub(r'[\+to_coord=].*$', '', x), None)
+            cap_piece = board.get(re.sub(r'[\+to_coord=].*$', '', to_coord), None)
 
         move, created = GameAction.objects.get_or_create(game=self,
             turn=self.turn_number,
