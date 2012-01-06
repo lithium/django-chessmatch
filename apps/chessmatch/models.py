@@ -372,12 +372,17 @@ class Game(basic_models.SlugModel):
         if not from_coord or not to_coord or (from_coord == to_coord):
             return False
 
-
         board = self.generate_board_state()
-        src_piece = board.get(from_coord, None)
-        cap_piece = board.get(re.sub(r'[\+x].*$', '', to_coord), None)
-        if src_piece is None:
-            return False
+        if ',' in from_coord and ',' in to_coord:  # castling move
+            if not all(board.get(coord,None) for coord in from_coord.split(',')):
+                return False
+            src_piece = 'O-O'
+            cap_piece = None
+        else:
+            src_piece = board.get(from_coord, None)
+            if src_piece is None:
+                return False
+            cap_piece = board.get(re.sub(r'[\+x].*$', '', to_coord), None)
 
         move, created = GameAction.objects.get_or_create(game=self,
             turn=self.turn_number,
@@ -442,6 +447,8 @@ class GameAction(models.Model):
 
     @property
     def expression(self):
+        if ',' in self.from_coord and ',' in self.to_coord:
+            return "0-0"
         if self.from_coord == 'x' and self.to_coord == 'x':
             return "#"
         if self.from_coord == 'yield':

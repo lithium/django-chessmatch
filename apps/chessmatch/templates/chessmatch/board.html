@@ -92,30 +92,42 @@
     }
 
     function apply_move(move, animate) {
-        var to_coord = move.to_coord.replace(/[\+x].*/, '')
         // create and/or position piece
-        var $square = $('#square-'+to_coord)
+
         var $src_square = null
         var color = window.COLORS[move.color]
-        if (move.from_coord) {
-            var $piece = $('#square-'+move.from_coord+' .piece')
-            $src_square = $('#square-'+move.from_coord)
-        }
-        else { // first placement, create it
-            var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
-            $piece.draggable({});
-            $piece.html(window.unicodes[move.piece])
-            if (move.direction in window.directions) {
-                $piece.append('<div class="arrow '+move.direction+'">'+window.directions[move.direction]+'</div>')
-            }
-        }
-        $piece.attr('square', to_coord)
 
-        if (move.from_coord && animate) { // animate the move
-            animate_piece($src_square, $square, $piece)
-        }
-        else {
-            place_piece($square, $piece, move.to_coord)
+
+        var src_coords = move.from_coord.split(/,/)
+        var dst_coords = move.to_coord.split(/,/)
+        var i;
+
+        for (i = 0; i < src_coords.length; i++) {
+            var from_coord = src_coords[i]
+            var to_coord = dst_coords[i].replace(/[\+x].*/, '')
+            var $square = $('#square-'+to_coord)
+
+
+            if (from_coord) {
+                var $piece = $('#square-'+from_coord+' .piece')
+                $src_square = $('#square-'+from_coord)
+            }
+            else { // first placement, create it
+                var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
+                $piece.draggable({});
+                $piece.html(window.unicodes[move.piece])
+                if (move.direction in window.directions) {
+                    $piece.append('<div class="arrow '+move.direction+'">'+window.directions[move.direction]+'</div>')
+                }
+            }
+            $piece.attr('square', to_coord)
+
+            if (from_coord && animate) { // animate the move
+                animate_piece($src_square, $square, $piece)
+            }
+            else {
+                place_piece($square, $piece, to_coord)
+            }
         }
 
     }
@@ -236,11 +248,13 @@
                 var $square = $(this)
                 var $piece = ui.draggable
 
-                $('#id_to_coord').val($square.attr('square'))
-                $('#id_from_coord').val($piece.attr('square'))
+                if ($('.square.move-destination').length < 1) {
+                    $('#id_to_coord').val($square.attr('square'))
+                    $('#id_from_coord').val($piece.attr('square'))
+                }
 
 
-                $('.square').removeClass('move-destination')
+                $('.square').removeClass('move-destination').removeClass('move-source')
                 $square.addClass("move-destination")
                 $('#square-'+$piece.attr('square')).addClass("move-source")
 
