@@ -7,16 +7,9 @@ from django import http
 from django.core import serializers
 
 
+from mainsite.views import LoginRequiredMixin, JsonDetailView
 from chessmatch.models import *
 from chessmatch.forms import *
-import json
-
-
-class JsonDetailView(DetailView):
-    def render_to_response(self, context):
-        content = json.dumps(context)
-        return http.HttpResponse(content, content_type='application/json')
-
 
 
 class LobbyView(TemplateView):
@@ -118,7 +111,7 @@ class HistoryView(JsonDetailView):
             })
         return state
 
-class NewGameView(CreateView):
+class NewGameView(LoginRequiredMixin, CreateView):
     model = Game
     form_class = NewGameForm 
     template_name = 'chessmatch/newgame.html'
@@ -133,7 +126,7 @@ class NewGameView(CreateView):
         )
         return super(NewGameView, self).form_valid(form)
 
-class JoinGameView(DetailView):
+class JoinGameView(LoginRequiredMixin, DetailView):
     model = Game
     def get(self, request, *args, **kwargs):
         obj = self.get_object()
@@ -143,11 +136,12 @@ class JoinGameView(DetailView):
         return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':obj.slug}))
 
 
-class StartGameView(DetailView):
+class StartGameView(LoginRequiredMixin, DetailView):
     model = Game
     def get(self, request, *args, **kwargs):
         obj = self.get_object()
-        obj.start_new_game()
+        if obj.gameplayer_set.filter(player__user=request.user).count() > 0:
+            obj.start_new_game()
         return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':obj.slug}))
 
 

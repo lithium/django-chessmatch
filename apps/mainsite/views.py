@@ -9,6 +9,26 @@ from contrib import twitterauth, oauth
 from mainsite.forms import LoginForm
 from chessmatch.models import Player
 
+
+from django.views.generic import DetailView
+import json
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+
+class LoginRequiredMixin(object):
+    @method_decorator(login_required(login_url='/login/'))
+    def dispatch(self, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
+
+class JsonDetailView(DetailView):
+    def render_to_response(self, context):
+        content = json.dumps(context)
+        return http.HttpResponse(content, content_type='application/json')
+
+
+
+
 def error500(request, template_name='500.html'):
     t = template.loader.get_template(template_name)
     context = template.Context({
@@ -28,6 +48,9 @@ class LoginView(FormView):
     form_class=LoginForm
     success_url='/'
     template_name='login.html'
+
+    def get_success_url(self):
+        return self.request.GET.get('next', getattr(self,'success_url','/'))
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated():
