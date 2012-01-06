@@ -2,6 +2,7 @@
 body {
     margin: 0;
     padding: 0;
+    background: #fafafa;
 }
 
 
@@ -9,7 +10,8 @@ body {
 section#page-header {
     position: relative;
     vertical-align: top;
-    background: #eee;
+    background: #e0e0e0;
+    border-bottom: 1px solid #aaa;
     padding: 4px;
 }
 
@@ -142,8 +144,7 @@ section.game-log {
 }
 
 .game-log th.active {
-    background: #eee;
-    
+    border: 1px dotted red;
 }
 .game-log .move {
     cursor: pointer;

@@ -13,7 +13,7 @@
         <link rel="StyleSheet" href="{{STATIC_URL}}css/screen.css">
         {% endblock %}
     </head>
-    <body>
+    <body class="{%block body_class%}{%endblock%}">
         <section id="page-header">
             <h1><a href="{{url('chessmatch_lobby')}}">Chessmatch</a></h1>
             <p class="loginout">
