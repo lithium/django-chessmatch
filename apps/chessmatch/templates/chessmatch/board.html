@@ -128,18 +128,20 @@
             var parts = data.turn.split('.')
             window.CUR_TURN = parts[0]
             window.CUR_COLOR = parts[1]
+            window.GAME_STARTED = data.is_playing
 
             var i;
 
-            if (COLORS[CUR_COLOR]) {
-{%if not lite%}
-                {%if game.is_active%}
-                $('#cur-move').html(COLORS[CUR_COLOR]+"'s turn (#"+CUR_TURN+'.'+COLORS[CUR_COLOR][0]+')')
-                {%else%}
-                $('#cur-move').html(COLORS[CUR_COLOR]+" (#"+CUR_TURN+'.'+COLORS[CUR_COLOR][0]+')')
-                {%endif%}
-{%endif%}
+            {%if not lite%}
+            if (GAME_STARTED) {
+                if (COLORS[CUR_COLOR]) {
+                    $('#cur-move').html(COLORS[CUR_COLOR]+"'s turn (#"+CUR_TURN+'.'+COLORS[CUR_COLOR][0]+')')
+                }
+                if (MY_COLORS.length > 0) {
+                    $('#next-move').show()
+                }
             }
+            {%endif%}
 
             //player list
             var $names = $('.game-log .names')
@@ -304,16 +306,20 @@
 
     <section class="game-move">
         {%if game.is_active%}
-        <div id="cur-move">
             {%if not game.started_at%}
                 <p>{{game.num_players}} of {{game.board_setup.min_players}}{%if game.board_setup.max_players != game.board_setup.min_players%}..{{game.board_setup.max_players}}{%endif%} players </p>
-                {%if game.is_playing(user) and game.num_players >= game.board_setup.min_players and not game.started_at%}
-                <a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a>
+                {%if game.is_playing(request.user)%}
+                    <p><a href="{{url('chessmatch_leave', slug=game.slug)}}">Leave Game<a/><p>
+                    {%if game.num_players >= game.board_setup.min_players%}
+                    <p><a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a></p>
+                    {%endif%}
+                {%else%}
+                    <p><a href="{{url('chessmatch_join', slug=game.slug)}}">Join Game</a></p>
                 {%endif%}
             {%endif%}
-        </div>
+        <div id="cur-move"> </div>
         {%if not lite %}
-        <form method="POST" action="{{url('chessmatch_move', slug=game.slug)}}" id="next-move">
+        <form method="POST" action="{{url('chessmatch_move', slug=game.slug)}}" id="next-move" style="display: none">
             {{csrf()}}
             <input type="text" placeholder="From Coordinate" name="from_coord" id="id_from_coord"/>
             <input type="text" placeholder="To Coordinate" name="to_coord" id="id_to_coord"/>

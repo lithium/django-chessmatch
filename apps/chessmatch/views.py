@@ -89,6 +89,7 @@ class HistoryView(JsonDetailView):
             'my_colors': [],
             'colors': [c.name.lower() for c in colors],
             'players': players,
+            'is_playing': bool(self.object.started_at),
         }
 
         if self.request.user.is_authenticated():
@@ -134,6 +135,15 @@ class JoinGameView(LoginRequiredMixin, DetailView):
             player = request.user.get_profile()
             gp, created = GamePlayer.objects.get_or_create(game=obj, player=player)
         return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':obj.slug}))
+
+class LeaveGameView(LoginRequiredMixin, DetailView):
+    model = Game
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if request.user.is_authenticated() and obj.is_playing(request.user) and not obj.started_at:
+            player = request.user.get_profile()
+            GamePlayer.objects.filter(game=obj, player=player).delete()
+        return http.HttpResponseRedirect(reverse('chessmatch_lobby'))
 
 
 class StartGameView(LoginRequiredMixin, DetailView):

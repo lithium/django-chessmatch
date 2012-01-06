@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^join/(?P<slug>[^/]+)/$', JoinGameView.as_view(), name='chessmatch_join'),
     url(r'^start/(?P<slug>[^/]+)/$', StartGameView.as_view(), name='chessmatch_start'),
+    url(r'^leave/(?P<slug>[^/]+)/$', LeaveGameView.as_view(), name='chessmatch_leave'),
 
     url(r'^board/(?P<slug>[^/]+)/history/(?:(?P<last_seen>[^/]+)/)?$', HistoryView.as_view(), name='chessmatch_history'),
     url(r'^board/(?P<slug>[^/]+)/$', BoardView.as_view(), name='chessmatch_game'),
