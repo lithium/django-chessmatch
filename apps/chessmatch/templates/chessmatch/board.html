@@ -104,12 +104,17 @@
 
         for (i = 0; i < src_coords.length; i++) {
             var from_coord = src_coords[i]
-            var to_coord = dst_coords[i].replace(/[\+x].*/, '')
+            var to_coord = dst_coords[i].replace(/[\+x=].*/, '')
             var $square = $('#square-'+to_coord)
+
 
 
             if (from_coord) {
                 var $piece = $('#square-'+from_coord+' .piece')
+                if (dst_coords[i].match(/=/)) {  // promote the pawn
+                    var p = dst_coords[i].replace(/.*=/,'').toUpperCase();
+                    $piece.html(window.unicodes[p])
+                }
                 $src_square = $('#square-'+from_coord)
             }
             else { // first placement, create it

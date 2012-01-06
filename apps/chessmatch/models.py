@@ -304,7 +304,7 @@ class Game(basic_models.SlugModel):
     def generate_board_state(self):
         board = {}
 
-        nix_check_re = re.compile(r'[\+x].*$')
+        nix_check_re = re.compile(r'[\+x=].*$')
         for action in self.gameaction_set.all().order_by('turn','color'):
             if action.from_coord in ('x','-','yield'):
                 continue
@@ -382,7 +382,7 @@ class Game(basic_models.SlugModel):
             src_piece = board.get(from_coord, None)
             if src_piece is None:
                 return False
-            cap_piece = board.get(re.sub(r'[\+x].*$', '', to_coord), None)
+            cap_piece = board.get(re.sub(r'[\+to_coord=].*$', '', x), None)
 
         move, created = GameAction.objects.get_or_create(game=self,
             turn=self.turn_number,
@@ -447,6 +447,9 @@ class GameAction(models.Model):
 
     @property
     def expression(self):
+        if '=' in self.to_coord: 
+            coord,piece = self.to_coord.split('=')
+            return "%s=%s" % (coord, piece.upper())
         if ',' in self.from_coord and ',' in self.to_coord:
             return "0-0"
         if self.from_coord == 'x' and self.to_coord == 'x':
