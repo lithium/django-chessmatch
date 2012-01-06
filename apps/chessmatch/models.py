@@ -227,8 +227,10 @@ class Game(basic_models.SlugModel):
             self.slug = _hashtagify(self.name)
         return super(Game, self).save(*args, **kwargs)
 
-    def start_new_game(self):
-        if self.started_at is not None:
+
+    def setup_new_game(self):
+        """Layout the pieces according to the boardsetup."""
+        if self.gameaction_set.filter(turn=0).count() > 0:
             return
 
         color_letters = self.board_setup.get_color_letters()
@@ -251,6 +253,12 @@ class Game(basic_models.SlugModel):
                 to_coord=square)
 
 
+    def start_new_game(self):
+        if self.started_at is not None:
+            return
+
+        self.setup_new_game()
+        piece_colors = self.board_setup.get_piece_colors()
 
         # randomize player positions
         turns = sorted(zip([random.random() for c in range(0,self.num_players)], [player for player in self.gameplayer_set.all()]), lambda a,b: cmp(a[0],b[0]))

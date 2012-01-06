@@ -79,8 +79,7 @@ class HistoryView(JsonDetailView):
             turn, color = last_seen.split('.')
             queryset = queryset.filter(models.Q(turn__gt=turn) | models.Q(turn=turn,color__gt=color))
 
-        #colors = PieceColor.objects.all()[:self.object.num_players]
-        colors = []
+        colors = self.object.board_setup.get_piece_colors()
         players = []
         for gp in self.object.gameplayer_set.all().order_by('turn_order'):
             players.append({
@@ -105,7 +104,9 @@ class HistoryView(JsonDetailView):
                 state['my_colors'].append(gp.turn_order)
 
         for move in queryset:
-            direction = move.piece == 'P' and move.game.board_setup.get_pawn_direction([c.letter for c in colors][move.color]) or DIR_NONE
+            direction = None
+            if colors:
+                direction = move.piece == 'P' and move.game.board_setup.get_pawn_direction([c.letter for c in colors][move.color]) or DIR_NONE
             state['moves'].append({
                 'to_coord': move.to_coord,
                 'from_coord': move.from_coord,
@@ -125,6 +126,7 @@ class NewGameView(CreateView):
 
     def form_valid(self, form):
         obj = form.save()
+        obj.setup_new_game()
         gp, created = GamePlayer.objects.get_or_create(
             game=obj, 
             player=self.request.user.get_profile()
