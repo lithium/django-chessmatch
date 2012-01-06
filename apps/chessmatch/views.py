@@ -73,15 +73,13 @@ class HistoryView(JsonDetailView):
             queryset = queryset.filter(models.Q(turn__gt=turn) | models.Q(turn=turn,color__gt=color))
 
         colors = self.object.board_setup.get_piece_colors()
-        players = []
+        players = {}
         for gp in self.object.gameplayer_set.all().order_by('turn_order'):
-            players.append({
+            players[gp.turn_order] = {
                 'username': gp.controlling_player.moniker,
                 'avatar': gp.controlling_player.avatar,
                 'owner': gp.player.moniker,
-            })
-            if gp.color:
-                colors.append(gp.color)
+            }
 
         state = {
             'turn': "%s.%s" % (self.object.turn_number, self.object.turn_color),
@@ -133,7 +131,14 @@ class JoinGameView(LoginRequiredMixin, DetailView):
         obj = self.get_object()
         if request.user.is_authenticated():
             player = request.user.get_profile()
-            gp, created = GamePlayer.objects.get_or_create(game=obj, player=player)
+            color = request.GET.get('color',None)
+            if color:
+                color = int(color)
+                if obj.gameplayer_set.filter(color=color).count() > 0:
+                    color = None
+                else:
+                    piececolor = obj.board_setup.get_piece_colors()[color]
+            gp, created = GamePlayer.objects.get_or_create(game=obj, player=player, turn_order=color, color=piececolor)
         return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':obj.slug}))
 
 class LeaveGameView(LoginRequiredMixin, DetailView):

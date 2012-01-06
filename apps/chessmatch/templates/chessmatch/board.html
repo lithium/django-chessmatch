@@ -147,17 +147,23 @@
             var $names = $('.game-log .names')
             $names.empty()
             $names.append('<th/>')
-            for (i=0; i < data.players.length; i++) {
+            for (i=0; i < COLORS.length; i++) {
                 var $th = $('<th class="player '+(CUR_COLOR == i ? "active" : "")+'"/>')
                 if (data.colors[i])
                     $th.append('<div class="color">'+data.colors[i]+'</div>')
-                $th.append('<img class="avatar" src="'+data.players[i].avatar+'"/>')
-                $username = $('<div class="username">'+data.players[i].username+'</div>')
-                if (data.players[i].owner != data.players[i].username) {
-                    $username.prepend($('<div style="text-decoration: line-through;"/>').html(data.players[i].owner))
-                    
+                if (i in data.players) {
+                    $th.append('<img class="avatar" src="'+data.players[i].avatar+'"/>')
+                    $username = $('<div class="username">'+data.players[i].username+'</div>')
+                    if (data.players[i].owner != data.players[i].username) {
+                        $username.prepend($('<div style="text-decoration: line-through;"/>').html(data.players[i].owner))
+                    }
+                    $th.append($username)
+                } else {
+                    {%if request.user.is_authenticated() and not game.is_playing(request.user)%}
+                    var join_url = "{{url('chessmatch_join', slug=game.slug)}}"
+                    $th.append('<div><a href="'+join_url+'?color='+i+'">Join</a></div>')
+                    {%endif%}
                 }
-                $th.append($username)
                 $names.append($th);
             }
 
@@ -313,7 +319,7 @@
                     {%if game.num_players >= game.board_setup.min_players%}
                     <p><a href="{{url('chessmatch_start', slug=game.slug)}}">Start Game</a></p>
                     {%endif%}
-                {%else%}
+                {%elif request.user.is_authenticated()%}
                     <p><a href="{{url('chessmatch_join', slug=game.slug)}}">Join Game</a></p>
                 {%endif%}
             {%endif%}
