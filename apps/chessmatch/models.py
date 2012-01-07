@@ -103,7 +103,7 @@ class BoardSetup(basic_models.SlugModel):
                     'piece': p[1],
                     'unicode': piece_unicode[p[1].upper()],
                     'dirname': direction,
-                    'dirchar': show_directions and arrow_unicode[direction] or '',
+                    'dirchar': (show_directions and direction in arrow_unicode) and arrow_unicode[direction] or '',
                     'name': p,
                 })
         return ''
