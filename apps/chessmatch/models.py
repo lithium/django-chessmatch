@@ -73,7 +73,7 @@ class BoardSetup(basic_models.SlugModel):
         col = string.ascii_lowercase.find(file)+1
         return  (col > 0 and col <= self.num_cols) and \
                 (rank > 0 and rank <= self.num_rows) and \
-                ('%s%s'%(file,rank) not in self.squares)
+                ('%s%s'%(file,rank) not in re.split(r'\s+', self.squares))
 
     def get_space_color(self, file, rank):
         color = ""
