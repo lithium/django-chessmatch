@@ -22,6 +22,16 @@ class PieceColorAdmin(DefaultModelAdmin):
 	fields = ('name','letter','hexvalue')
 admin.site.register(PieceColor, PieceColorAdmin)
 
+class PieceTypeAdmin(DefaultModelAdmin):
+    class PieceMoveInline(admin.TabularInline):
+        model = PieceMove
+        extra = 0
+    list_display = ('name','ascii_glyph','safe_unicodes','move_description')
+    fields = ('name','ascii_glyph','unicode_glyph','rotation')
+    inlines = (PieceMoveInline,)
+admin.site.register(PieceType, PieceTypeAdmin)
+
+
 class BoardSetupAdmin(SlugModelAdmin):
 	class BoardSetupColorInline(admin.TabularInline):
 		model = BoardSetupColor

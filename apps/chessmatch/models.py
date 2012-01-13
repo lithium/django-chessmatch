@@ -153,6 +153,68 @@ PIECE_CHOICES = (
     (PIECE_KING, 'King'),
 )
 
+"""
+"""
+
+class PieceType(basic_models.DefaultModel):
+    ascii_glyph=models.CharField(max_length=32)
+    unicode_glyph=models.CharField(max_length=32,blank=True)
+    name = models.CharField(max_length=1024)
+    rotation = models.CharField(max_length=32, default=0, blank=True) # in degrees
+
+    def safe_unicodes(self):
+        return mark_safe(self.unicode_glyph)
+    safe_unicodes.allow_tags = True
+
+    def move_description(self):
+        return ', '.join(str(m) for m in self.piecemove_set.all())
+
+
+class PieceMove(models.Model):
+    MOVE_V_CHOICES=[
+        (-2, 'Infinite Leaper'),
+        (-1, 'Rider'),
+        (0,'Immobile'),
+    ] + [(c,c) for c in range(1,10)]
+    piece_type = models.ForeignKey(PieceType)
+# pawns use (m,n) but don't abs() to give direction
+# leapers need (m,n)  knights,king
+    # (m,n) defines the move type
+    #   take abs(<start_square> -  <dest_square>):
+    #   one of the coords must be abs(m) and the other abs(n)
+    move_m = models.IntegerField(default=0)
+    move_n = models.IntegerField(default=0)
+# riders need (m,n)+v    rook,bishop,queen
+    # +v defines the move velocity
+    #   -1 means any number of unobstructed moves in same direction (queen/bishop)
+    move_v = models.IntegerField(default=1, choices=MOVE_V_CHOICES)
+    can_capture = models.BooleanField(default=True)
+    initial_only = models.BooleanField(default=False)
+
+    @property
+    def typename(self):
+        if self.move_v == -1:
+            return 'rider'
+        elif self.move_v == 0:
+            return 'statue'
+        elif self.move_v > 0:
+            return 'leaper'
+
+    @property
+    def prefix(self):
+        if self.can_capture:
+            return 'x='
+        if self.initial_only:
+            return 'i='
+        return ''
+
+    def __unicode__(self):
+        return "%s(%s,%s)-%s" % (self.prefix, self.move_m, self.move_n, self.typename)
+
+
+
+
+
 class Player(basic_models.ActiveModel):
     NOTIFY_NONE = ''
     NOTIFY_TWITTER = 'twitter'

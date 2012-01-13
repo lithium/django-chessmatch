@@ -1,0 +1,212 @@
+[
+  {
+    "pk": 1,
+    "model": "chessmatch.piecetype",
+    "fields": {
+      "updated_by": 6,
+      "created_at": "2012-01-12 22:50:45",
+      "is_active": true,
+      "ascii_glyph": "R",
+      "created_by": 6,
+      "updated_at": "2012-01-12 22:54:02",
+      "unicode_glyph": "&#9814;,&#9820;",
+      "rotation": "",
+      "name": "Rook"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "chessmatch.piecetype",
+    "fields": {
+      "updated_by": 6,
+      "created_at": "2012-01-12 22:54:28",
+      "is_active": true,
+      "ascii_glyph": "B",
+      "created_by": 6,
+      "updated_at": "2012-01-12 22:54:35",
+      "unicode_glyph": "&#9815;,&#9821;",
+      "rotation": "0",
+      "name": "Bishop"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "chessmatch.piecetype",
+    "fields": {
+      "updated_by": 6,
+      "created_at": "2012-01-12 22:55:01",
+      "is_active": true,
+      "ascii_glyph": "Q",
+      "created_by": 6,
+      "updated_at": "2012-01-12 22:55:01",
+      "unicode_glyph": "&#9813;,&#9819;",
+      "rotation": "0",
+      "name": "Queen"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "chessmatch.piecetype",
+    "fields": {
+      "updated_by": 6,
+      "created_at": "2012-01-12 22:57:07",
+      "is_active": true,
+      "ascii_glyph": "N",
+      "created_by": 6,
+      "updated_at": "2012-01-12 22:57:07",
+      "unicode_glyph": "&#9816;,&#9822;",
+      "rotation": "0",
+      "name": "Knight"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "chessmatch.piecetype",
+    "fields": {
+      "updated_by": 6,
+      "created_at": "2012-01-12 22:59:35",
+      "is_active": true,
+      "ascii_glyph": "K",
+      "created_by": 6,
+      "updated_at": "2012-01-12 22:59:35",
+      "unicode_glyph": "&#9812;,&#9818;",
+      "rotation": "0",
+      "name": "King"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "chessmatch.piecetype",
+    "fields": {
+      "updated_by": 6,
+      "created_at": "2012-01-12 23:01:16",
+      "is_active": true,
+      "ascii_glyph": "P",
+      "created_by": 6,
+      "updated_at": "2012-01-12 23:05:16",
+      "unicode_glyph": "&#9817;,&#9823;",
+      "rotation": "0",
+      "name": "Pawn"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": -1,
+      "move_n": 0,
+      "piece_type": 1,
+      "move_m": 1,
+      "can_capture": true
+    }
+  },
+  {
+    "pk": 2,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": -1,
+      "move_n": 1,
+      "piece_type": 2,
+      "move_m": 1,
+      "can_capture": true
+    }
+  },
+  {
+    "pk": 3,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": -1,
+      "move_n": 0,
+      "piece_type": 3,
+      "move_m": 1,
+      "can_capture": true
+    }
+  },
+  {
+    "pk": 4,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": -1,
+      "move_n": 1,
+      "piece_type": 3,
+      "move_m": 1,
+      "can_capture": true
+    }
+  },
+  {
+    "pk": 5,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": 1,
+      "move_n": 2,
+      "piece_type": 4,
+      "move_m": 1,
+      "can_capture": true
+    }
+  },
+  {
+    "pk": 6,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": 1,
+      "move_n": 0,
+      "piece_type": 5,
+      "move_m": 1,
+      "can_capture": true
+    }
+  },
+  {
+    "pk": 7,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": 1,
+      "move_n": 1,
+      "piece_type": 5,
+      "move_m": 1,
+      "can_capture": true
+    }
+  },
+  {
+    "pk": 8,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": 1,
+      "move_n": 0,
+      "piece_type": 6,
+      "move_m": 1,
+      "can_capture": false
+    }
+  },
+  {
+    "pk": 9,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": false,
+      "move_v": 1,
+      "move_n": 1,
+      "piece_type": 6,
+      "move_m": 1,
+      "can_capture": true
+    }
+  },
+  {
+    "pk": 10,
+    "model": "chessmatch.piecemove",
+    "fields": {
+      "initial_only": true,
+      "move_v": 1,
+      "move_n": 0,
+      "piece_type": 6,
+      "move_m": 2,
+      "can_capture": false
+    }
+  }
+]

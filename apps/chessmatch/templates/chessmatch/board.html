@@ -36,6 +36,7 @@
     window.game_actions = []
 
     function click_piece() {
+        var $this = $(this)
         var $from = $('#id_from_coord')
         var coord = $(this).attr('square')
         var $square = $('#square-'+coord)
@@ -43,6 +44,52 @@
         if (! $from.val()) {
             $from.val(coord)
             $square.addClass('move-source')
+
+
+            //highlight possible moves
+            var inc_coord = function(coord, m, n) {
+                return String.fromCharCode(coord.charCodeAt(0) + Number(m)) + (Number(coord[1])+Number(n))
+            }
+            var piece_type = PIECES[$(this).attr('piece')]
+            for (var i=0; i < piece_type.moves.length; i++) {
+                var move = piece_type.moves[i]
+                var moves = [
+                    [move.m,    move.n],
+                    [move.m*-1, move.n],
+                    [move.m,    move.n*-1],
+                    [move.m*-1, move.n*-1],
+                    [move.n,    move.m],
+                    [move.n*-1, move.m],
+                    [move.n,    move.m*-1],
+                    [move.n*-1, move.m*-1]
+                ]
+                for (var m = 0; m < moves.length; m++) {
+                    var move_m = moves[m][0]
+                    var move_n = moves[m][1]
+
+                    var c = 1;
+                    while (true) {
+                        var $threat = $('#square-'+inc_coord(coord, move_m*c, move_n*c));
+                        if ($threat.length < 1)
+                            break;
+                        if ($threat.hasClass('unusable'))
+                            break;
+
+                        var $cap = $threat.find('.piece')
+                        if ($cap.length < 1 || ($cap.attr('color') != $this.attr('color'))) {
+                            $threat.addClass('move-destination')
+                        }
+                        c += 1
+                        if (move.v > 0 && c > move.v) 
+                            break
+                        if ($threat.find('.piece').length > 0)
+                            break
+                    }
+                }
+
+            }
+            
+
         } else {
            click_square.apply($square,[]) 
         }
@@ -73,6 +120,7 @@
             'left': '+='+leftdelta,
         }, 750, function() {
             place_piece($to_square, $piece)
+            $('.move-destination').not($to_square).removeClass('move-destination')
         })
     }
     function place_piece($square, $piece, to_coord)
@@ -119,8 +167,8 @@
                 $src_square = $('#square-'+from_coord)
             }
             else { // first placement, create it
-                var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
-                $piece.draggable({});
+                var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'" piece="'+move.piece+'" color="'+color+'"/>')
+                //$piece.draggable({});
                 $piece.html(window.unicodes[move.piece])
                 if (move.direction in window.directions) {
                     $piece.append('<div class="arrow '+move.direction+'">'+window.directions[move.direction]+'</div>')
@@ -147,6 +195,7 @@
             window.CUR_TURN = parts[0]
             window.CUR_COLOR = parts[1]
             window.GAME_STARTED = data.is_playing
+            window.PIECES = data.pieces
 
             var i;
 

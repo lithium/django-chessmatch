@@ -81,6 +81,24 @@ class HistoryView(JsonDetailView):
                 'owner': gp.player.moniker,
             }
 
+        pieces = {}
+        for pt in PieceType.objects.all():
+            pieces[pt.ascii_glyph] = {
+                'unicodes': pt.unicode_glyph,
+                'moves': [],
+            }
+            for pm in pt.piecemove_set.all():
+                pieces[pt.ascii_glyph]['moves'].append({
+                    'm': pm.move_m,
+                    'n': pm.move_n,
+                    'v': pm.move_v,
+                    'capture': pm.can_capture,
+                    'initial': pm.initial_only,
+                })
+            
+
+
+
         state = {
             'turn': "%s.%s" % (self.object.turn_number, self.object.turn_color),
             'moves': [],
@@ -88,6 +106,7 @@ class HistoryView(JsonDetailView):
             'colors': [c.name.lower() for c in colors],
             'players': players,
             'is_playing': bool(self.object.started_at),
+            'pieces': pieces,
         }
 
         if self.request.user.is_authenticated():
