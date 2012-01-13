@@ -132,12 +132,13 @@ class JoinGameView(LoginRequiredMixin, DetailView):
         if request.user.is_authenticated():
             player = request.user.get_profile()
             color = request.GET.get('color',None)
+            piececolor = None
             if color:
                 color = int(color)
-                if obj.gameplayer_set.filter(color=color).count() > 0:
-                    color = None
-                else:
+                if obj.gameplayer_set.filter(color=color).count() < 1:
                     piececolor = obj.board_setup.get_piece_colors()[color]
+            else:
+                color = -1
             gp, created = GamePlayer.objects.get_or_create(game=obj, player=player, turn_order=color, color=piececolor)
         return http.HttpResponseRedirect(reverse('chessmatch_game', kwargs={'slug':obj.slug}))
 
