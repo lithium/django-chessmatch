@@ -22,4 +22,8 @@ section.game-board {
 }
 section.game-log {
     float: none;
+}   
+.game-log th.active {
+    border: 1px solid #eee;
+    background: #666;
 }

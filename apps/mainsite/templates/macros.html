@@ -13,6 +13,10 @@
 
 {%macro render_chessboard(board_setup, label=True, preview=False, show_directions=True) -%}
     <table class="chessboard">
+    	{%if label%}
+        <tr> <th></th> {%for file in board_setup.files%} <th>{{file}}</th> {%endfor%} </tr>
+        {%endif%}
+
 	    {%for rank in range(board_setup.num_rows,0,-1)%}
 	        <tr>
 	            {%if label%}
@@ -25,6 +29,10 @@
 	                {%endif%}
 	                </td>
 	            {%endfor%}
+	            {%if label%}
+	            <th>{{rank}}</th>
+	            {%endif%}
+
 	        </tr>
 	    {%endfor%}
 
