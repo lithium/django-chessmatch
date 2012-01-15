@@ -77,6 +77,14 @@
     }
     function place_piece($square, $piece, to_coord)
     {
+        var $caps = $square.find('.piece')
+        if ($caps.length) {
+            $caps.find('.arrow').remove()
+            var $captures = $('th.player.'+$piece.attr('color')+' .captures')
+            $captures.append($caps)
+            $captures.find('.piece').unbind('click').draggable('disable')
+        }
+
         $square.empty()
         $square.append($piece)
         $piece.css({'left':0,'top':0})
@@ -119,7 +127,7 @@
                 $src_square = $('#square-'+from_coord)
             }
             else { // first placement, create it
-                var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'"/>')
+                var $piece = $('<div class="piece '+color+'" id="piece_'+move.piece+'-'+color+'" color="'+color+'"/>')
                 $piece.draggable({});
                 $piece.html(window.unicodes[move.piece])
                 if (move.direction in window.directions) {
@@ -163,26 +171,34 @@
 
             //player list
             var $names = $('.game-log .names')
-            $names.empty()
-            $names.append('<th/>')
+            //$names.empty()
+            //$names.append('<th/>')
             for (i=0; i < COLORS.length; i++) {
-                var $th = $('<th class="player '+(CUR_COLOR == i ? "active" : "")+'"/>')
-                if (data.colors[i])
-                    $th.append('<div class="color">'+data.colors[i]+'</div>')
-                if (i in data.players) {
-                    $th.append('<img class="avatar" src="'+data.players[i].avatar+'"/>')
-                    $username = $('<div class="username">'+data.players[i].username+'</div>')
-                    if (data.players[i].owner != data.players[i].username) {
-                        $username.prepend($('<div style="text-decoration: line-through;"/>').html(data.players[i].owner))
+                var $th = $('th.player.'+data.colors[i])
+                if ($th.length < 1) {
+                    $th = $('<th class="player '+data.colors[i]+' '+(CUR_COLOR == i ? "active" : "")+'"/>')
+
+                    if (data.colors[i])
+                        $th.append('<div class="color">'+data.colors[i]+'</div>')
+
+                    if (i in data.players) {
+                        $th.append('<img class="avatar" src="'+data.players[i].avatar+'"/>')
+                        $username = $('<div class="username">'+data.players[i].username+'</div>')
+                        if (data.players[i].owner != data.players[i].username) {
+                            $username.prepend($('<div style="text-decoration: line-through;"/>').html(data.players[i].owner))
+                        }
+                        $th.append($username)
+                        $th.append('<div class="captures"></div>')
+                    } else {
+                        {%if request.user.is_authenticated() and not game.is_playing(request.user)%}
+                        var join_url = "{{url('chessmatch_join', slug=game.slug)}}"
+                        $th.append('<div><a href="'+join_url+'?color='+i+'">Join</a></div>')
+                        {%endif%}
                     }
-                    $th.append($username)
+                    $names.append($th);
                 } else {
-                    {%if request.user.is_authenticated() and not game.is_playing(request.user)%}
-                    var join_url = "{{url('chessmatch_join', slug=game.slug)}}"
-                    $th.append('<div><a href="'+join_url+'?color='+i+'">Join</a></div>')
-                    {%endif%}
+                    //just update user...
                 }
-                $names.append($th);
             }
 
 
@@ -375,7 +391,7 @@
 
     <section class="game-log">
         <table>
-            <tr class="names"></tr>
+            <tr class="names"><th></th></tr>
             <tbody id="movelist">
             </tbody>
         </table>

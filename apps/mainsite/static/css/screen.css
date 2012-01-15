@@ -148,7 +148,20 @@ section.game-log {
 }
 .game-log .move {
     cursor: pointer;
-    
+}
+.game-log .captures {
+    max-width: 60px;
+    word-wrap: break-word;
+}
+.game-log .captures .piece {
+    display: inline;
+    font-size: 19px;
+}
+.game-log .captures .piece {
+    background: #ffce9e;
+}
+.game-log .captures .piece:nth-child(odd) {
+    background: #d18b47;
 }
 .game-rules {
     clear: both;
@@ -192,28 +205,28 @@ table.chessboard {
     font-size: 40px;
     margin-top: -22px;
 }
-.piece.white {
+.white {
     color: white;
 }
-.piece.red {
+.red {
     color: red;
 }
-.piece.green {
+.green {
     color: green;
 }
-.piece.black {
+.black {
     color: black;
 }
-.piece.yellow {
+.yellow {
     color: yellow;
 }
-.piece.purple {
+.purple {
     color: purple;
 }
-.piece.blue {
+.blue {
     color: blue;
 }
-.piece.orange {
+.orange {
     color: orange;
 }
 
