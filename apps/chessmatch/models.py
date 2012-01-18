@@ -8,6 +8,7 @@ import re
 import random
 import datetime
 import string
+from hashlib import md5
 
 
 from chessmatch import tasks
@@ -216,6 +217,10 @@ class Game(basic_models.SlugModel):
     def comma_players(self):
         return ', '.join(gp.player.moniker for gp in self.gameplayer_set.all())
 
+    @property
+    def gamestate_id(self):
+        return md5(''.join(str(ga) for ga in self.gameaction_set.all())).hexdigest()
+
     @models.permalink
     def get_absolute_url(self):
         return ('chessmatch_game', (), {
@@ -316,15 +321,76 @@ class Game(basic_models.SlugModel):
 
 
     def make_move(self, player, from_coord, to_coord):
+        from_coord = from_coord.lower()
+        to_coord = to_coord.lower()
+
+        # you can yield or flag on anyone's turn...
+
+        if from_coord == 'yield':  # yield control
+            qs = self.gameplayer_set.filter(color__letter=to_coord)
+            if len(qs) < 1: # invalid color letter
+                return False 
+            cur_player.controller = qs[0]
+            cur_player.save()
+            move, created = GameAction.objects.get_or_create(game=self,
+                turn=self.turn_number,
+                color=self.turn_color,
+                piece='',
+                from_coord=from_coord,
+                to_coord=to_coord,
+                is_capture=False,
+            )
+            return True
+
+        if from_coord == 'flag': # flag move as invalid
+            if '.' not in to_coord:
+                return False
+            turn, color_c = to_coord.split('.')
+            color = -1
+            try:
+                color = int(color_c)
+            except ValueError as e:
+                letters = self.board_setup.get_color_letters()
+                color = letters.find(color_c)
+            if color < 0:
+                return False
+
+            flag_threshold = 2 # require at least 2 users to flag
+
+            if turn[0] == '#':
+                turn = turn[1:]
+
+            try:
+                ga = GameAction.objects.get(game=self, turn=turn, color=color)
+                ga.flag_count += 1
+                if ga.flag_count >= flag_threshold: 
+                    # revert game action and all game actions after it.
+                    qs = GameAction.objects.filter(
+                        models.Q(game=self) & 
+                        (models.Q(turn=turn, color__gte=color) | models.Q(turn__gt=turn)) 
+                    )
+                    qs.delete()
+                    self.turn_number = turn
+                    self.turn_color = color
+                    self.save()
+                else:
+                    ga.save()
+                return True
+            except GameAction.DoesNotExist as e:
+                pass
+            return False
+
+
+
+        # check for legal colors
         qs = self.gameplayer_set.filter(models.Q(player=player) | models.Q(controller__player=player))
         legal_colors = [gp.turn_order for gp in qs.all()]
         if len(legal_colors) < 1 or self.turn_color not in legal_colors:
             return False
 
+
         cur_player = self.gameplayer_set.get(turn_order=self.turn_color)
 
-        from_coord = from_coord.lower()
-        to_coord = to_coord.lower()
 
         if from_coord == '-' and to_coord == '-':  # pass
             move, created = GameAction.objects.get_or_create(game=self,
@@ -352,21 +418,6 @@ class Game(basic_models.SlugModel):
             self.next_turn()
             return True
 
-        if from_coord == 'yield':  # yield control
-            qs = self.gameplayer_set.filter(color__letter=to_coord)
-            if len(qs) < 1: # invalid color letter
-                return False 
-            cur_player.controller = qs[0]
-            cur_player.save()
-            move, created = GameAction.objects.get_or_create(game=self,
-                turn=self.turn_number,
-                color=self.turn_color,
-                piece='',
-                from_coord=from_coord,
-                to_coord=to_coord,
-                is_capture=False,
-            )
-            return True
 
 
         if not from_coord or not to_coord or (from_coord == to_coord):
@@ -441,6 +492,7 @@ class GameAction(models.Model):
     from_coord = models.CharField(max_length=64, blank=True)
     to_coord = models.CharField(max_length=64)
     is_capture = models.BooleanField(default=False)
+    flag_count = models.IntegerField(default=0)
 
     class Meta:
         ordering = ('turn','color')

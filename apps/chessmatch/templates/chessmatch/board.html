@@ -156,6 +156,13 @@
             window.CUR_COLOR = parts[1]
             window.GAME_STARTED = data.is_playing
 
+            if (window.GAME_MD5 && window.GAME_MD5 != data.md5sum) {
+                // if the md5sums change, just reload the page
+                window.location = window.location
+                return;
+            }
+            window.GAME_MD5 = data.md5sum
+
             var i;
 
             {%if not lite%}
@@ -198,13 +205,18 @@
                     $names.append($th);
                 } else {
                     //just update user...
+                    if (CUR_COLOR == i) {
+                        $('th.active').removeClass('active')
+                        $th.addClass('active')
+                    }
+
                 }
             }
 
 
             // moves
             for (i=0; i < data.moves.length; i++) {
-                move = data.moves[i]
+                var move = data.moves[i]
                 var color = window.COLORS[move.color]
                 apply_move(move)
 
@@ -220,6 +232,17 @@
                     var $td = $tr.find('td.color-'+color)
                     if ($td.length < 1) { // add move to the log
                         $td = $('<td class="color-'+color+'"><div class="move" actions_idx="'+(window.game_actions.length-1)+'">'+move.expr+'</div></td>')
+                        if (move.flag_count) {
+                            var $a = $('<a href="#" class="flag">Flag</a>')
+                            var closure = move
+                            $a.bind('click', function() {
+                                $('#id_from_coord').val('flag')
+                                $('#id_to_coord').val(closure.turn+'.'+closure.color)
+                                return false;
+                            })
+                            $td.append($a)
+                            
+                        }
                         $tr.append($td)
                     } else {
                         $td.append('<div class="move" actions_idx="'+(window.game_actions.length-1)+'">'+move.expr+'</div>')

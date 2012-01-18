@@ -11,6 +11,9 @@ from mainsite.views import LoginRequiredMixin, JsonDetailView
 from chessmatch.models import *
 from chessmatch.forms import *
 
+from hashlib import md5
+import json
+
 
 class LobbyView(TemplateView):
     template_name = 'chessmatch/lobby.html'
@@ -105,9 +108,12 @@ class HistoryView(JsonDetailView):
                 'turn': move.turn,
                 'color': move.color,
                 'piece': move.piece,
+                'flag_count': move.flag_count,
                 'direction': direction,
                 'expr': move.expression,
             })
+
+        state['md5sum'] = self.object.gamestate_id
         return state
 
 class NewGameView(LoginRequiredMixin, CreateView):
