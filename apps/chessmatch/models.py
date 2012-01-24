@@ -449,6 +449,8 @@ class Game(basic_models.SlugModel):
     def current_turn_player(self):
         gp = self.gameplayer_set.filter(turn_order=self.turn_color)
         if len(gp) > 0:
+            if gp[0].controller_id:
+                return gp[0].controller
             return gp[0].player
 
     def notify_next_player(self):
