@@ -89,7 +89,7 @@ class BoardSetup(basic_models.SlugModel):
         return color
 
     def get_starting_piece(self, file, rank, show_directions=True):
-        piece_unicode = {'K': '&#9818', 'Q': '&#9819', 'R': '&#9820', 'B': '&#9821', 'N': '&#9822', 'P': '&#9823', }
+        piece_unicode = {'K': '&#9818', 'Q': '&#9819', 'R': '&#9820', 'B': '&#9821', 'N': '&#9822', 'P': '&#9823', 'F': '&#x262b', 'E': '&#x2697', 'G': '&#x262c', 'D': '&#x2638', 'W': '&#x2645' }
         arrow_unicode = {DIR_UP: '&uarr;', DIR_UPRIGHT: '&#x2197;', DIR_RIGHT: '&rarr;', 
                          DIR_DOWNRIGHT: '&#x2198;', DIR_DOWN: '&darr;', DIR_DOWNLEFT: '&#x2199;', 
                          DIR_LEFT: '&larr;', DIR_UPLEFT: '&#x2196;', DIR_NONE: '', }
