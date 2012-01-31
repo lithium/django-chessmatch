@@ -252,7 +252,7 @@ class Game(basic_models.SlugModel):
             return
 
         color_letters = self.board_setup.get_color_letters()
-        piece_letters = 'PRNBQK'
+        piece_letters = 'PRNBQKFEGDW'
         piece_colors = self.board_setup.get_piece_colors()
 
         for placement in re.split(r'\s+', self.board_setup.pieces):
