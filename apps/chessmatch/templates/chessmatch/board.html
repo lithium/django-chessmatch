@@ -429,7 +429,7 @@
 {%if not lite%}
     <section class="game-rules">
         <h3>Rules</h3>
-        <pre>{{game.board_setup.description}}</pre>
+        <pre>{{game.board_setup.description|safe}}</pre>
     </section>
 {%endif%}
 
