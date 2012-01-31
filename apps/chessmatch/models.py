@@ -145,6 +145,13 @@ PIECE_KNIGHT='N'
 PIECE_BISHOP='B'
 PIECE_QUEEN='Q'
 PIECE_KING='K'
+
+PIECE_FERZ='F'
+PIECE_ALFIL='E'
+PIECE_GENERAL='G'
+PIECE_DABBABAH='D'
+PIECE_WAZIR='W'
+
 PIECE_CHOICES = (
     (PIECE_PAWN, 'Pawn'),
     (PIECE_ROOK, 'Rook'),
@@ -152,6 +159,12 @@ PIECE_CHOICES = (
     (PIECE_BISHOP, 'Bishop'),
     (PIECE_QUEEN, 'Queen'),
     (PIECE_KING, 'King'),
+
+    (PIECE_FERZ, 'Ferz'),
+    (PIECE_ALFIL, 'Alfil'),
+    (PIECE_GENERAL, 'General'),
+    (PIECE_DABBABAH, 'Dabbabah'),
+    (PIECE_WAZIR, 'Wazir'),
 )
 
 class Player(basic_models.ActiveModel):
