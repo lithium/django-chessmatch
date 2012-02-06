@@ -299,7 +299,11 @@ class Game(basic_models.SlugModel):
                 self.turn_color = 0
                 self.turn_number += 1
         players = self.gameplayer_set.all()
-        if len(players.filter(is_playing=True)) == 1:
+        left_playing = players.filter(is_playing=True)
+        if len(left_playing) == 1:
+            self.winner = left_playing[0]
+            self.is_active = False
+            self.save()
             return
         _inc_color()
         while not players[self.turn_color].is_playing:

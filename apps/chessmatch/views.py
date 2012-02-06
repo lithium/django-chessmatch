@@ -92,7 +92,9 @@ class HistoryView(JsonDetailView):
             'players': players,
             'is_playing': bool(self.object.started_at),
         }
-
+        if not self.object.is_active and self.object.winner_id:
+            state['winner'] = self.object.winner.player.user.username
+            
         if self.request.user.is_authenticated():
             player = self.request.user.get_profile()
             for gp in self.object.gameplayer_set.filter(models.Q(player=player) | models.Q(controller=player)):
