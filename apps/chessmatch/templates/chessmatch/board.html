@@ -233,6 +233,11 @@
                     var $tr = $('tr#turn-'+move.turn);
                     if ($tr.length < 1) {
                         $tr = $('<tr id="turn-'+move.turn+'" ><th>'+move.turn+'.</th></tr>')
+
+                        for (var x=0; x < window.COLORS.length; x++) {
+                            $tr.append($('<td class="color-'+window.COLORS[x]+'"></td>'))
+                        }
+
                         $('#movelist').prepend($tr)
                     }
                     var $td = $tr.find('td.color-'+color)
